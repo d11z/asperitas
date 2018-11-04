@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 24px;
+    background-color: #282c34;
+}
+
+.header__main {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    margin: 0;
+    color: #ffffff;
+}
+
+.header__subreddit {
+    margin: 0 0 0 24px;
+    color: #ffffff;
+}
+
+.header__link {
+    color: #ffffff;
+}
+
+.header__link:not(:first-child) {
+    margin-left: 16px;
+}
