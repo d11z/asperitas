@@ -1,0 +1,8 @@
+.post-list {
+    list-style: none;
+    border: 1px solid #aaa;
+}
+
+.post-list__item:not(:first-child) {
+    border-top: 1px solid #aaa;
+}
