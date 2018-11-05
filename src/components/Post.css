@@ -1,0 +1,42 @@
+.post {
+    display: flex;
+    height: 76px;
+}
+
+.vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30px;
+    padding: 4px;
+    background-color: #f0f0f0;
+}
+
+.vote__score {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+}
+
+.vote__button {
+    height: 22px;
+    width: 22px;
+}
+
+.post__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.post__title {
+    margin: 0;
+    font-weight: 500;
+}
+
+.post__detail > * {
+    margin-right: 4px;
+}
