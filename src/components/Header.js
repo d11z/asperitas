@@ -7,7 +7,7 @@ class Header extends Component {
       <header className='header'>
         <div className='header__main'>
           <h1 className='header__logo'>reddit</h1>
-          <h2 className="header__subreddit">{this.props.subreddit}</h2>
+          <h2 className="header__subreddit">r/{this.props.subreddit}</h2>
         </div>
         <div className="header__links">
           <a href="/" className="header__link">log in</a>

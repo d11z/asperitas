@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <Header subreddit='r/all'/>
+        <Header subreddit='all'/>
       </div>
     );
   }
