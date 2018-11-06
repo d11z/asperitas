@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './Header';
-import SubredditPage from './SubredditPage';
+import MainView from './MainView';
 
 import './App.css';
 
@@ -9,7 +9,7 @@ const App = props => (
   <Router>
     <div className='app'>
       <Header subreddit='all'/>
-      <Route exact path='/' component={SubredditPage}/>
+      <Route exact path='/' component={MainView}/>
     </div>
   </Router>
 );

@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import PostList from './PostList';
+import ListView from './ListView';
 
 it('renders without crashing', () => {
-  shallow(<PostList/>);
+  shallow(<ListView/>);
 });
 
 it('renders a list of posts', () => {
@@ -27,7 +27,7 @@ it('renders a list of posts', () => {
     }
   ];
 
-  const wrapper = shallow(<PostList posts={posts}/>);
+  const wrapper = shallow(<ListView posts={posts}/>);
 
   expect(wrapper.children()).toHaveLength(posts.length);
 });

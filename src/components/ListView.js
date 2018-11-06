@@ -1,5 +1,5 @@
 import React from 'react';
-import './PostList.css';
+import './ListView.css';
 import Post from './Post';
 
 const mapPosts = posts => posts.map((post, index) => (
@@ -15,10 +15,10 @@ const mapPosts = posts => posts.map((post, index) => (
   </li>
 ));
 
-const PostList = props => (
+const ListView = props => (
   <ul className='post-list'>
     {props.posts ? mapPosts(props.posts) : null}
   </ul>
 );
 
-export default PostList;
+export default ListView;
