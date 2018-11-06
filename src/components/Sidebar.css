@@ -1,0 +1,28 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+    flex-basis: 240px;
+    margin-left: 32px;
+    border: 1px solid #eee;
+}
+
+.sidebar__create-post {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    background-color: #eee;
+}
+
+.sub-list {
+    list-style: none;
+}
+
+.sub-list__item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.sub-list__item:last-child {
+    border: none;
+}
