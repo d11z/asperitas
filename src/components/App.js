@@ -8,7 +8,7 @@ import './App.css';
 const App = props => (
   <Router>
     <div className='app'>
-      <Header subreddit='all'/>
+      <Header/>
       <Route exact path='/' component={MainView}/>
     </div>
   </Router>
