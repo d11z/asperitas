@@ -24,7 +24,7 @@ const mapPosts = posts => posts.map((post, index) => (
   </li>
 ));
 
-const ListView = props => (
+export const ListView = props => (
   <ul className='post-list'>
     {props.posts ? mapPosts(
       sortPosts(filterPosts(props.posts, props.match.params.category))

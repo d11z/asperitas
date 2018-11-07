@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
-import ListView from './ListView';
+import { ListView } from './ListView';
 
 it('renders without crashing', () => {
   shallow(<ListView/>);
@@ -27,7 +27,52 @@ it('renders a list of posts', () => {
     }
   ];
 
-  const wrapper = shallow(<ListView posts={posts}/>);
+  const wrapper = shallow(
+    <ListView
+      posts={posts}
+      match={{
+        params: {}
+      }}
+    />
+  );
 
   expect(wrapper.children()).toHaveLength(posts.length);
+});
+
+it('sorts post by score', () => {
+  const posts = [
+    { score: 5 },
+    { score: 21 }
+  ];
+
+  const wrapper = mount(
+    <ListView
+      posts={posts}
+      match={{
+        params: {}
+      }}
+    />
+  ).find('li');
+
+  expect(wrapper.at(0).find('.vote__score').text()).toEqual('21');
+});
+
+it('filters posts by category', () => {
+  const posts = [
+    { category: 'vim' },
+    { category: 'javascript' }
+  ];
+
+  const wrapper = shallow(
+    <ListView
+      posts={posts}
+      match={{
+        params: {
+          category: 'vim'
+        }
+      }}
+    />
+  );
+
+  expect(wrapper.children()).toHaveLength(1);
 });
