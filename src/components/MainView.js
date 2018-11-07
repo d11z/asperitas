@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import ListView from './ListView';
 
@@ -8,7 +9,8 @@ const MainView = props => (
   <div className='content'>
     <Sidebar/>
     <main className='main'>
-      <ListView posts={props.posts}/>
+      <Route exact path='/' component={ListView}/>
+      <Route path='/r/:category' component={ListView}/>
     </main>
   </div>
 );

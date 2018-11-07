@@ -9,7 +9,7 @@ const App = props => (
   <Router>
     <div className='app'>
       <Header/>
-      <Route exact path='/' component={MainView}/>
+      <Route path='/' component={MainView}/>
     </div>
   </Router>
 );
