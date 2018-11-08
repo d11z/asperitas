@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 
 import { ListView } from './ListView';
 
@@ -46,12 +47,14 @@ it('sorts post by score', () => {
   ];
 
   const wrapper = mount(
-    <ListView
-      posts={posts}
-      match={{
-        params: {}
-      }}
-    />
+    <MemoryRouter>
+      <ListView
+        posts={posts}
+        match={{
+          params: {}
+        }}
+      />
+    </MemoryRouter>
   ).find('li');
 
   expect(wrapper.at(0).find('.vote__score').text()).toEqual('21');
@@ -64,14 +67,9 @@ it('filters posts by category', () => {
   ];
 
   const wrapper = shallow(
-    <ListView
-      posts={posts}
-      match={{
-        params: {
-          category: 'vim'
-        }
-      }}
-    />
+    <MemoryRouter initialEntries={['/r/vim']}>
+      <ListView posts={posts}/>
+    </MemoryRouter>
   );
 
   expect(wrapper.children()).toHaveLength(1);
