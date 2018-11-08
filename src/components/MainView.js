@@ -10,7 +10,9 @@ const MainView = props => (
     <Sidebar/>
     <main className='main'>
       <Route exact path='/' component={ListView}/>
-      <Route path='/r/:category' component={ListView}/>
+      <Route exact path='/r/:category' render={({ match }) =>
+        <ListView category={match.params.category}/>
+      }/>
     </main>
   </div>
 );

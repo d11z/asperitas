@@ -29,12 +29,7 @@ it('renders a list of posts', () => {
   ];
 
   const wrapper = shallow(
-    <ListView
-      posts={posts}
-      match={{
-        params: {}
-      }}
-    />
+    <ListView posts={posts}/>
   );
 
   expect(wrapper.children()).toHaveLength(posts.length);
@@ -48,12 +43,7 @@ it('sorts post by score', () => {
 
   const wrapper = mount(
     <MemoryRouter>
-      <ListView
-        posts={posts}
-        match={{
-          params: {}
-        }}
-      />
+      <ListView posts={posts}/>
     </MemoryRouter>
   ).find('li');
 

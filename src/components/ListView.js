@@ -20,7 +20,7 @@ const mapPosts = posts => posts.map((post, index) => (
 export const ListView = props => (
   <ul className='post-list'>
     {props.posts ? mapPosts(
-      sortPosts(filterPosts(props.posts, props.match.params.category))
+      sortPosts(filterPosts(props.posts, props.category))
     ) : null}
   </ul>
 );
