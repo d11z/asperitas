@@ -13,14 +13,7 @@ const sortPosts = posts => posts.sort((a, b) => b.score - a.score);
 
 const mapPosts = posts => posts.map((post, index) => (
   <li key={index} className='post-list__item'>
-    <Post
-      score={post.score}
-      title={post.title}
-      url={post.url}
-      author={post.author}
-      timestamp={post.timestamp}
-      comments={post.comments}
-    />
+    <Post {...post}/>
   </li>
 ));
 
