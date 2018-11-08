@@ -14,7 +14,7 @@
 
 .vote__score {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 24px;
     text-align: center;
 }
@@ -29,11 +29,24 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 8px;
-    font-size: 13px;
 }
 
 .post__title {
-    margin: 0;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.post__url {
+    color: #6f6f6f;
+    font-size: 12px;
+}
+
+.post__detail {
+    color: #6f6f6f;
+    font-size: 12px;
     font-weight: 500;
 }
 
