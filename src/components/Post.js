@@ -11,7 +11,7 @@ const Post = props => (
     </div>
     <div className='post__content'>
       <div className='post__link'>
-        <h3 className='post__title'>{props.title}</h3>
+        <a className='post__title' href={props.url}>{props.title}</a>
         <div className='post__url'>{props.url}</div>
       </div>
       <div className='post__detail'>
