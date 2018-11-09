@@ -1,8 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Post from './Post';
 
-import './ListView.css';
+const List = styled.ul`
+  list-style: none;
+  border: 1px solid #eee;
+`;
+
+const Item = styled.li`
+  :not(:first-child) {
+    border-top: 1px solid #eee;
+  }
+`;
 
 const filterPosts = (posts, category) => {
   if (!category) return posts;
@@ -12,17 +22,17 @@ const filterPosts = (posts, category) => {
 const sortPosts = posts => posts.sort((a, b) => b.score - a.score);
 
 const mapPosts = posts => posts.map((post, index) => (
-  <li key={index} className='post-list__item'>
+  <Item key={index}>
     <Post {...post}/>
-  </li>
+  </Item>
 ));
 
 export const ListView = props => (
-  <ul className='post-list'>
+  <List>
     {props.posts ? mapPosts(
       sortPosts(filterPosts(props.posts, props.category))
     ) : null}
-  </ul>
+  </List>
 );
 
 const mapStateToProps = state => ({
