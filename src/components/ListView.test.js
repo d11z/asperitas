@@ -47,7 +47,7 @@ it('sorts post by score', () => {
     </MemoryRouter>
   ).find('li');
 
-  expect(wrapper.at(0).find('.vote__score').text()).toEqual('21');
+  expect(wrapper.at(0).find('Post__Score').text()).toEqual('21');
 });
 
 it('filters posts by category', () => {
