@@ -1,28 +1,56 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import './Sidebar.css';
+const Wrapper = styled.aside`
+  display: flex;
+  flex-direction: column;
+  order: 1;
+  flex-basis: 240px;
+  margin-left: 32px;
+  border: 1px solid #eee;
+`;
+
+const Button = styled.button`
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  background-color: #eee;
+`;
+
+const List = styled.ul`
+  list-style: none;
+`;
+
+const Item = styled.li`
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  
+  :last-child {
+    border: none;
+  }
+`;
 
 const Sidebar = props => (
-  <aside className='sidebar'>
-    <button className='sidebar__create-post'>create post</button>
-    <nav className='sidebar__nav'>
-      <ul className='sub-list'>
-        <li className='sub-list__item'>
+  <Wrapper>
+    <Button>create post</Button>
+    <nav>
+      <List>
+        <Item>
           <Link to='/'>r/all</Link>
-        </li>
-        <li className='sub-list__item'>
+        </Item>
+        <Item>
           <Link to='/r/webdev'>r/webdev</Link>
-        </li>
-        <li className='sub-list__item'>
+        </Item>
+        <Item>
           <Link to='/r/javascript'>r/javascript</Link>
-        </li>
-        <li className='sub-list__item'>
+        </Item>
+        <Item>
           <Link to='/r/vim'>r/vim</Link>
-        </li>
-      </ul>
+        </Item>
+      </List>
     </nav>
-  </aside>
+  </Wrapper>
 );
 
 export default Sidebar;
