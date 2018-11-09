@@ -1,17 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './Header';
 import MainView from './MainView';
 
 import './App.css';
 
 const App = props => (
-  <Router>
-    <div className='app'>
-      <Header/>
-      <Route path='/' component={MainView}/>
-    </div>
-  </Router>
+  <div className='app'>
+    <Header/>
+    <MainView/>
+  </div>
 );
 
 export default App;
