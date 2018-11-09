@@ -1,20 +1,29 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import ListView from './ListView';
 
-import './MainView.css';
+const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 32px;
+`;
+
+const Main = styled.main`
+  flex: 1;
+`;
 
 const MainView = props => (
-  <div className='content'>
+  <Wrapper>
     <Sidebar/>
-    <main className='main'>
+    <Main>
       <Route exact path='/' component={ListView}/>
       <Route exact path='/r/:category' render={({ match }) =>
         <ListView category={match.params.category}/>
       }/>
-    </main>
-  </div>
+    </Main>
+  </Wrapper>
 );
 
 export default MainView;
