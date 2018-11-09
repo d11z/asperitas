@@ -1,27 +1,84 @@
 import React from 'react';
+import styled from 'styled-components';
 import moment from 'moment';
-import './Post.css';
+import { Link } from 'react-router-dom';
+
+const Wrapper = styled.div`
+  display: flex;
+  height: 76px;
+`;
+
+const VoteWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30px;
+  padding: 4px;
+  background-color: #f0f0f0;
+`;
+
+const VoteButton = styled.button`
+  height: 22px;
+  width: 22px;
+`;
+
+const Score = styled.div`
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  font-size: 12px;
+`;
+
+const TitleLink = styled.a`
+  display: block;
+  margin-bottom: 2px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+`;
+
+const Url = styled.span`
+  color: #6f6f6f;
+`;
+
+const DetailWrapper = styled.div`
+  color: #6f6f6f;
+
+  & > * {
+    margin-right: 4px;
+  }
+`;
 
 const Post = props => (
-  <div className='post'>
-    <div className='vote'>
-      <button className='vote__button vote__button--up'/>
-      <div className='vote__score'>{props.score}</div>
-      <button className='vote__button vote__button--down'/>
-    </div>
-    <div className='post__content'>
-      <div className='post__link'>
-        <a className='post__title' href={props.url}>{props.title}</a>
-        <div className='post__url'>{props.url}</div>
+  <Wrapper>
+    <VoteWrapper>
+      <VoteButton/>
+      <Score>{props.score}</Score>
+      <VoteButton/>
+    </VoteWrapper>
+    <ContentWrapper>
+      <div>
+        <TitleLink href={props.url}>{props.title}</TitleLink>
+        <Url>{props.url}</Url>
       </div>
-      <div className='post__detail'>
+      <DetailWrapper>
         <span>by</span>
-        <a className='post__author' href='/'>{props.author}</a>
-        <span className='post__timestamp'>{moment(props.timestamp).fromNow()}</span>
-        <a className='post__comments' href='/'>{props.comments} comments</a>
-      </div>
-    </div>
-  </div>
+        <a href='/'>{props.author}</a>
+        <span>{moment(props.timestamp).fromNow()}</span>
+        <Link to={`/r/${props.category}/${props.id}`}>
+          <span>{props.comments} comments</span>
+        </Link>
+      </DetailWrapper>
+    </ContentWrapper>
+  </Wrapper>
 );
 
 export default Post;
