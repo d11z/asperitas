@@ -1,4 +1,3 @@
-import React from 'react';
 import { mapStateToProps } from './ListViewContainer';
 
 it('sorts post by score', () => {
@@ -7,7 +6,7 @@ it('sorts post by score', () => {
     { score: 21 }
   ];
 
-  const initialState = { posts };
+  const initialState = { reddit: { posts } };
 
   expect(mapStateToProps(initialState, {}).posts[0].score).toEqual(21);
 });
@@ -18,7 +17,7 @@ it('filters posts by category', () => {
     { category: 'javascript' }
   ];
 
-  const initialState = { posts };
+  const initialState = { reddit: { posts } };
   const ownProps = { category: 'vim' };
 
   expect(mapStateToProps(initialState, ownProps).posts).toHaveLength(1);
