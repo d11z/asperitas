@@ -20,7 +20,15 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "plugins": ["prettier"],
+    "rules": {
+      "prettier/prettier": "error"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true
   },
   "browserslist": [
     ">0.2%",
@@ -30,6 +38,8 @@
   ],
   "devDependencies": {
     "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0"
+    "enzyme-adapter-react-16": "^1.6.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "prettier": "^1.15.2"
   }
 }
