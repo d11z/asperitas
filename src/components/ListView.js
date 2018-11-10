@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { connect } from 'react-redux';
 import Post from './Post';
 
 const List = styled.ul`
@@ -14,29 +13,16 @@ const Item = styled.li`
   }
 `;
 
-const filterPosts = (posts, category) => {
-  if (!category) return posts;
-  return posts.filter(post => post.category === category);
-};
-
-const sortPosts = posts => posts.sort((a, b) => b.score - a.score);
-
 const mapPosts = posts => posts.map((post, index) => (
   <Item key={index}>
     <Post {...post}/>
   </Item>
 ));
 
-export const ListView = props => (
+const ListView = props => (
   <List>
-    {props.posts ? mapPosts(
-      sortPosts(filterPosts(props.posts, props.category))
-    ) : null}
+    {props.posts ? mapPosts(props.posts) : null}
   </List>
 );
 
-const mapStateToProps = state => ({
-  posts: state.posts
-});
-
-export default connect(mapStateToProps)(ListView);
+export default ListView;

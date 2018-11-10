@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import ListView from './ListView';
+import ListViewContainer from '../containers/ListViewContainer';
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,9 +18,9 @@ const MainView = props => (
   <Wrapper>
     <Sidebar/>
     <Main>
-      <Route exact path='/' component={ListView}/>
+      <Route exact path='/' component={ListViewContainer}/>
       <Route exact path='/r/:category' render={({ match }) =>
-        <ListView category={match.params.category}/>
+        <ListViewContainer category={match.params.category}/>
       }/>
     </Main>
   </Wrapper>
