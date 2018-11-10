@@ -14,9 +14,9 @@ const GlobalStyle = createGlobalStyle`
 
 const App = props => (
   <>
-    <GlobalStyle/>
-    <Header/>
-    <MainView/>
+    <GlobalStyle />
+    <Header />
+    <MainView />
   </>
 );
 

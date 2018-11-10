@@ -60,9 +60,9 @@ const DetailWrapper = styled.div`
 const Post = props => (
   <Wrapper>
     <VoteWrapper>
-      <VoteButton/>
+      <VoteButton />
       <Score>{props.score}</Score>
-      <VoteButton/>
+      <VoteButton />
     </VoteWrapper>
     <ContentWrapper>
       <div>

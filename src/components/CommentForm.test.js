@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import CommentForm from './CommentForm';
 
 it('renders without crashing', () => {
-  shallow(<CommentForm/>);
+  shallow(<CommentForm />);
 });

@@ -25,7 +25,7 @@ const List = styled.ul`
 const Item = styled.li`
   padding: 8px;
   border-bottom: 1px solid #eee;
-  
+
   :last-child {
     border: none;
   }

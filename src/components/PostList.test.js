@@ -3,14 +3,12 @@ import { shallow } from 'enzyme';
 import PostList from './PostList';
 
 it('renders without crashing', () => {
-  shallow(<PostList/>);
+  shallow(<PostList />);
 });
 
 it('renders a list of posts', () => {
-  const posts = [ {}, {}, {} ];
-  const wrapper = shallow(
-    <PostList posts={posts}/>
-  );
+  const posts = [{}, {}, {}];
+  const wrapper = shallow(<PostList posts={posts} />);
 
   expect(wrapper.children()).toHaveLength(posts.length);
 });

@@ -17,15 +17,23 @@ const Main = styled.main`
 
 const MainView = props => (
   <Wrapper>
-    <Sidebar/>
+    <Sidebar />
     <Main>
-      <Route exact path='/' component={PostListContainer}/>
-      <Route exact path='/r/:category' render={({ match }) =>
-        <PostListContainer category={match.params.category}/>
-      }/>
-      <Route exact path='/r/:category/:post' render={({ match }) =>
-        <PostDetailContainer postId={match.params.post}/>
-      }/>
+      <Route exact path='/' component={PostListContainer} />
+      <Route
+        exact
+        path='/r/:category'
+        render={({ match }) => (
+          <PostListContainer category={match.params.category} />
+        )}
+      />
+      <Route
+        exact
+        path='/r/:category/:post'
+        render={({ match }) => (
+          <PostDetailContainer postId={match.params.post} />
+        )}
+      />
     </Main>
   </Wrapper>
 );

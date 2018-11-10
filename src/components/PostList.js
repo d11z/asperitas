@@ -13,16 +13,15 @@ const Item = styled.li`
   }
 `;
 
-const mapPosts = posts => posts.map((post, index) => (
-  <Item key={index}>
-    <Post {...post}/>
-  </Item>
-));
+const mapPosts = posts =>
+  posts.map((post, index) => (
+    <Item key={index}>
+      <Post {...post} />
+    </Item>
+  ));
 
 const PostList = props => (
-  <List>
-    {props.posts ? mapPosts(props.posts) : null}
-  </List>
+  <List>{props.posts ? mapPosts(props.posts) : null}</List>
 );
 
 export default PostList;

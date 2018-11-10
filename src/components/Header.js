@@ -26,7 +26,7 @@ const Subreddit = styled.h2`
 
 const StyledLink = styled.a`
   color: #ffffff;
-  
+
   :not(:first-child) {
     margin-left: 16px;
   }

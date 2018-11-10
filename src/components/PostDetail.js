@@ -23,13 +23,13 @@ const CommentListWrapper = styled.div`
 const PostDetail = props => (
   <>
     <PostWrapper>
-      <Post {...props.post}/>
+      <Post {...props.post} />
     </PostWrapper>
     <CommentSection>
       <CommentListWrapper>
-        {props.post && <CommentList comments={props.post.comments}/>}
+        {props.post && <CommentList comments={props.post.comments} />}
       </CommentListWrapper>
-      <CommentForm/>
+      <CommentForm />
     </CommentSection>
   </>
 );
