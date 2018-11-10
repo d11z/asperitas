@@ -1,9 +1,0 @@
-.content {
-    display: flex;
-    align-items: flex-start;
-    padding: 32px;
-}
-
-.main {
-    flex: 1;
-}

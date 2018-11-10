@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 
 import Post from './Post';
-import moment from 'moment';
 
 it('renders without crashing', () => {
   shallow(<Post/>);
@@ -19,20 +19,13 @@ it('renders information about the post', () => {
   };
 
   const wrapper = shallow(
-    <Post
-      title={data.title}
-      url={data.url}
-      author={data.author}
-      score={data.score}
-      timestamp={data.timestamp}
-      comments={data.comments}
-    />
+    <Post {...data}/>
   );
 
-  expect(wrapper.find('.post__title').text()).toEqual(data.title);
-  expect(wrapper.find('.post__url').text()).toEqual(data.url);
-  expect(wrapper.find('.post__author').text()).toEqual(data.author);
-  expect(wrapper.find('.post__timestamp').text()).toEqual(moment(data.timestamp).fromNow());
-  expect(wrapper.find('.post__comments').text()).toEqual(`${data.comments} comments`);
-  expect(wrapper.find('.vote__score').text()).toEqual(data.score.toString());
+  expect(wrapper.find('Post__TitleLink').text()).toEqual(data.title);
+  expect(wrapper.find('Post__Url').text()).toEqual(data.url);
+  expect(wrapper.find('Post__DetailWrapper').childAt(1).text()).toEqual(data.author);
+  expect(wrapper.find('Post__DetailWrapper').childAt(2).text()).toEqual(moment(data.timestamp).fromNow());
+  expect(wrapper.find('Post__DetailWrapper').childAt(3).childAt(0).text()).toEqual(`${data.comments} comments`);
+  expect(wrapper.find('Post__Score').text()).toEqual(data.score.toString());
 });
