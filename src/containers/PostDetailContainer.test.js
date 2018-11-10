@@ -1,4 +1,4 @@
-import { mapStateToProps } from './CommentsViewContainer';
+import { mapStateToProps } from './PostDetailContainer';
 
 it('displays the correct post', () => {
   const posts = [

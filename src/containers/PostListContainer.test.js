@@ -1,4 +1,4 @@
-import { mapStateToProps } from './ListViewContainer';
+import { mapStateToProps } from './PostListContainer';
 
 it('sorts post by score', () => {
   const posts = [

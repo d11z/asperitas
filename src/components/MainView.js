@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import ListViewContainer from '../containers/ListViewContainer';
-import CommentsViewContainer from '../containers/CommentsViewContainer';
+import PostListContainer from '../containers/PostListContainer';
+import PostDetailContainer from '../containers/PostDetailContainer';
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,12 +19,12 @@ const MainView = props => (
   <Wrapper>
     <Sidebar/>
     <Main>
-      <Route exact path='/' component={ListViewContainer}/>
+      <Route exact path='/' component={PostListContainer}/>
       <Route exact path='/r/:category' render={({ match }) =>
-        <ListViewContainer category={match.params.category}/>
+        <PostListContainer category={match.params.category}/>
       }/>
       <Route exact path='/r/:category/:post' render={({ match }) =>
-        <CommentsViewContainer postId={match.params.post}/>
+        <PostDetailContainer postId={match.params.post}/>
       }/>
     </Main>
   </Wrapper>

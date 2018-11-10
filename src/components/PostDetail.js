@@ -20,7 +20,7 @@ const CommentListWrapper = styled.div`
   margin-right: 16px;
 `;
 
-const CommentsView = props => (
+const PostDetail = props => (
   <>
     <PostWrapper>
       <Post {...props.post}/>
@@ -34,4 +34,4 @@ const CommentsView = props => (
   </>
 );
 
-export default CommentsView;
+export default PostDetail;

@@ -19,10 +19,10 @@ const mapPosts = posts => posts.map((post, index) => (
   </Item>
 ));
 
-const ListView = props => (
+const PostList = props => (
   <List>
     {props.posts ? mapPosts(props.posts) : null}
   </List>
 );
 
-export default ListView;
+export default PostList;
