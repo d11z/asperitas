@@ -19,8 +19,7 @@ const SubmitButton = styled.button`
   align-self: flex-end;
   padding: 4px 16px;
   margin: 4px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
   border: 1px solid #eee;
 `;
 

@@ -11,6 +11,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   }
+  
+  body {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 `;
 
 const App = props => (

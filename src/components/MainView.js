@@ -8,7 +8,6 @@ import PostDetailContainer from '../containers/PostDetailContainer';
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  padding: 32px;
 `;
 
 const Main = styled.main`

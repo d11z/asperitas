@@ -23,8 +23,8 @@ const VoteButton = styled.button`
 `;
 
 const Score = styled.div`
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
   line-height: 24px;
   text-align: center;
 `;
@@ -41,7 +41,7 @@ const TitleLink = styled.a`
   display: block;
   margin-bottom: 2px;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
 `;
 
