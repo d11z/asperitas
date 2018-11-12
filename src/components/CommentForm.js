@@ -1,38 +1,33 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
+import Form from './Form';
+import Input from './Input';
+import SubmitButton from './SubmitButton';
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  flex: 2;
-  background-color: #eee;
+const StyledForm = styled(Form)`
+  padding: 0;
+  border: 1px solid #eee;
 `;
 
-const TextArea = styled(Field)`
-  padding: 8px;
-  border: 1px solid #eee;
-  font-size: 16px;
+const TextArea = styled(Input)`
+  margin-bottom: 0;
 `;
 
-const SubmitButton = styled.button`
-  align-self: flex-end;
-  padding: 4px 16px;
-  margin: 4px;
-  font-size: 16px;
-  border: 1px solid #eee;
+const StyledSubmitButton = styled(SubmitButton)`
+  margin: 8px;
 `;
 
 const CommentForm = props => (
-  <Form>
+  <StyledForm>
     <TextArea
       name='comment'
       component='textarea'
       rows='3'
       placeholder='enter your comment'
     />
-    <SubmitButton type='submit'>submit</SubmitButton>
-  </Form>
+    <StyledSubmitButton type='submit'>submit</StyledSubmitButton>
+  </StyledForm>
 );
 
 export default reduxForm({ form: 'comment' })(CommentForm);

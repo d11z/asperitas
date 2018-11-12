@@ -20,6 +20,10 @@ const CommentListWrapper = styled.div`
   margin-right: 16px;
 `;
 
+const CommentFormWrapper = styled.div`
+  flex: 2;
+`;
+
 const PostDetail = props => (
   <>
     <PostWrapper>
@@ -29,7 +33,9 @@ const PostDetail = props => (
       <CommentListWrapper>
         {props.post && <CommentList comments={props.post.comments} />}
       </CommentListWrapper>
-      <CommentForm />
+      <CommentFormWrapper>
+        <CommentForm />
+      </CommentFormWrapper>
     </CommentSection>
   </>
 );
