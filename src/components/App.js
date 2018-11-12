@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import MainView from './MainView';
 
@@ -16,7 +17,9 @@ const App = props => (
   <>
     <GlobalStyle />
     <Header />
-    <MainView />
+    <Switch>
+      <Route path='/' component={MainView} />
+    </Switch>
   </>
 );
 
