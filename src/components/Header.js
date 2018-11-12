@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.header`
   display: flex;
@@ -15,8 +16,9 @@ const LogoWrapper = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.h1`
-  margin: 0;
+const LogoLink = styled(Link)`
+  text-decoration: none;
+  font-size: 26px;
   color: #ffffff;
 `;
 
@@ -25,7 +27,7 @@ const Subreddit = styled.h2`
   color: #ffffff;
 `;
 
-const StyledLink = styled.a`
+const NavLink = styled(Link)`
   color: #ffffff;
 
   :not(:first-child) {
@@ -36,12 +38,12 @@ const StyledLink = styled.a`
 const Header = props => (
   <Wrapper>
     <LogoWrapper>
-      <Logo>reddit</Logo>
+      <LogoLink to='/'>reddit</LogoLink>
       {props.subreddit && <Subreddit>r/{props.subreddit}</Subreddit>}
     </LogoWrapper>
     <div>
-      <StyledLink href='/'>log in</StyledLink>
-      <StyledLink href='/'>sign up</StyledLink>
+      <NavLink to='/login'>log in</NavLink>
+      <NavLink to='/signup'>sign up</NavLink>
     </div>
   </Wrapper>
 );
