@@ -11,9 +11,12 @@ const Wrapper = styled.aside`
   border: 1px solid #eee;
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
   padding: 16px;
+  text-align: center;
+  text-decoration: none;
   font-size: 16px;
+  color: #000;
   border: none;
   background-color: #eee;
 `;
@@ -33,7 +36,7 @@ const Item = styled.li`
 
 const Sidebar = props => (
   <Wrapper>
-    <Button>create post</Button>
+    <Button to='/createpost'>create post</Button>
     <nav>
       <List>
         <Item>

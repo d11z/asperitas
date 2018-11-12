@@ -5,6 +5,7 @@ import Header from './Header';
 import MainView from './MainView';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+import CreatePostForm from './CreatePostForm';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -27,6 +28,7 @@ const App = props => (
     <Switch>
       <Route path='/login' component={LoginForm} />
       <Route path='/signup' component={SignupForm} />
+      <Route path='/createpost' component={CreatePostForm} />
       <Route path='/' component={MainView} />
     </Switch>
   </>
