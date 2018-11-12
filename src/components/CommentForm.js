@@ -15,7 +15,9 @@ const TextArea = styled(Input)`
 `;
 
 const StyledSubmitButton = styled(SubmitButton)`
-  margin: 8px;
+  padding: 4px 8px;
+  margin: 4px 3px 3px;
+  font-size: 13px;
 `;
 
 const CommentForm = props => (
