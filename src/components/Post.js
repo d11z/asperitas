@@ -34,15 +34,15 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 8px;
-  font-size: 12px;
+  font-size: 13px;
 `;
 
 const TitleLink = styled.a`
   display: block;
   margin-bottom: 2px;
   font-size: 16px;
-  font-weight: 500;
   text-decoration: none;
+  color: #000;
 `;
 
 const Url = styled.span`

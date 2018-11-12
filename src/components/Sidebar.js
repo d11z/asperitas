@@ -7,7 +7,7 @@ const Wrapper = styled.aside`
   flex-direction: column;
   order: 1;
   flex-basis: 240px;
-  margin-left: 32px;
+  margin-left: 24px;
   border: 1px solid #eee;
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import moment from 'moment';
 
 const Wrapper = styled.div`
-  font-size: 12px;
+  font-size: 13px;
   border: 1px solid #eee;
 `;
 

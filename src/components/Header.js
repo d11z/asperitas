@@ -7,7 +7,7 @@ const Wrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 8px 24px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   background-color: #282c34;
 `;
 
