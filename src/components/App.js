@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import MainView from './MainView';
 import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -25,6 +26,7 @@ const App = props => (
     <Header />
     <Switch>
       <Route path='/login' component={LoginForm} />
+      <Route path='/signup' component={SignupForm} />
       <Route path='/' component={MainView} />
     </Switch>
   </>
