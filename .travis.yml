@@ -10,5 +10,3 @@ deploy:
 - provider: script # Run a custom deployment script which we will define below
   script: now --token $NOW_TOKEN --public
   skip_cleanup: true
-  on:
-    master: true
