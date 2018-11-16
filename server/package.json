@@ -1,0 +1,12 @@
+{
+  "name": "reddit-clone-api",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

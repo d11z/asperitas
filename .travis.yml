@@ -2,21 +2,26 @@ language: node_js
 node_js:
 - "node"
 
+env:
+- PACKAGE_LOCATION=client
+- PACKAGE_LOCATION=server
+
 cache:
   directories:
-  - "client/node_modules"
+  - "$PACKAGE_LOCATION/node_modules"
 
-install:
-- cd client
-- npm install
+before_install: cd $PACKAGE_LOCATION
+install: npm install
 
 script: npm test
 
-before_deploy:
-- cd ..
-- npm install now --no-save
-
-deploy:
-- provider: script # Run a custom deployment script which we will define below
-  script: now --token $NOW_TOKEN --public
-  skip_cleanup: true
+jobs:
+  include:
+  - stage: deploy
+    env: PACKAGE_LOCATION=
+    cache: false
+    before_install: skip
+    install: skip
+    script:
+    - npm install now --no-save
+    - now --token $NOW_TOKEN --public
