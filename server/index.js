@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const config = require('./config');
 
 const app = express();
 
@@ -16,11 +17,13 @@ app.get('*', (req, res) => {
 });
 
 function listen() {
-  app.listen(8080);
+  app.listen(config.port, () => {
+    console.log(`Listening on port ${config.port}`);
+  });
 }
 
 function connect() {
   const options = { useNewUrlParser: true };
-  mongoose.connect('mongodb://localhost/reddit', options);
+  mongoose.connect(config.db, options);
   return mongoose.connection;
 }
