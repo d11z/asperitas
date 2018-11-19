@@ -10,4 +10,4 @@ app.get('*', (req, res) => {
   res.end(req.originalUrl);
 });
 
-app.listen();
+app.listen(8080);
