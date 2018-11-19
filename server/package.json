@@ -9,5 +9,11 @@
   "dependencies": {
     "express": "^4.16.4",
     "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.15.2"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
