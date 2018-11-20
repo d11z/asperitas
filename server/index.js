@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(morgan('common'));
 
+app.use('/posts', require('./routes/posts'));
+
 connect()
   .on('error', console.log)
   .once('open', listen);
