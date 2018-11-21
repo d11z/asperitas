@@ -31,6 +31,13 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.delete('/:id', (req, res, next) => {
+  const { post } = req;
+  post.remove()
+    .then(() => res.status(204).end())
+    .catch(next);
+});
+
 router.post('/:id', (req, res, next) => {
   const { post } = req;
   post
