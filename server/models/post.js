@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
 
+const commentSchema = new mongoose.Schema({
+  author: { type: String, required: true },
+  body: { type: String, required: true },
+  created: { type: Date, default: Date.now }
+});
+
 const postSchema = new mongoose.Schema({
   title: { type: String, required: true },
   url: { type: String, required: true },
   author: { type: String, required: true },
   category: { type: String, required: true },
   score: { type: Number, default: 0 },
+  comments: [commentSchema],
   created: { type: Date, default: Date.now }
 });
 
@@ -15,6 +22,11 @@ postSchema.options.toJSON.transform = (doc, ret) => {
   delete obj._id;
   delete obj.__v;
   return obj;
+};
+
+postSchema.methods.addComment = function (author, body) {
+  this.comments.push({ author, body });
+  return this.save();
 };
 
 const Post = mongoose.model('Post', postSchema);
