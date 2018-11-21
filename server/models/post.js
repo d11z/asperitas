@@ -6,6 +6,13 @@ const commentSchema = new mongoose.Schema({
   created: { type: Date, default: Date.now }
 });
 
+commentSchema.set('toJSON', { getters: true });
+commentSchema.options.toJSON.transform = (doc, ret) => {
+  const obj = { ...ret };
+  delete obj._id;
+  return obj;
+};
+
 const postSchema = new mongoose.Schema({
   title: { type: String, required: true },
   url: { type: String, required: true },
