@@ -2,7 +2,7 @@ const express = require('express');
 const Post = require('../models/post');
 const router = express.Router();
 
-router.param('id', (req, res, next, id) => {
+router.param('post', (req, res, next, id) => {
   Post.findById(id)
     .then(post => {
       if (!post) throw new Error('Post not found');
@@ -31,14 +31,14 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:post', (req, res, next) => {
   const { post } = req;
   post.remove()
     .then(() => res.status(204).end())
     .catch(next);
 });
 
-router.post('/:id/comments', (req, res, next) => {
+router.post('/:post/comments', (req, res, next) => {
   const { post } = req;
   post
     .addComment(req.body.author, req.body.body)
