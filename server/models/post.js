@@ -9,6 +9,14 @@ const postSchema = new mongoose.Schema({
   created: { type: Date, default: Date.now }
 });
 
+postSchema.set('toJSON', { getters: true });
+postSchema.options.toJSON.transform = (doc, ret) => {
+  const obj = { ...ret };
+  delete obj._id;
+  delete obj.__v;
+  return obj;
+};
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;
