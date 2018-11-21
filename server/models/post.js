@@ -29,6 +29,13 @@ postSchema.methods.addComment = function (author, body) {
   return this.save();
 };
 
+postSchema.methods.removeComment = function (id) {
+  const comment = this.comments.id(id);
+  if (!comment) throw new Error('Comment not found');
+  comment.remove();
+  return this.save();
+};
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;

@@ -46,4 +46,12 @@ router.post('/:post/comments', (req, res, next) => {
     .catch(next);
 });
 
+router.delete('/:post/comments/:comment', (req, res, next) => {
+  const { post } = req;
+  post
+    .removeComment(req.params.comment)
+    .then(updatedPost => res.json(updatedPost))
+    .catch(next);
+});
+
 module.exports = router;
