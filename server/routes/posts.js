@@ -38,7 +38,7 @@ router.delete('/:id', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id/comments', (req, res, next) => {
   const { post } = req;
   post
     .addComment(req.body.author, req.body.body)
