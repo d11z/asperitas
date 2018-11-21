@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const Post = require('../models/post');
+const router = express.Router();
 
 router.param('id', (req, res, next, id) => {
   Post.findById(id)
