@@ -15,8 +15,7 @@ app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-app.use('/posts', require('./routes/posts'));
-app.use(require('./routes/user'));
+require('./routes')(app);
 
 connect()
   .on('error', console.log)
