@@ -6,6 +6,15 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }
 });
 
+userSchema.set('toJSON', { getters: true });
+userSchema.options.toJSON.transform = (doc, ret) => {
+  const obj = { ...ret };
+  delete obj._id;
+  delete obj.__v;
+  delete obj.password;
+  return obj;
+};
+
 userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
   next();
