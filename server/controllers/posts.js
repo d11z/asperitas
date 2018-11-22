@@ -17,7 +17,8 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res, next) => {
   try {
-    const { title, url, author, category } = req.body;
+    const { title, url, category } = req.body;
+    const author = req.user.id;
     const post = await Post.create({ title, url, author, category });
     res.status(201).json(post);
   } catch (err) {

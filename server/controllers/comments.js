@@ -1,6 +1,6 @@
 exports.create = async (req, res, next) => {
   try {
-    const post = await req.post.addComment(req.body.author, req.body.body);
+    const post = await req.post.addComment(req.user.id, req.body.body);
     res.status(201).json(post);
   } catch (err) {
     next(err);
