@@ -32,7 +32,7 @@ function listen() {
 }
 
 function connect() {
-  const options = { useNewUrlParser: true };
+  const options = { useNewUrlParser: true, useCreateIndex: true };
   mongoose.connect(
     config.db,
     options
