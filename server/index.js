@@ -1,12 +1,19 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const { localStrategy } = require('./auth/local');
+const { jwtStrategy } = require('./auth/jwt');
 const config = require('./config');
 
 const app = express();
 
 app.use(express.json());
 app.use(morgan('common'));
+app.use(passport.initialize());
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 app.use('/posts', require('./routes/posts'));
 
@@ -26,6 +33,9 @@ function listen() {
 
 function connect() {
   const options = { useNewUrlParser: true };
-  mongoose.connect(config.db, options);
+  mongoose.connect(
+    config.db,
+    options
+  );
   return mongoose.connection;
 }
