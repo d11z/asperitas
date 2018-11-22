@@ -10,7 +10,7 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
     const valid = await user.isValidPassword(password);
     if (!valid) return done(null, false, { message: 'Invalid password' });
 
-    return done(null, user);
+    return done(null, user.toJSON());
   } catch (err) {
     done(err);
   }
