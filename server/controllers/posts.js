@@ -11,7 +11,9 @@ exports.load = async (req, res, next, id) => {
 };
 
 exports.list = async (req, res) => {
-  const posts = await Post.find();
+  const category = req.params.category;
+  const query = category ? { category } : {};
+  const posts = await Post.find(query);
   res.json(posts);
 };
 

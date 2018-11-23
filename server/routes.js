@@ -11,6 +11,7 @@ module.exports = app => {
 
   app.param('post', posts.load);
   app.get('/posts', posts.list);
+  app.get('/posts/:category', posts.list);
   app.post('/posts', jwtAuth, posts.create);
   app.delete('/posts/:post', jwtAuth, posts.destroy);
 
