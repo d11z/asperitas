@@ -44,6 +44,18 @@ postSchema.methods.removeComment = function (id) {
   return this.save();
 };
 
+postSchema.pre('find', function() {
+  this.populate('author').populate('comments.author');
+});
+
+postSchema.post('save', (doc, next) => {
+  doc
+    .populate('author')
+    .populate('comments.author')
+    .execPopulate()
+    .then(() => next());
+});
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;
