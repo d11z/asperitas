@@ -2,8 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const { localStrategy } = require('./auth/local');
-const { jwtStrategy } = require('./auth/jwt');
+const localStrategy = require('./auth/local');
+const jwtStrategy = require('./auth/jwt');
 const config = require('./config');
 
 const app = express();

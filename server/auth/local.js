@@ -1,4 +1,3 @@
-const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const User = require('../models/user');
 
@@ -16,6 +15,4 @@ const localStrategy = new LocalStrategy(async (username, password, done) => {
   }
 });
 
-const localAuth = passport.authenticate('local', { session: false });
-
-module.exports = { localStrategy, localAuth };
+module.exports = localStrategy;

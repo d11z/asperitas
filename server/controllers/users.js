@@ -1,4 +1,4 @@
-const { createAuthToken } = require('../auth/jwt');
+const { createAuthToken } = require('../auth');
 const User = require('../models/user');
 
 exports.login = (req, res) => {
