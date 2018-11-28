@@ -17,6 +17,6 @@ module.exports = app => {
   app.get('/posts/:post/unvote', jwtAuth, posts.unvote);
 
   app.param('comment', comments.load);
-  app.post('/posts/:post', jwtAuth, comments.create);
+  app.post('/posts/:post', [jwtAuth, comments.validate], comments.create);
   app.delete('/posts/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
 };
