@@ -1,10 +1,7 @@
 const users = require('./controllers/users');
 const posts = require('./controllers/posts');
 const comments = require('./controllers/comments');
-const auth = require('./auth');
-
-const postAuth = [auth.requiresLogin, auth.post.hasAuthorization];
-const commentAuth = [auth.requiresLogin, auth.comment.hasAuthorization];
+const { jwtAuth, postAuth, commentAuth } = require('./auth');
 
 module.exports = app => {
   app.post('/login', users.validate(), users.login);
@@ -13,13 +10,13 @@ module.exports = app => {
   app.param('post', posts.load);
   app.get('/posts', posts.list);
   app.get('/posts/:category', posts.list);
-  app.post('/posts', auth.requiresLogin, posts.create);
-  app.delete('/posts/:post', postAuth, posts.destroy);
-  app.get('/posts/:post/upvote', auth.requiresLogin, posts.upvote);
-  app.get('/posts/:post/downvote', auth.requiresLogin, posts.downvote);
-  app.get('/posts/:post/unvote', auth.requiresLogin, posts.unvote);
+  app.post('/posts', jwtAuth, posts.create);
+  app.delete('/posts/:post', [jwtAuth, postAuth], posts.destroy);
+  app.get('/posts/:post/upvote', jwtAuth, posts.upvote);
+  app.get('/posts/:post/downvote', jwtAuth, posts.downvote);
+  app.get('/posts/:post/unvote', jwtAuth, posts.unvote);
 
   app.param('comment', comments.load);
-  app.post('/posts/:post', auth.requiresLogin, comments.create);
-  app.delete('/posts/:post/:comment', commentAuth, comments.destroy);
+  app.post('/posts/:post', jwtAuth, comments.create);
+  app.delete('/posts/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
 };

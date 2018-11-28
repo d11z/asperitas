@@ -17,22 +17,18 @@ exports.login = (req, res, next) => {
   })(req, res);
 };
 
-exports.requiresLogin = passport.authenticate('jwt', { session: false });
+exports.jwtAuth = passport.authenticate('jwt', { session: false });
 
-exports.post = {
-  hasAuthorization: (req, res, next) => {
-    if (req.post.author._id.equals(req.user.id)) return next();
-    res.status(401).end();
-  }
+exports.postAuth = (req, res, next) => {
+  if (req.post.author._id.equals(req.user.id)) return next();
+  res.status(401).end();
 };
 
-exports.comment = {
-  hasAuthorization: (req, res, next) => {
-    if (
-      req.comment.author._id.equals(req.user.id) ||
-      req.post.author._id.equals(req.user.id)
-    )
-      return next();
-    res.status(401).end();
-  }
+exports.commentAuth = (req, res, next) => {
+  if (
+    req.comment.author._id.equals(req.user.id) ||
+    req.post.author._id.equals(req.user.id)
+  )
+    return next();
+  res.status(401).end();
 };
