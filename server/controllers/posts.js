@@ -28,6 +28,21 @@ exports.create = async (req, res, next) => {
   }
 };
 
+exports.upvote = async (req, res) => {
+  const post = await req.post.vote(req.user.id, 1);
+  res.json(post);
+};
+
+exports.downvote = async (req, res) => {
+  const post = await req.post.vote(req.user.id, -1);
+  res.json(post);
+};
+
+exports.unvote = async (req, res) => {
+  const post = await req.post.vote(req.user.id, 0);
+  res.json(post);
+};
+
 exports.destroy = async (req, res) => {
   req.post.remove();
   res.status(204).end();

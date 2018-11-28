@@ -15,6 +15,9 @@ module.exports = app => {
   app.get('/posts/:category', posts.list);
   app.post('/posts', auth.requiresLogin, posts.create);
   app.delete('/posts/:post', postAuth, posts.destroy);
+  app.get('/posts/:post/upvote', auth.requiresLogin, posts.upvote);
+  app.get('/posts/:post/downvote', auth.requiresLogin, posts.downvote);
+  app.get('/posts/:post/unvote', auth.requiresLogin, posts.unvote);
 
   app.param('comment', comments.load);
   app.post('/posts/:post', auth.requiresLogin, comments.create);

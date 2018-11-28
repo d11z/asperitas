@@ -20,6 +20,7 @@ const postSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   category: { type: String, required: true },
   score: { type: Number, default: 0 },
+  votes: [{ user: Schema.Types.ObjectId, vote: Number, _id: false }],
   comments: [commentSchema],
   created: { type: Date, default: Date.now }
 });
@@ -30,6 +31,25 @@ postSchema.options.toJSON.transform = (doc, ret) => {
   delete obj._id;
   delete obj.__v;
   return obj;
+};
+
+postSchema.methods.vote = function (user, vote) {
+  const existingVote = this.votes.find(item => item.user._id.equals(user));
+
+  if (existingVote) { // reset score
+    this.score -= existingVote.vote;
+    if (vote === 0) { // remove vote
+      this.votes.pull(existingVote);
+    } else { // change vote
+      this.score += vote;
+      existingVote.vote = vote;
+    }
+  } else if (vote !== 0) { // new vote
+    this.score += vote;
+    this.votes.push({ user, vote });
+  }
+
+  return this.save();
 };
 
 postSchema.methods.addComment = function (author, body) {
