@@ -17,14 +17,14 @@ app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-require('./routes')(app);
-
 connect()
   .on('error', console.log)
   .once('open', listen);
 
+require('./routes')(app);
+
 app.get('*', (req, res) => {
-  res.end(req.originalUrl);
+  res.status(404).json({ message: 'not found' });
 });
 
 function listen() {
