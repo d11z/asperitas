@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const localStrategy = require('./auth/local');
@@ -9,6 +10,7 @@ const config = require('./config');
 const app = express();
 
 app.use(express.json());
+app.use(expressValidator());
 app.use(morgan('common'));
 app.use(passport.initialize());
 
