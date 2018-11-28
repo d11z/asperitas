@@ -36,15 +36,19 @@ postSchema.options.toJSON.transform = (doc, ret) => {
 postSchema.methods.vote = function (user, vote) {
   const existingVote = this.votes.find(item => item.user._id.equals(user));
 
-  if (existingVote) { // reset score
+  if (existingVote) {
+    // reset score
     this.score -= existingVote.vote;
-    if (vote === 0) { // remove vote
+    if (vote === 0) {
+      // remove vote
       this.votes.pull(existingVote);
-    } else { // change vote
+    } else {
+      // change vote
       this.score += vote;
       existingVote.vote = vote;
     }
-  } else if (vote !== 0) { // new vote
+  } else if (vote !== 0) {
+    // new vote
     this.score += vote;
     this.votes.push({ user, vote });
   }
@@ -64,7 +68,7 @@ postSchema.methods.removeComment = function (id) {
   return this.save();
 };
 
-postSchema.pre('find', function() {
+postSchema.pre('find', function () {
   this.populate('author').populate('comments.author');
 });
 
