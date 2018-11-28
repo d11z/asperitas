@@ -1,10 +1,21 @@
-const { createAuthToken } = require('../auth');
+const passport = require('passport');
 const { body, validationResult } = require('express-validator/check');
+const { createAuthToken } = require('../auth');
 const User = require('../models/user');
 
 exports.login = (req, res) => {
-  const token = createAuthToken(req.user);
-  res.json({ token });
+  const result = validationResult(req);
+  if (!result.isEmpty()) {
+    const errors = result.array({ onlyFirstError: true });
+    return res.status(422).json({ errors });
+  }
+
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json(info);
+    const token = createAuthToken(user);
+    res.json({ token });
+  })(req, res);
 };
 
 exports.register = async (req, res, next) => {
@@ -24,38 +35,43 @@ exports.register = async (req, res, next) => {
   }
 };
 
-exports.validate = (method) => {
-  switch (method) {
-    case 'register': {
-      return [
-        body('username')
-          .exists()
-          .withMessage('is required')
+exports.validate = method => {
+  const errors = [
+    body('username')
+      .exists()
+      .withMessage('is required')
 
-          .isLength({ min: 1 })
-          .withMessage('cannot be blank')
+      .isLength({ min: 1 })
+      .withMessage('cannot be blank')
 
-          .isLength({ max: 32 })
-          .withMessage('must be at most 32 characters long')
+      .isLength({ max: 32 })
+      .withMessage('must be at most 32 characters long')
 
-          .custom(value => value.trim() === value)
-          .withMessage('cannot start or end with whitespace')
+      .custom(value => value.trim() === value)
+      .withMessage('cannot start or end with whitespace'),
 
-          .custom(async username => {
-            const exists = await User.countDocuments({ username });
-            if (exists) throw new Error('username already exists');
-          }),
+    body('password')
+      .exists()
+      .withMessage('is required')
 
-        body('password')
-          .exists()
-          .withMessage('is required')
+      .isLength({ min: 1 })
+      .withMessage('cannot be blank')
 
-          .isLength({ min: 8 })
-          .withMessage('must be at least 8 characters long')
+      .isLength({ min: 8 })
+      .withMessage('must be at least 8 characters long')
 
-          .isLength({ max: 72 })
-          .withMessage('must be at most 72 characters long')
-      ];
-    }
+      .isLength({ max: 72 })
+      .withMessage('must be at most 72 characters long')
+  ];
+
+  if (method === 'register') {
+    errors.push(
+      body('username').custom(async username => {
+        const exists = await User.countDocuments({ username });
+        if (exists) throw new Error('username already exists');
+      })
+    );
   }
+
+  return errors;
 };

@@ -8,8 +8,6 @@ exports.createAuthToken = user => {
   });
 };
 
-exports.login = passport.authenticate('local', { session: false });
-
 exports.requiresLogin = passport.authenticate('jwt', { session: false });
 
 exports.post = {
