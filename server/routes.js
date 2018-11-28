@@ -8,7 +8,7 @@ const commentAuth = [auth.requiresLogin, auth.comment.hasAuthorization];
 
 module.exports = app => {
   app.post('/login', auth.login, users.login);
-  app.post('/register', users.register);
+  app.post('/register', users.validate('register'), users.register);
 
   app.param('post', posts.load);
   app.get('/posts', posts.list);
