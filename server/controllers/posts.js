@@ -1,3 +1,4 @@
+const { body, validationResult } = require('express-validator/check');
 const Post = require('../models/post');
 
 exports.load = async (req, res, next, id) => {
@@ -18,6 +19,12 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res, next) => {
+  const result = validationResult(req);
+  if (!result.isEmpty()) {
+    const errors = result.array({ onlyFirstError: true });
+    return res.status(422).json({ errors });
+  }
+
   try {
     const { title, url, category } = req.body;
     const author = req.user.id;
@@ -27,6 +34,32 @@ exports.create = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.validate = [
+  body('title')
+    .exists()
+    .withMessage('is required')
+
+    .isLength({ min: 1 })
+    .withMessage('cannot be blank')
+
+    .custom(value => value.trim() === value)
+    .withMessage('cannot start or end with whitespace'),
+
+  body('url')
+    .exists()
+    .withMessage('is required')
+
+    .isURL()
+    .withMessage('is an invalid URL'),
+
+  body('category')
+    .exists()
+    .withMessage('is required')
+
+    .isLength({ min: 1 })
+    .withMessage('cannot be blank')
+];
 
 exports.upvote = async (req, res) => {
   const post = await req.post.vote(req.user.id, 1);

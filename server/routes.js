@@ -10,7 +10,7 @@ module.exports = app => {
   app.param('post', posts.load);
   app.get('/posts', posts.list);
   app.get('/posts/:category', posts.list);
-  app.post('/posts', jwtAuth, posts.create);
+  app.post('/posts', [jwtAuth, posts.validate], posts.create);
   app.delete('/posts/:post', [jwtAuth, postAuth], posts.destroy);
   app.get('/posts/:post/upvote', jwtAuth, posts.upvote);
   app.get('/posts/:post/downvote', jwtAuth, posts.downvote);
