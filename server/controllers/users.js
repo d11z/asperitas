@@ -1,21 +1,15 @@
-const passport = require('passport');
 const { body, validationResult } = require('express-validator/check');
-const { createAuthToken } = require('../auth');
+const { login } = require('../auth');
 const User = require('../models/user');
 
-exports.login = (req, res) => {
+exports.login = (req, res, next) => {
   const result = validationResult(req);
   if (!result.isEmpty()) {
     const errors = result.array({ onlyFirstError: true });
     return res.status(422).json({ errors });
   }
 
-  passport.authenticate('local', (err, user, info) => {
-    if (err) return next(err);
-    if (!user) return res.status(401).json(info);
-    const token = createAuthToken(user);
-    res.json({ token });
-  })(req, res);
+  login(req, res, next);
 };
 
 exports.register = async (req, res, next) => {
