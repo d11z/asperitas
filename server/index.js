@@ -1,43 +1,29 @@
-const express = require('express');
-const morgan = require('morgan');
-const expressValidator = require('express-validator');
+const app = require('./app');
 const mongoose = require('mongoose');
-const passport = require('passport');
-const localStrategy = require('./auth/local');
-const jwtStrategy = require('./auth/jwt');
 const config = require('./config');
 
-const app = express();
-
-app.use(express.json());
-app.use(expressValidator());
-app.use(morgan('common'));
-app.use(passport.initialize());
-
-passport.use(localStrategy);
-passport.use(jwtStrategy);
-
-connect();
-mongoose.connection.once('open', listen);
-mongoose.connection.on('error', console.log);
-
-require('./routes')(app);
-
-function listen () {
-  app.listen(config.port, () => {
-    console.log(`Listening on port ${config.port}`);
-  });
-}
-
-function connect () {
+const connect = () => {
   const options = {
     useNewUrlParser: true,
     useCreateIndex: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 500
   };
-  mongoose.connect(
-    config.db,
-    options
-  );
-}
+  mongoose.connect(config.db, options);
+};
+
+const disconnect = done => {
+  mongoose.disconnect(done);
+};
+
+const listen = () => {
+  app.listen(config.port, () => {
+    console.log(`Listening on port ${config.port}`);
+  });
+};
+
+connect();
+mongoose.connection.once('open', listen);
+mongoose.connection.on('error', console.log);
+
+module.exports = { connect, disconnect };
