@@ -17,9 +17,9 @@ app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-connect()
-  .on('error', console.log)
-  .once('open', listen);
+connect();
+mongoose.connection.once('open', listen);
+mongoose.connection.on('error', console.log);
 
 require('./routes')(app);
 
@@ -27,17 +27,21 @@ app.get('*', (req, res) => {
   res.status(404).json({ message: 'not found' });
 });
 
-function listen() {
+function listen () {
   app.listen(config.port, () => {
     console.log(`Listening on port ${config.port}`);
   });
 }
 
-function connect() {
-  const options = { useNewUrlParser: true, useCreateIndex: true };
+function connect () {
+  const options = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    reconnectTries: Number.MAX_VALUE,
+    reconnectInterval: 500
+  };
   mongoose.connect(
     config.db,
     options
   );
-  return mongoose.connection;
 }
