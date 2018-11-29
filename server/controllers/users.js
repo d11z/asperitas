@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator/check');
-const { login } = require('../auth');
+const { login, createAuthToken } = require('../auth');
 const User = require('../models/user');
 
 exports.login = (req, res, next) => {
