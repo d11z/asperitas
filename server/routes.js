@@ -19,4 +19,8 @@ module.exports = app => {
   app.param('comment', comments.load);
   app.post('/posts/:post', [jwtAuth, comments.validate], comments.create);
   app.delete('/posts/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
+
+  app.get('*', (req, res) => {
+    res.status(404).json({ message: 'not found' });
+  });
 };

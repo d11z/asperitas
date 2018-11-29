@@ -23,10 +23,6 @@ mongoose.connection.on('error', console.log);
 
 require('./routes')(app);
 
-app.get('*', (req, res) => {
-  res.status(404).json({ message: 'not found' });
-});
-
 function listen () {
   app.listen(config.port, () => {
     console.log(`Listening on port ${config.port}`);
