@@ -18,7 +18,9 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.15.2"
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "supertest": "^3.3.0"
   },
   "prettier": {
     "singleQuote": true
