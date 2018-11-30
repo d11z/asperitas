@@ -1,10 +1,11 @@
 const request = require('supertest');
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const app = require('../app');
-const { connect, disconnect } = require('../index');
 const config = require('../config');
 const User = mongoose.model('User');
+
+process.env.TEST_SUITE = 'auth';
 
 describe('auth endpoints', () => {
   const name = {
@@ -20,21 +21,8 @@ describe('auth endpoints', () => {
     long: 'a'.repeat(73)
   };
 
-  beforeAll(async () => {
-    await connect(config.db.test);
-  });
-
   beforeEach(async () => {
-    const user = new User({ username: name.existing, password: pass.valid });
-    await user.save();
-  });
-
-  afterEach(async () => {
-    await mongoose.connection.dropDatabase();
-  });
-
-  afterAll(async () => {
-    await disconnect();
+    await new User({ username: name.existing, password: pass.valid }).save();
   });
 
   describe('/login', () => {
