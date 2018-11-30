@@ -63,6 +63,12 @@ describe('post endpoints', () => {
         request(app)
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
+          .expect(res => {
+            expect(res.body.errors).toBeDefined();
+            res.body.errors.forEach(err => {
+              expect(err.msg).toContain('required');
+            });
+          })
           .expect(422, done);
       });
 
@@ -71,14 +77,10 @@ describe('post endpoints', () => {
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
           .send({ ...postData, title: '' })
-          .expect(422, done);
-      });
-
-      test('rejects posts with blank url', done => {
-        request(app)
-          .post('/posts')
-          .set('Authorization', `Bearer ${token}`)
-          .send({ ...postData, url: '' })
+          .expect(res => {
+            expect(res.body.errors).toBeDefined();
+            expect(res.body.errors[0].msg).toContain('blank');
+          })
           .expect(422, done);
       });
 
@@ -87,6 +89,10 @@ describe('post endpoints', () => {
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
           .send({ ...postData, category: '' })
+          .expect(res => {
+            expect(res.body.errors).toBeDefined();
+            expect(res.body.errors[0].msg).toContain('blank');
+          })
           .expect(422, done);
       });
 
@@ -95,6 +101,10 @@ describe('post endpoints', () => {
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
           .send({ ...postData, url: 'invalid' })
+          .expect(res => {
+            expect(res.body.errors).toBeDefined();
+            expect(res.body.errors[0].msg).toContain('invalid URL');
+          })
           .expect(422, done);
       });
 
@@ -161,6 +171,12 @@ describe('post endpoints', () => {
         request(app)
           .post(`/posts/${post.id}`)
           .set('Authorization', `Bearer ${token}`)
+          .expect(res => {
+            expect(res.body.errors).toBeDefined();
+            res.body.errors.forEach(err => {
+              expect(err.msg).toContain('required');
+            });
+          })
           .expect(422, done);
       });
 

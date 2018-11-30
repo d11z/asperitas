@@ -30,6 +30,12 @@ describe('auth endpoints', () => {
     test('rejects requests with no credentials', done => {
       request(app)
         .post('/login')
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          res.body.errors.forEach(err => {
+            expect(err.msg).toContain('required');
+          });
+        })
         .expect(422, done);
     });
 
@@ -37,6 +43,9 @@ describe('auth endpoints', () => {
       request(app)
         .post('/login')
         .send({ ...user, username: username.nonExisting })
+        .expect(res => {
+          expect(res.body.message).toContain('user not found');
+        })
         .expect(401, done);
     });
 
@@ -44,6 +53,9 @@ describe('auth endpoints', () => {
       request(app)
         .post('/login')
         .send({ ...user, password: password.wrong })
+        .expect(res => {
+          expect(res.body.message).toContain('invalid password');
+        })
         .expect(401, done);
     });
 
@@ -65,6 +77,12 @@ describe('auth endpoints', () => {
     test('rejects requests with missing fields', done => {
       request(app)
         .post('/register')
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          res.body.errors.forEach(err => {
+            expect(err.msg).toContain('required');
+          });
+        })
         .expect(422, done);
     });
 
@@ -72,6 +90,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send({ ...user, username: '' })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('blank');
+        })
         .expect(422, done);
     });
 
@@ -79,6 +101,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send({ ...user, password: '' })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('blank');
+        })
         .expect(422, done);
     });
 
@@ -86,6 +112,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send({ ...user, username: username.nonTrimmed })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('whitespace');
+        })
         .expect(422, done);
     });
 
@@ -93,6 +123,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send({ ...user, username: username.long })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('at most 32 characters long');
+        })
         .expect(422, done);
     });
 
@@ -100,6 +134,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send({ username: username.nonExisting, password: password.short })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('at least 8 characters long');
+        })
         .expect(422, done);
     });
 
@@ -107,6 +145,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send({ username: username.nonExisting, password: password.long })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('at most 72 characters long');
+        })
         .expect(422, done);
     });
 
@@ -114,6 +156,10 @@ describe('auth endpoints', () => {
       request(app)
         .post('/register')
         .send(user)
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('already exists');
+        })
         .expect(422, done);
     });
 
