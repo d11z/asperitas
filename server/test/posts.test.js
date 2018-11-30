@@ -1,27 +1,27 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 const app = require('../app');
+const { validUser, validPost } = require('./factories');
 const User = mongoose.model('User');
 const Post = mongoose.model('Post');
 
 process.env.TEST_SUITE = 'posts';
 
 describe('post endpoints', () => {
-  let user, post, post2;
-  const _user = { username: 'user', password: 'password' };
-  const _post = {
-    title: 'example',
-    url: 'http://google.com/',
-    category: 'funny'
-  };
-  const comment = {
-    body: 'test comment'
-  };
+  let userData, user;
+  let postData, post;
+  let postData2, post2;
+  const comment = { body: 'test comment' };
 
   beforeEach(async () => {
-    user = await new User(_user).save();
-    post = await new Post({ ..._post, author: user.id }).save();
-    post2 = await new Post({ ..._post, author: user.id, category: 'other' }).save();
+    userData = validUser();
+    user = await new User(userData).save();
+
+    postData = validPost(user.id);
+    post = await new Post(postData).save();
+
+    postData2 = validPost(user.id);
+    post2 = await new Post(postData2).save();
   });
 
   describe('/posts', () => {
@@ -48,14 +48,14 @@ describe('post endpoints', () => {
       let token = null;
 
       beforeEach(async () => {
-        const res = await request(app).post('/login').send(_user);
+        const res = await request(app).post('/login').send(userData);
         token = res.body.token;
       });
 
       test('rejects requests without auth token', done => {
         request(app)
           .post('/posts')
-          .send(_post)
+          .send(postData)
           .expect(401, done);
       });
 
@@ -70,7 +70,7 @@ describe('post endpoints', () => {
         request(app)
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
-          .send({ ..._post, title: '' })
+          .send({ ...postData, title: '' })
           .expect(422, done);
       });
 
@@ -78,7 +78,7 @@ describe('post endpoints', () => {
         request(app)
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
-          .send({ ..._post, url: '' })
+          .send({ ...postData, url: '' })
           .expect(422, done);
       });
 
@@ -86,7 +86,7 @@ describe('post endpoints', () => {
         request(app)
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
-          .send({ ..._post, category: '' })
+          .send({ ...postData, category: '' })
           .expect(422, done);
       });
 
@@ -94,7 +94,7 @@ describe('post endpoints', () => {
         request(app)
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
-          .send({ ..._post, url: 'invalid' })
+          .send({ ...postData, url: 'invalid' })
           .expect(422, done);
       });
 
@@ -102,7 +102,7 @@ describe('post endpoints', () => {
         request(app)
           .post('/posts')
           .set('Authorization', `Bearer ${token}`)
-          .send(_post)
+          .send(postData)
           .expect('Content-Type', /json/)
           .expect(res => {
             expect(res.body.title).toEqual(post.title);

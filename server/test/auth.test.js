@@ -3,26 +3,27 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const app = require('../app');
 const config = require('../config');
+const { validUser } = require('./factories');
 const User = mongoose.model('User');
 
 process.env.TEST_SUITE = 'auth';
 
 describe('auth endpoints', () => {
-  const name = {
+  let user;
+  const username = {
     nonExisting: 'new',
-    existing: 'old',
     nonTrimmed: ' user ',
     long: 'a'.repeat(33),
   };
-  const pass = {
-    valid: 'password',
+  const password = {
     wrong: 'incorrect',
     short: 'aaa',
     long: 'a'.repeat(73)
   };
 
   beforeEach(async () => {
-    await new User({ username: name.existing, password: pass.valid }).save();
+    user = validUser();
+    await new User(user).save();
   });
 
   describe('/login', () => {
@@ -35,26 +36,26 @@ describe('auth endpoints', () => {
     test('reject requests with incorrect name', done => {
       request(app)
         .post('/login')
-        .send({ username: name.nonExisting, password: pass.valid })
+        .send({ ...user, username: username.nonExisting })
         .expect(401, done);
     });
 
     test('reject requests with incorrect pass', done => {
       request(app)
         .post('/login')
-        .send({ username: name.existing, password: pass.wrong })
+        .send({ ...user, password: password.wrong })
         .expect(401, done);
     });
 
     test('returns a valid auth token', done => {
       request(app)
         .post('/login')
-        .send({ username: name.existing, password: pass.valid })
+        .send(user)
         .expect('Content-Type', /json/)
         .expect(res => {
           const { token } = res.body;
           const payload = jwt.verify(token, config.jwt.secret);
-          expect(payload.user.username).toEqual(name.existing);
+          expect(payload.user.username).toEqual(user.username);
         })
         .expect(200, done);
     });
@@ -70,61 +71,61 @@ describe('auth endpoints', () => {
     test('rejects requests with blank name', done => {
       request(app)
         .post('/register')
-        .send({ username: '', password: pass.valid })
+        .send({ ...user, username: '' })
         .expect(422, done);
     });
 
     test('rejects requests with blank password', done => {
       request(app)
         .post('/register')
-        .send({ username: name.existing, password: '' })
+        .send({ ...user, password: '' })
         .expect(422, done);
     });
 
     test('rejects requests with non-trimmed name', done => {
       request(app)
         .post('/register')
-        .send({ username: name.nonTrimmed, password: pass.valid })
+        .send({ ...user, username: username.nonTrimmed })
         .expect(422, done);
     });
 
     test('rejects requests with name that is too long', done => {
       request(app)
         .post('/register')
-        .send({ username: name.long, password: pass.valid })
+        .send({ ...user, username: username.long })
         .expect(422, done);
     });
 
     test('rejects requests with password that is too short', done => {
       request(app)
         .post('/register')
-        .send({ username: name.nonExisting, password: pass.short })
+        .send({ username: username.nonExisting, password: password.short })
         .expect(422, done);
     });
 
     test('rejects requests with password that is too long', done => {
       request(app)
         .post('/register')
-        .send({ username: name.nonExisting, password: pass.long })
+        .send({ username: username.nonExisting, password: password.long })
         .expect(422, done);
     });
 
     test('rejects requests with existing name', done => {
       request(app)
         .post('/register')
-        .send({ username: name.existing, password: pass.valid })
+        .send(user)
         .expect(422, done);
     });
 
     test('creates a new user and returns a valid auth token', done => {
       request(app)
         .post('/register')
-        .send({ username: name.nonExisting, password: pass.valid })
+        .send({ ...user, username: username.nonExisting })
         .expect('Content-Type', /json/)
         .expect(res => {
           const { token } = res.body;
           const payload = jwt.verify(token, config.jwt.secret);
-          expect(payload.user.username).toEqual(name.nonExisting);
+          expect(payload.user.username).toEqual(username.nonExisting);
         })
         .expect(201, done);
     });
