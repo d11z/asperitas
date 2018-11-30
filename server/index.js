@@ -2,18 +2,18 @@ const app = require('./app');
 const mongoose = require('mongoose');
 const config = require('./config');
 
-const connect = () => {
+const connect = url => {
   const options = {
     useNewUrlParser: true,
     useCreateIndex: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 500
   };
-  mongoose.connect(config.db, options);
+  return mongoose.connect(url, options);
 };
 
-const disconnect = done => {
-  mongoose.disconnect(done);
+const disconnect = () => {
+  return mongoose.disconnect();
 };
 
 const listen = () => {
@@ -22,8 +22,10 @@ const listen = () => {
   });
 };
 
-connect();
-mongoose.connection.once('open', listen);
-mongoose.connection.on('error', console.log);
+if (require.main === module) {
+  connect(config.db.prod);
+  mongoose.connection.once('open', listen);
+  mongoose.connection.on('error', console.log);
+}
 
 module.exports = { connect, disconnect };
