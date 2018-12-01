@@ -5,6 +5,14 @@ import PostList from '../components/PostList';
 
 class PostListContainer extends React.Component {
   componentDidMount() {
+    this.loadPosts();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.category !== this.props.category) this.loadPosts();
+  }
+
+  loadPosts() {
     this.props.dispatch(fetchPosts(this.props.category));
   }
 
