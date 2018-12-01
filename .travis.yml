@@ -1,12 +1,31 @@
 language: node_js
 node_js:
 - "node"
+
+branches:
+  only:
+  - master
+
+env:
+- PACKAGE_LOCATION=client
+- PACKAGE_LOCATION=server
+
 cache:
   directories:
-  - "node_modules" # This will tell Travis CI to cache the dependencies
-script: npm test # Here you could also run the build step of your application
-before_deploy: npm install now --no-save # Install Now CLI on Travis
-deploy:
-- provider: script # Run a custom deployment script which we will define below
-  script: now --token $NOW_TOKEN --public
-  skip_cleanup: true
+  - "$PACKAGE_LOCATION/node_modules"
+
+before_install: cd $PACKAGE_LOCATION
+install: npm install
+
+script: npm test
+
+jobs:
+  include:
+  - stage: deploy
+    env: PACKAGE_LOCATION=
+    cache: false
+    before_install: skip
+    install: skip
+    script:
+    - npm install now --no-save
+    - now --token $NOW_TOKEN --public

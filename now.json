@@ -2,10 +2,12 @@
   "version": 2,
   "name": "reddit-clone",
   "builds": [
-    { "src": "package.json", "use": "@now/static-build" }
+    { "src": "client/package.json", "use": "@now/static-build" },
+    { "src": "server/index.js", "use": "@now/node-server" }
   ],
   "routes": [
-    {"src": "^/static/(.*)", "dest": "/static/$1"},
-    {"src": ".*", "dest": "/index.html"}
+    { "src": "/api/?(.*)", "dest": "/server"},
+    { "src": "/static/(.*)", "dest": "/client/static/$1" },
+    { "src": "/.*", "dest": "/client" }
   ]
 }
