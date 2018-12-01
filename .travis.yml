@@ -30,4 +30,4 @@ jobs:
     install: skip
     script:
     - npm install now --no-save
-    - now --token $NOW_TOKEN --public
+    - now --token $NOW_TOKEN
