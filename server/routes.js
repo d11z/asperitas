@@ -2,23 +2,26 @@ const users = require('./controllers/users');
 const posts = require('./controllers/posts');
 const comments = require('./controllers/comments');
 const { jwtAuth, postAuth, commentAuth } = require('./auth');
+const router = require('express').Router();
+
+router.post('/login', users.validate(), users.login);
+router.post('/register', users.validate('register'), users.register);
+
+router.param('post', posts.load);
+router.get('/posts', posts.list);
+router.get('/posts/:category', posts.list);
+router.post('/posts', [jwtAuth, posts.validate], posts.create);
+router.delete('/posts/:post', [jwtAuth, postAuth], posts.destroy);
+router.get('/posts/:post/upvote', jwtAuth, posts.upvote);
+router.get('/posts/:post/downvote', jwtAuth, posts.downvote);
+router.get('/posts/:post/unvote', jwtAuth, posts.unvote);
+
+router.param('comment', comments.load);
+router.post('/posts/:post', [jwtAuth, comments.validate], comments.create);
+router.delete('/posts/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
 
 module.exports = app => {
-  app.post('/login', users.validate(), users.login);
-  app.post('/register', users.validate('register'), users.register);
-
-  app.param('post', posts.load);
-  app.get('/posts', posts.list);
-  app.get('/posts/:category', posts.list);
-  app.post('/posts', [jwtAuth, posts.validate], posts.create);
-  app.delete('/posts/:post', [jwtAuth, postAuth], posts.destroy);
-  app.get('/posts/:post/upvote', jwtAuth, posts.upvote);
-  app.get('/posts/:post/downvote', jwtAuth, posts.downvote);
-  app.get('/posts/:post/unvote', jwtAuth, posts.unvote);
-
-  app.param('comment', comments.load);
-  app.post('/posts/:post', [jwtAuth, comments.validate], comments.create);
-  app.delete('/posts/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
+  app.use('/api', router);
 
   app.get('*', (req, res) => {
     res.status(404).json({ message: 'not found' });

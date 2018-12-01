@@ -29,7 +29,7 @@ describe('auth endpoints', () => {
   describe('/login', () => {
     test('rejects requests with no credentials', done => {
       request(app)
-        .post('/login')
+        .post('/api/login')
         .expect(res => {
           expect(res.body.errors).toBeDefined();
           res.body.errors.forEach(err => {
@@ -41,7 +41,7 @@ describe('auth endpoints', () => {
 
     test('reject requests with incorrect name', done => {
       request(app)
-        .post('/login')
+        .post('/api/login')
         .send({ ...user, username: username.nonExisting })
         .expect(res => {
           expect(res.body.message).toContain('user not found');
@@ -51,7 +51,7 @@ describe('auth endpoints', () => {
 
     test('reject requests with incorrect pass', done => {
       request(app)
-        .post('/login')
+        .post('/api/login')
         .send({ ...user, password: password.wrong })
         .expect(res => {
           expect(res.body.message).toContain('invalid password');
@@ -61,7 +61,7 @@ describe('auth endpoints', () => {
 
     test('returns a valid auth token', done => {
       request(app)
-        .post('/login')
+        .post('/api/login')
         .send(user)
         .expect('Content-Type', /json/)
         .expect(res => {
@@ -76,7 +76,7 @@ describe('auth endpoints', () => {
   describe('/register', () => {
     test('rejects requests with missing fields', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .expect(res => {
           expect(res.body.errors).toBeDefined();
           res.body.errors.forEach(err => {
@@ -88,7 +88,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with blank name', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ ...user, username: '' })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -99,7 +99,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with blank password', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ ...user, password: '' })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -110,7 +110,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with non-trimmed name', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ ...user, username: username.nonTrimmed })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -121,7 +121,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with name that is too long', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ ...user, username: username.long })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -132,7 +132,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with password that is too short', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ username: username.nonExisting, password: password.short })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -143,7 +143,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with password that is too long', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ username: username.nonExisting, password: password.long })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -154,7 +154,7 @@ describe('auth endpoints', () => {
 
     test('rejects requests with existing name', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send(user)
         .expect(res => {
           expect(res.body.errors).toBeDefined();
@@ -165,7 +165,7 @@ describe('auth endpoints', () => {
 
     test('creates a new user and returns a valid auth token', done => {
       request(app)
-        .post('/register')
+        .post('/api/register')
         .send({ ...user, username: username.nonExisting })
         .expect('Content-Type', /json/)
         .expect(res => {

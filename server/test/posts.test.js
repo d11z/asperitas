@@ -27,7 +27,7 @@ describe('post endpoints', () => {
   describe('/posts', () => {
     test('returns all posts', done => {
       request(app)
-        .get('/posts')
+        .get('/api/posts')
         .expect(res => {
           expect(res.body).toHaveLength(2);
         })
@@ -36,7 +36,7 @@ describe('post endpoints', () => {
 
     test('returns all posts in a category', done => {
       request(app)
-        .get(`/posts/${post2.category}`)
+        .get(`/api/posts/${post2.category}`)
         .expect(res => {
           expect(res.body).toHaveLength(1);
           expect(res.body[0].category).toEqual(post2.category);
@@ -48,22 +48,23 @@ describe('post endpoints', () => {
       let token = null;
 
       beforeEach(async () => {
-        const res = await request(app).post('/login').send(userData);
+        const res = await request(app).post('/api/login').send(userData);
         token = res.body.token;
       });
 
       test('rejects requests without auth token', done => {
         request(app)
-          .post('/posts')
+          .post('/api/posts')
           .send(postData)
           .expect(401, done);
       });
 
       test('rejects posts with missing fields', done => {
         request(app)
-          .post('/posts')
+          .post('/api/posts')
           .set('Authorization', `Bearer ${token}`)
           .expect(res => {
+            console.log(res.body);
             expect(res.body.errors).toBeDefined();
             res.body.errors.forEach(err => {
               expect(err.msg).toContain('required');
@@ -74,7 +75,7 @@ describe('post endpoints', () => {
 
       test('rejects posts with blank title', done => {
         request(app)
-          .post('/posts')
+          .post('/api/posts')
           .set('Authorization', `Bearer ${token}`)
           .send({ ...postData, title: '' })
           .expect(res => {
@@ -86,7 +87,7 @@ describe('post endpoints', () => {
 
       test('rejects posts with blank category', done => {
         request(app)
-          .post('/posts')
+          .post('/api/posts')
           .set('Authorization', `Bearer ${token}`)
           .send({ ...postData, category: '' })
           .expect(res => {
@@ -98,7 +99,7 @@ describe('post endpoints', () => {
 
       test('rejects posts with invalid url', done => {
         request(app)
-          .post('/posts')
+          .post('/api/posts')
           .set('Authorization', `Bearer ${token}`)
           .send({ ...postData, url: 'invalid' })
           .expect(res => {
@@ -110,7 +111,7 @@ describe('post endpoints', () => {
 
       test('create new post', done => {
         request(app)
-          .post('/posts')
+          .post('/api/posts')
           .set('Authorization', `Bearer ${token}`)
           .send(postData)
           .expect('Content-Type', /json/)
@@ -129,7 +130,7 @@ describe('post endpoints', () => {
 
       test('upvote post', done => {
         request(app)
-          .get(`/posts/${post.id}/upvote`)
+          .get(`/api/posts/${post.id}/upvote`)
           .set('Authorization', `Bearer ${token}`)
           .expect('Content-Type', /json/)
           .expect(res => {
@@ -143,7 +144,7 @@ describe('post endpoints', () => {
 
       test('downvote post', done => {
         request(app)
-          .get(`/posts/${post.id}/downvote`)
+          .get(`/api/posts/${post.id}/downvote`)
           .set('Authorization', `Bearer ${token}`)
           .expect('Content-Type', /json/)
           .expect(res => {
@@ -157,7 +158,7 @@ describe('post endpoints', () => {
 
       test('remove vote from post', done => {
         request(app)
-          .get(`/posts/${post.id}/unvote`)
+          .get(`/api/posts/${post.id}/unvote`)
           .set('Authorization', `Bearer ${token}`)
           .expect('Content-Type', /json/)
           .expect(res => {
@@ -169,7 +170,7 @@ describe('post endpoints', () => {
 
       test('rejects comments with missing fields', done => {
         request(app)
-          .post(`/posts/${post.id}`)
+          .post(`/api/posts/${post.id}`)
           .set('Authorization', `Bearer ${token}`)
           .expect(res => {
             expect(res.body.errors).toBeDefined();
@@ -182,7 +183,7 @@ describe('post endpoints', () => {
 
       test('comment on post', done => {
         request(app)
-          .post(`/posts/${post.id}`)
+          .post(`/api/posts/${post.id}`)
           .set('Authorization', `Bearer ${token}`)
           .send(comment)
           .expect('Content-Type', /json/)
