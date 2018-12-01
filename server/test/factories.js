@@ -5,9 +5,9 @@ exports.validUser = () => ({
   password: 'password'
 });
 
-exports.validPost = author => ({
+exports.validPost = (author, category) => ({
   title: faker.lorem.sentence(),
   url: faker.internet.url(),
-  category: faker.lorem.word(),
+  category,
   author
 });

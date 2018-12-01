@@ -17,10 +17,10 @@ describe('post endpoints', () => {
     userData = validUser();
     user = await new User(userData).save();
 
-    postData = validPost(user.id);
+    postData = validPost(user.id, 'category1');
     post = await new Post(postData).save();
 
-    postData2 = validPost(user.id);
+    postData2 = validPost(user.id, 'category2');
     post2 = await new Post(postData2).save();
   });
 
