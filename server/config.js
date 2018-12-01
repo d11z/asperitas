@@ -2,7 +2,7 @@ module.exports = {
   port: 8080,
   db: {
     prod: process.env.DATABASE_URL || 'mongodb://localhost/reddit',
-    test: process.env.TEST_DATABASE_URL || 'mongodb://localhost/reddit_test',
+    test: 'mongodb://localhost/reddit_test',
     options: {
       useNewUrlParser: true,
       useCreateIndex: true,
