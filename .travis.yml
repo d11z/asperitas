@@ -6,6 +6,8 @@ branches:
   only:
   - master
 
+services: mongodb
+
 env:
 - PACKAGE_LOCATION=client
 - PACKAGE_LOCATION=server
