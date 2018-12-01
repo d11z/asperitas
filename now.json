@@ -1,6 +1,9 @@
 {
   "version": 2,
   "name": "reddit-clone",
+  "env": {
+    "DATABASE_URL": "@database-url"
+  },
   "builds": [
     { "src": "client/package.json", "use": "@now/static-build" },
     { "src": "server/index.js", "use": "@now/node-server" }
