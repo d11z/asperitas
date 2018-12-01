@@ -64,7 +64,6 @@ describe('post endpoints', () => {
           .post('/api/posts')
           .set('Authorization', `Bearer ${token}`)
           .expect(res => {
-            console.log(res.body);
             expect(res.body.errors).toBeDefined();
             res.body.errors.forEach(err => {
               expect(err.msg).toContain('required');
