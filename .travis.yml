@@ -2,6 +2,10 @@ language: node_js
 node_js:
 - "node"
 
+branches:
+  only:
+  - master
+
 env:
 - PACKAGE_LOCATION=client
 - PACKAGE_LOCATION=server
