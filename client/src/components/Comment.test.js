@@ -9,16 +9,16 @@ it('renders without crashing', () => {
 
 it('renders information about the comment', () => {
   const data = {
-    author: 'testuser1',
-    timestamp: '2018-11-05T05:02:38.544Z',
-    text: 'example comment'
+    author: { username: 'testuser1' },
+    created: '2018-11-05T05:02:38.544Z',
+    body: 'example comment'
   };
 
   const wrapper = shallow(<Comment {...data} />);
 
-  expect(wrapper.find('Comment__Author').text()).toEqual(data.author);
+  expect(wrapper.find('Comment__Author').text()).toEqual(data.author.username);
   expect(wrapper.find('Comment__Timestamp').text()).toEqual(
-    moment(data.timestamp).fromNow()
+    moment(data.created).fromNow()
   );
-  expect(wrapper.find('Comment__Content').text()).toEqual(data.text);
+  expect(wrapper.find('Comment__Content').text()).toEqual(data.body);
 });

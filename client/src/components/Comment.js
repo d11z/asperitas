@@ -28,10 +28,10 @@ const Content = styled.p`
 const Comment = props => (
   <Wrapper>
     <DetailWrapper>
-      <Author href='/'>{props.author}</Author>
-      <Timestamp>{moment(props.timestamp).fromNow()}</Timestamp>
+      <Author href='/'>{props.author && props.author.username}</Author>
+      <Timestamp>{moment(props.created).fromNow()}</Timestamp>
     </DetailWrapper>
-    <Content>{props.text}</Content>
+    <Content>{props.body}</Content>
   </Wrapper>
 );
 

@@ -71,8 +71,8 @@ const Post = props => (
       </div>
       <DetailWrapper>
         <span>by</span>
-        <a href='/'>{props.author}</a>
-        <span>{moment(props.timestamp).fromNow()}</span>
+        <a href='/'>{props.author && props.author.username}</a>
+        <span>{moment(props.created).fromNow()}</span>
         <Link to={`/r/${props.category}/${props.id}`}>
           <span>{props.comments ? props.comments.length : 0} comments</span>
         </Link>

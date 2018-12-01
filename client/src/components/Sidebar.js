@@ -34,6 +34,7 @@ const Item = styled.li`
   }
 `;
 
+// TODO: fetch categories from server
 const Sidebar = props => (
   <Wrapper>
     <Button to='/createpost'>create post</Button>
@@ -43,13 +44,13 @@ const Sidebar = props => (
           <Link to='/'>r/all</Link>
         </Item>
         <Item>
-          <Link to='/r/webdev'>r/webdev</Link>
+          <Link to='/r/test'>r/test</Link>
         </Item>
         <Item>
-          <Link to='/r/javascript'>r/javascript</Link>
+          <Link to='/r/test2'>r/test2</Link>
         </Item>
         <Item>
-          <Link to='/r/vim'>r/vim</Link>
+          <Link to='/r/test3'>r/test3</Link>
         </Item>
       </List>
     </nav>

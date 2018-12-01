@@ -1,15 +1,23 @@
+import React from 'react';
 import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/posts';
 import PostList from '../components/PostList';
 
-const filterPosts = (posts, category) => {
-  if (!category) return posts;
-  return posts.filter(post => post.category === category);
-};
+class PostListContainer extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchPosts(this.props.category));
+  }
 
-const sortPosts = posts => posts.sort((a, b) => b.score - a.score);
+  render() {
+    // TODO: better loading indicator
+    if (this.props.isFetching) return null;
+    return <PostList posts={this.props.posts} />;
+  }
+}
 
-export const mapStateToProps = (state, ownProps) => ({
-  posts: sortPosts(filterPosts(state.reddit.posts, ownProps.category))
+export const mapStateToProps = state => ({
+  posts: state.posts.items,
+  isFetching: state.posts.isFetching
 });
 
-export default connect(mapStateToProps)(PostList);
+export default connect(mapStateToProps)(PostListContainer);

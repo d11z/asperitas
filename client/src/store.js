@@ -1,10 +1,12 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
-import { reducer } from './reducers';
+import { postsReducer } from './reducers/posts';
 
 export default createStore(
   combineReducers({
-    reddit: reducer,
+    posts: postsReducer,
     form: formReducer
-  })
+  }),
+  applyMiddleware(thunk)
 );

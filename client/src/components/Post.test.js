@@ -11,9 +11,9 @@ it('renders information about the post', () => {
   const data = {
     title: 'Test',
     url: 'http://google.com/',
-    author: 'testuser1',
+    author: { username: 'testuser1' },
     score: 5,
-    timestamp: '2018-11-05T05:02:38.544Z',
+    created: '2018-11-05T05:02:38.544Z',
     comments: []
   };
 
@@ -26,13 +26,13 @@ it('renders information about the post', () => {
       .find('Post__DetailWrapper')
       .childAt(1)
       .text()
-  ).toEqual(data.author);
+  ).toEqual(data.author.username);
   expect(
     wrapper
       .find('Post__DetailWrapper')
       .childAt(2)
       .text()
-  ).toEqual(moment(data.timestamp).fromNow());
+  ).toEqual(moment(data.created).fromNow());
   expect(
     wrapper
       .find('Post__DetailWrapper')
