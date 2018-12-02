@@ -17,7 +17,14 @@ exports.login = (req, res, next) => {
   })(req, res);
 };
 
-exports.jwtAuth = passport.authenticate('jwt', { session: false });
+exports.jwtAuth = (req, res, next) => {
+  passport.authenticate('jwt', { session: false }, (err, user) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json({ message: 'unauthorized' });
+    req.user = user;
+    next();
+  })(req, res);
+};
 
 exports.postAuth = (req, res, next) => {
   if (req.post.author._id.equals(req.user.id)) return next();
