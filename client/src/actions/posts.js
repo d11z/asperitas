@@ -1,3 +1,5 @@
+import { api } from '../api';
+
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR';
@@ -18,14 +20,12 @@ const fetchPostsError = error => ({
   error
 });
 
-export const fetchPosts = (category = '') => dispatch => {
-  let url = 'https://' + window.location.hostname;
-  if (process.env.NODE_ENV === 'development') url = 'http://localhost:8080';
-
+export const fetchPosts = (category = '') => async dispatch => {
   dispatch(fetchPostsRequest(category));
-
-  return fetch(`${url}/api/posts/${category}`)
-    .then(response => response.json())
-    .then(json => dispatch(fetchPostsSuccess(category, json)))
-    .catch(err => dispatch(fetchPostsError(err)));
+  try {
+    const posts = await api.getPosts(category);
+    dispatch(fetchPostsSuccess(category, posts));
+  } catch (error) {
+    dispatch(fetchPostsError(error));
+  }
 };
