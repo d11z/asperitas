@@ -8,7 +8,7 @@ class PostListContainer extends React.Component {
     this.loadPosts();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.category !== this.props.category) this.loadPosts();
   }
 
