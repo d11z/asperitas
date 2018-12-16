@@ -34,7 +34,7 @@ export async function signup (username, password) {
   return json.token;
 }
 
-async function getPosts (category) {
+export async function getPosts (category) {
   const response = await fetch(`${baseUrl}/posts/${category}`);
   const json = await response.json();
 
@@ -42,5 +42,3 @@ async function getPosts (category) {
 
   return json;
 }
-
-export const api = { getPosts };
