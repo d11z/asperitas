@@ -28,6 +28,8 @@ const Subreddit = styled.h2`
 `;
 
 const NavLink = styled(Link)`
+  cursor: pointer;
+  text-decoration: underline;
   color: #ffffff;
 
   :not(:first-child) {
@@ -41,10 +43,14 @@ const Header = props => (
       <LogoLink to='/'>reddit</LogoLink>
       {props.subreddit && <Subreddit>r/{props.subreddit}</Subreddit>}
     </LogoWrapper>
-    <div>
-      <NavLink to='/login'>log in</NavLink>
-      <NavLink to='/signup'>sign up</NavLink>
-    </div>
+    {props.token ?
+      <NavLink as='span' onClick={props.logout}>logout</NavLink>
+      :
+      <div>
+        <NavLink to='/login'>log in</NavLink>
+        <NavLink to='/signup'>sign up</NavLink>
+      </div>
+    }
   </Wrapper>
 );
 

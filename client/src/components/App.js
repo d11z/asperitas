@@ -1,7 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
-import Header from './Header';
+import HeaderContainer from '../containers/HeaderContainer';
 import MainView from './MainView';
 import LoginFormContainer from '../containers/LoginFormContainer';
 import SignupFormContainer from '../containers/SignupFormContainer';
@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
 const App = props => (
   <>
     <GlobalStyle />
-    <Header />
+    <HeaderContainer />
     <Switch>
       <Route path='/login' component={LoginFormContainer} />
       <Route path='/signup' component={SignupFormContainer} />

@@ -4,7 +4,8 @@ import {
   LOGIN_ERROR,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  SIGNUP_ERROR,
+  LOGOUT
 } from '../actions/auth';
 
 const token = localStorage.getItem('token');
@@ -21,6 +22,8 @@ export default (state = initialState, action) => {
     case SIGNUP_ERROR:
     case LOGIN_ERROR:
       return { ...state, loading: false, error: action.error };
+    case LOGOUT:
+      return { ...state, token: null };
     default:
       return state;
   }

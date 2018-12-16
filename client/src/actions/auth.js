@@ -35,3 +35,6 @@ export const attemptSignup = (username, password) => async dispatch => {
     dispatch(signupError(error));
   }
 };
+
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({ type: LOGOUT });
