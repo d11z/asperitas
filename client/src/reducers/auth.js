@@ -1,16 +1,26 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../actions/auth';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_ERROR
+} from '../actions/auth';
 
 const token = localStorage.getItem('token');
 const initialState = token ? { token } : {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SIGNUP_REQUEST:
     case LOGIN_REQUEST:
-      return { ...state, loggingIn: true };
+      return { ...state, loading: true };
+    case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
-      return { ...state, loggingIn: false, error: null, token: action.token };
+      return { ...state, loading: false, error: null, token: action.token };
+    case SIGNUP_ERROR:
     case LOGIN_ERROR:
-      return { ...state, loggingIn: false, error: action.error };
+      return { ...state, loading: false, error: action.error };
     default:
       return state;
   }

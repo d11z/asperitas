@@ -1,14 +1,14 @@
 const baseUrl = process.env.NODE_ENV === 'development' ?
   'http://localhost:8080/api' : `https://${window.location.hostname}/api`;
 
-export async function login (username, password) {
+async function post (endpoint, body) {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify(body)
   };
 
-  const response = await fetch(`${baseUrl}/login`, options);
+  const response = await fetch(`${baseUrl}/${endpoint}`, options);
   const json = await response.json();
 
   if (!response.ok) {
@@ -21,6 +21,16 @@ export async function login (username, password) {
     throw Error(json.message);
   }
 
+  return json;
+}
+
+export async function login (username, password) {
+  const json = await post('login', { username, password });
+  return json.token;
+}
+
+export async function signup (username, password) {
+  const json = await post('register', { username, password });
   return json.token;
 }
 
