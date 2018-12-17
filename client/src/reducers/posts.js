@@ -4,26 +4,16 @@ import {
   FETCH_POSTS_ERROR
 } from '../actions/posts';
 
-const initialState = {
-  isFetching: false,
-  items: [],
-};
+const initialState = { isFetching: false, items: [] };
 
-export const postsReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true
-      });
+      return { ...state, isFetching: true };
     case FETCH_POSTS_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        items: action.posts
-      });
+      return { ...state, isFetching: false, items: action.posts };
     case FETCH_POSTS_ERROR:
-      return Object.assign({}, state, {
-        isFetching: false
-      });
+      return { ...state, isFetching: false, error: action.error };
     default:
       return state;
   }
