@@ -11,15 +11,12 @@ const Wrapper = styled.div`
   font-size: 13px;
 `;
 
-const PostContent = props => {
-  const { url, title, comments, ...other } = props;
-  return (
-    <Wrapper>
-      <ContentTitle url={url} title={title} />
-      <ContentUrl url={url} />
-      <ContentDetail comments={comments ? comments.length : 0} {...other} />
-    </Wrapper>
-  );
-};
+const PostContent = ({ url, title, comments, ...details }) => (
+  <Wrapper>
+    <ContentTitle url={url} title={title}/>
+    <ContentUrl url={url}/>
+    <ContentDetail comments={comments ? comments.length : 0} {...details} />
+  </Wrapper>
+);
 
 export default PostContent;

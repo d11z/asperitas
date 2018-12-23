@@ -8,14 +8,11 @@ const Wrapper = styled.div`
   height: 76px;
 `;
 
-const Post = props => {
-  const { score, ...other } = props;
-  return (
-    <Wrapper>
-      <PostVote score={score} />
-      <PostContent {...other} />
-    </Wrapper>
-  );
-};
+const Post = ({ score, ...content }) => (
+  <Wrapper>
+    <PostVote score={score}/>
+    <PostContent {...content} />
+  </Wrapper>
+);
 
 export default Post;
