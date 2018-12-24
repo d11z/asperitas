@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Input from '../Input';
+import Input from '../shared/Input';
 
 const TextArea = styled(Input)`
   margin-bottom: 0;

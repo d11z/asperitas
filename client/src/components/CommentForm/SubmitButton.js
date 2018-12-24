@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import SubmitButton from '../SubmitButton';
+import SubmitButton from '../shared/SubmitButton';
 
 const StyledSubmitButton = styled(SubmitButton)`
   padding: 4px 8px;

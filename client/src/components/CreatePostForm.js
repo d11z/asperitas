@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { reduxForm } from 'redux-form';
-import Form from './Form';
-import Label from './Label';
-import Input from './Input';
-import SubmitButton from './SubmitButton';
+import Form from './shared/Form';
+import Label from './shared/Label';
+import Input from './shared/Input';
+import SubmitButton from './shared/SubmitButton';
 
 const WideForm = styled(Form)`
   max-width: 500px;
