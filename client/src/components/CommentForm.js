@@ -8,6 +8,7 @@ import SubmitButton from './SubmitButton';
 const StyledForm = styled(Form)`
   padding: 0;
   border: 1px solid #eee;
+  flex: 2;
 `;
 
 const TextArea = styled(Input)`
@@ -20,7 +21,7 @@ const StyledSubmitButton = styled(SubmitButton)`
   font-size: 13px;
 `;
 
-const CommentForm = props => (
+const CommentForm = () => (
   <StyledForm>
     <TextArea
       name='comment'
