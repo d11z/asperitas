@@ -10,7 +10,7 @@ const WideForm = styled(Form)`
   max-width: 500px;
 `;
 
-const CreatePostForm = props => (
+const CreatePostForm = () => (
   <WideForm>
     <Label htmlFor='category'>subreddit</Label>
     <Input name='category' id='category' component='select'>
