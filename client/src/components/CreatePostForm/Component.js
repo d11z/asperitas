@@ -9,20 +9,35 @@ const WideForm = styled(Form)`
   max-width: 500px;
 `;
 
-const CreatePostForm = () => (
-  <WideForm>
-    <Label htmlFor='category'>subreddit</Label>
-    <Input name='category' id='category' component='select'>
-      <option value='webdev'>r/webdev</option>
-      <option value='javascript'>r/javascript</option>
-      <option value='vim'>r/vim</option>
-    </Input>
-    <Label htmlFor='title'>title</Label>
-    <Input name='title' id='title' type='text' component='input' />
-    <Label htmlFor='url'>url</Label>
-    <Input name='url' id='url' type='text' component='input' />
-    <SubmitButton type='submit'>create post</SubmitButton>
-  </WideForm>
-);
+class CreatePostForm extends React.Component {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { token, post, history } = this.props;
+    if (!token) history.push('/');
+    if (post) history.push(`/r/${post.category}/${post.id}`);
+  }
+
+  onSubmit = post => {
+    console.log(post);
+    this.props.attemptCreatePost(post, this.props.token);
+  };
+
+  render() {
+    return (
+      <WideForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        <Label htmlFor='category'>subreddit</Label>
+        <Input name='category' id='category' component='select'>
+          <option value='test'>r/test</option>
+          <option value='test2'>r/test2</option>
+          <option value='test3'>r/test3</option>
+        </Input>
+        <Label htmlFor='title'>title</Label>
+        <Input name='title' id='title' type='text' component='input' />
+        <Label htmlFor='url'>url</Label>
+        <Input name='url' id='url' type='text' component='input' />
+        <SubmitButton type='submit'>create post</SubmitButton>
+      </WideForm>
+    );
+  }
+}
 
 export default CreatePostForm;

@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import CreatePostForm from '../components/CreatePostForm/Component';
 
 it('renders without crashing', () => {
-  shallow(<CreatePostForm />);
+  shallow(<CreatePostForm handleSubmit={fn => fn} />);
 });

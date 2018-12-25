@@ -1,10 +1,15 @@
-const baseUrl = process.env.NODE_ENV === 'development' ?
-  'http://localhost:8080/api' : `https://${window.location.hostname}/api`;
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8080/api'
+    : `https://${window.location.hostname}/api`;
 
-async function post (endpoint, body) {
+async function post (endpoint, body, token = null) {
   const options = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` })
+    },
     body: JSON.stringify(body)
   };
 
@@ -41,4 +46,8 @@ export async function getPosts (category) {
   if (!response.ok) throw new Error(json.message);
 
   return json;
+}
+
+export async function createPost (body, token) {
+  return await post('posts', body, token);
 }
