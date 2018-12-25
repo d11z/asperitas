@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { reduxForm } from 'redux-form';
-import Form from './shared/Form';
-import Label from './shared/Label';
-import Input from './shared/Input';
-import SubmitButton from './shared/SubmitButton';
+import Form from '../shared/Form';
+import Label from '../shared/Label';
+import Input from '../shared/Input';
+import SubmitButton from '../shared/SubmitButton';
 
 const WideForm = styled(Form)`
   max-width: 500px;
@@ -26,4 +25,4 @@ const CreatePostForm = () => (
   </WideForm>
 );
 
-export default reduxForm({ form: 'createPost' })(CreatePostForm);
+export default CreatePostForm;

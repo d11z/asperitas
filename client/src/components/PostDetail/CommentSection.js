@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import CommentList from '../CommentList';
-import CommentForm from '../CommentForm';
+import CommentFormContainer from '../CommentForm/Container';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const PostDetailCommentSection = props => (
   <Wrapper>
     <CommentList comments={props.comments} />
-    <CommentForm />
+    <CommentFormContainer />
   </Wrapper>
 );
 

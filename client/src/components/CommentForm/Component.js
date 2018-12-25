@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { reduxForm } from 'redux-form';
 import Form from '../shared/Form';
 import CommentFormTextArea from './TextArea';
 import CommentFormSubmitButton from './SubmitButton';
@@ -18,4 +17,4 @@ const CommentForm = () => (
   </StyledForm>
 );
 
-export default reduxForm({ form: 'comment' })(CommentForm);
+export default CommentForm;

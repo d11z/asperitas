@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/posts';
-import PostList from '../components/PostList';
+import { fetchPosts } from '../../actions/posts';
+import PostList from './Component';
 
 class PostListContainer extends React.Component {
   componentDidMount() {
@@ -28,4 +28,6 @@ export const mapStateToProps = state => ({
   isFetching: state.posts.isFetching
 });
 
-export default connect(mapStateToProps)(PostListContainer);
+PostListContainer = connect(mapStateToProps)(PostListContainer);
+
+export default PostListContainer;

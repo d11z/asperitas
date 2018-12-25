@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SignupForm from './SignupForm';
+import PostDetail from '../components/PostDetail/Component';
 
 it('renders without crashing', () => {
-  shallow(<SignupForm handleSubmit={fn => fn} />);
+  shallow(<PostDetail />);
 });

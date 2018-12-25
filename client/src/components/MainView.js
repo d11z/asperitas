@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import PostListContainer from '../containers/PostListContainer';
-import PostDetailContainer from '../containers/PostDetailContainer';
+import PostListContainer from './PostList/Container';
+import PostDetailContainer from './PostDetail/Container';
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const Main = styled.main`
   flex: 1;
 `;
 
-const MainView = props => (
+const MainView = () => (
   <Wrapper>
     <Sidebar />
     <Main>

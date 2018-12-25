@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MainView from './MainView';
+import CommentForm from '../components/CommentForm/Component';
 
 it('renders without crashing', () => {
-  shallow(<MainView />);
+  shallow(<CommentForm />);
 });

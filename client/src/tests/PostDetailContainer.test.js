@@ -1,4 +1,4 @@
-import { mapStateToProps } from './PostDetailContainer';
+import { mapStateToProps } from '../components/PostDetail/Container';
 
 it('displays the correct post', () => {
   const items = [{ id: 0 }, { id: 1 }];

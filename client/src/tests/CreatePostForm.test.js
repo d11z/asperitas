@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PostDetail from './PostDetail';
+import CreatePostForm from '../components/CreatePostForm/Component';
 
 it('renders without crashing', () => {
-  shallow(<PostDetail />);
+  shallow(<CreatePostForm />);
 });

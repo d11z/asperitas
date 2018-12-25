@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PostList from './PostList';
+import PostList from '../components/PostList/Component';
 
 it('renders without crashing', () => {
   shallow(<PostList />);

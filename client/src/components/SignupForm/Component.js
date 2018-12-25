@@ -1,8 +1,8 @@
 import React from 'react';
-import Form from './shared/Form';
-import Label from './shared/Label';
-import Input from './shared/Input';
-import SubmitButton from './shared/SubmitButton';
+import Form from '../shared/Form';
+import Label from '../shared/Label';
+import Input from '../shared/Input';
+import SubmitButton from '../shared/SubmitButton';
 
 class SignupForm extends React.Component {
   redirect() {

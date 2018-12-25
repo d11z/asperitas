@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import moment from 'moment';
-import Comment from './Comment';
+import Comment from '../components/Comment';
 
 it('renders without crashing', () => {
   shallow(<Comment />);
