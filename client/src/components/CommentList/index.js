@@ -13,6 +13,7 @@ const mapComments = comments =>
     <CommentListItem key={index} {...comment} />
   ));
 
-const CommentList = props => <List>{mapComments(props.comments)}</List>;
+const CommentList = ({ comments }) =>
+  comments && <List>{mapComments(comments)}</List>;
 
 export default CommentList;

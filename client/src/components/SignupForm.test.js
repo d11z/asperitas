@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import SignupForm from './SignupForm';
 
 it('renders without crashing', () => {
-  shallow(<SignupForm />);
+  shallow(<SignupForm handleSubmit={fn => fn} />);
 });

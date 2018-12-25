@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import moment from 'moment';
+import { MemoryRouter } from 'react-router-dom';
 import Post from './Post';
 
 it('renders without crashing', () => {
@@ -17,28 +18,38 @@ it('renders information about the post', () => {
     comments: []
   };
 
-  const wrapper = shallow(<Post {...data} />);
+  const wrapper = mount(
+    <MemoryRouter>
+      <Post {...data} />
+    </MemoryRouter>
+  );
 
-  expect(wrapper.find('Post__TitleLink').text()).toEqual(data.title);
-  expect(wrapper.find('Post__Url').text()).toEqual(data.url);
+  expect(wrapper.find('Title').text()).toEqual(data.title);
+  expect(wrapper.find('Url').text()).toEqual(data.url);
   expect(
     wrapper
-      .find('Post__DetailWrapper')
-      .childAt(1)
+      .find('Detail__Wrapper')
+      .find('span')
+      .at(1)
       .text()
   ).toEqual(data.author.username);
   expect(
     wrapper
-      .find('Post__DetailWrapper')
-      .childAt(2)
+      .find('Detail__Wrapper')
+      .find('span')
+      .at(2)
       .text()
   ).toEqual(moment(data.created).fromNow());
   expect(
     wrapper
-      .find('Post__DetailWrapper')
-      .childAt(3)
-      .childAt(0)
+      .find('Detail__Wrapper')
+      .find('a')
       .text()
   ).toEqual(`${data.comments.length} comments`);
-  expect(wrapper.find('Post__Score').text()).toEqual(data.score.toString());
+  expect(
+    wrapper
+      .find('Vote__Wrapper')
+      .find('span')
+      .text()
+  ).toEqual(data.score.toString());
 });

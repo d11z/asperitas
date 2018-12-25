@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import moment from 'moment';
 import Comment from './Comment';
 
@@ -10,15 +10,15 @@ it('renders without crashing', () => {
 it('renders information about the comment', () => {
   const data = {
     author: { username: 'testuser1' },
-    created: '2018-11-05T05:02:38.544Z',
+    timestamp: '2018-11-05T05:02:38.544Z',
     body: 'example comment'
   };
 
-  const wrapper = shallow(<Comment {...data} />);
+  const wrapper = mount(<Comment {...data} />);
 
-  expect(wrapper.find('Comment__Author').text()).toEqual(data.author.username);
-  expect(wrapper.find('Comment__Timestamp').text()).toEqual(
+  expect(wrapper.find('Author').text()).toEqual(data.author.username);
+  expect(wrapper.find('Timestamp').text()).toEqual(
     moment(data.created).fromNow()
   );
-  expect(wrapper.find('Comment__Content').text()).toEqual(data.body);
+  expect(wrapper.find('Content').text()).toEqual(data.body);
 });

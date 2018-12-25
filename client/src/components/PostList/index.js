@@ -8,10 +8,8 @@ const List = styled.ul`
 `;
 
 const mapPosts = posts =>
-  posts.map((post, index) => (
-    <PostListItem key={index} {...post} />
-  ));
+  posts.map((post, index) => <PostListItem key={index} {...post} />);
 
-const PostList = props => <List>{mapPosts(props.posts)}</List>;
+const PostList = ({ posts }) => posts && <List>{mapPosts(posts)}</List>;
 
 export default PostList;
