@@ -5,9 +5,10 @@ import CommentFormTextArea from './TextArea';
 import CommentFormSubmitButton from './SubmitButton';
 
 const StyledForm = styled(Form)`
-  padding: 0;
+  margin-bottom: 16px;
   border: 1px solid #eee;
-  flex: 2;
+  max-width: none;
+  padding: 0;
 `;
 
 const CommentForm = () => (

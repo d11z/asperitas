@@ -3,8 +3,6 @@ import styled from 'styled-components/macro';
 import CommentListItem from './Item';
 
 const List = styled.ul`
-  flex: 3;
-  margin-right: 16px;
   list-style: none;
 `;
 
