@@ -10,15 +10,16 @@ router.post('/register', users.validate('register'), users.register);
 router.param('post', posts.load);
 router.get('/posts', posts.list);
 router.get('/posts/:category', posts.list);
+router.get('/post/:post', posts.show);
 router.post('/posts', [jwtAuth, posts.validate], posts.create);
-router.delete('/posts/:post', [jwtAuth, postAuth], posts.destroy);
-router.get('/posts/:post/upvote', jwtAuth, posts.upvote);
-router.get('/posts/:post/downvote', jwtAuth, posts.downvote);
-router.get('/posts/:post/unvote', jwtAuth, posts.unvote);
+router.delete('/post/:post', [jwtAuth, postAuth], posts.destroy);
+router.get('/post/:post/upvote', jwtAuth, posts.upvote);
+router.get('/post/:post/downvote', jwtAuth, posts.downvote);
+router.get('/post/:post/unvote', jwtAuth, posts.unvote);
 
 router.param('comment', comments.load);
-router.post('/posts/:post', [jwtAuth, comments.validate], comments.create);
-router.delete('/posts/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
+router.post('/post/:post', [jwtAuth, comments.validate], comments.create);
+router.delete('/post/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
 
 module.exports = app => {
   app.use('/api', router);

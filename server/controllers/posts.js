@@ -4,12 +4,17 @@ const Post = require('../models/post');
 exports.load = async (req, res, next, id) => {
   try {
     req.post = await Post.findById(id);
-    if (!req.post) return next(new Error('Post not found'));
+    if (!req.post)
+      return res.status(404).json({ message: 'post not found' });
   } catch (err) {
+    if (err.name === 'CastError')
+      return res.status(400).json({ message: 'invalid post id' });
     return next(err);
   }
   next();
 };
+
+exports.show = (req, res) => res.json(req.post);
 
 exports.list = async (req, res) => {
   const category = req.params.category;

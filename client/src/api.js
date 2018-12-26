@@ -29,6 +29,15 @@ async function post (endpoint, body, token = null) {
   return json;
 }
 
+async function get (endpoint) {
+  const response = await fetch(`${baseUrl}/${endpoint}`);
+  const json = await response.json();
+
+  if (!response.ok) throw Error(json.message);
+
+  return json;
+}
+
 export async function login (username, password) {
   const json = await post('login', { username, password });
   return json.token;
@@ -40,12 +49,11 @@ export async function signup (username, password) {
 }
 
 export async function getPosts (category) {
-  const response = await fetch(`${baseUrl}/posts/${category}`);
-  const json = await response.json();
+  return await get(`posts/${category}`);
+}
 
-  if (!response.ok) throw new Error(json.message);
-
-  return json;
+export async function getPost (id) {
+  return await get(`post/${id}`);
 }
 
 export async function createPost (body, token) {

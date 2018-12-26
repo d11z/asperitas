@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import PostDetail from '../components/PostDetail/Component';
 
 it('renders without crashing', () => {
-  shallow(<PostDetail />);
+  shallow(<PostDetail fetchPost={fn => fn} />);
 });

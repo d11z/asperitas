@@ -72,6 +72,10 @@ postSchema.pre('find', function () {
   this.populate('author').populate('comments.author');
 });
 
+postSchema.pre('findOne', function () {
+  this.populate('author').populate('comments.author');
+});
+
 postSchema.post('save', (doc, next) => {
   doc
     .populate('author')

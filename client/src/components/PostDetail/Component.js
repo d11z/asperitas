@@ -1,16 +1,22 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import PostDetailPost from './Post';
 import PostDetailCommentSection from './CommentSection';
 
-const PostDetail = ({ post }) => {
-  if (!post) return <Redirect to='/' />;
-  return (
-    <>
-      <PostDetailPost {...post} />
-      <PostDetailCommentSection comments={post.comments}/>
-    </>
-  );
-};
+class PostDetail extends React.Component {
+  componentDidMount() {
+    this.props.fetchPost(this.props.id);
+  }
+
+  render() {
+    const { isFetching, post } = this.props;
+    if (isFetching || !post) return null;
+    return (
+      <>
+        <PostDetailPost {...post} />
+        <PostDetailCommentSection comments={post.comments}/>
+      </>
+    );
+  }
+}
 
 export default PostDetail;

@@ -1,12 +1,17 @@
 import { connect } from 'react-redux';
+import { fetchPost } from '../../actions/posts';
 import PostDetail from './Component';
 
-const findPost = (posts, id) => posts.find(post => post.id === id);
-
-export const mapStateToProps = (state, ownProps) => ({
-  post: findPost(state.posts.items, ownProps.postId)
+export const mapStateToProps = state => ({
+  isFetching: state.posts.isFetching,
+  post: state.posts.post
 });
 
-const PostDetailContainer = connect(mapStateToProps)(PostDetail);
+const mapDispatchToProps = { fetchPost };
+
+const PostDetailContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostDetail);
 
 export default PostDetailContainer;

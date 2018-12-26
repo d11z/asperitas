@@ -1,8 +1,9 @@
-import { mapStateToProps } from '../components/PostDetail/Container';
+import React from 'react';
+import { shallow } from 'enzyme';
+import configureStore from 'redux-mock-store';
+import PostDetailContainer from '../components/PostDetail/Container';
 
-it('displays the correct post', () => {
-  const items = [{ id: 0 }, { id: 1 }];
-  const initialState = { posts: { items } };
-
-  expect(mapStateToProps(initialState, { postId: 1 }).post.id).toEqual(1);
+it('renders without crashing', () => {
+  const store = configureStore([])({ posts: { isFetching: true } });
+  shallow(<PostDetailContainer store={store} />);
 });

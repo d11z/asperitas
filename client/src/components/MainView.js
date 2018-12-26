@@ -30,7 +30,7 @@ const MainView = () => (
         exact
         path='/r/:category/:post'
         render={({ match }) => (
-          <PostDetailContainer postId={match.params.post} />
+          <PostDetailContainer id={match.params.post} />
         )}
       />
     </Main>
