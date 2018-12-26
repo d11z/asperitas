@@ -8,6 +8,6 @@ const Logo = styled(Link)`
   color: #ffffff;
 `;
 
-const HeaderLogo = () => <Logo to='/'>reddit</Logo>;
+const HeaderLogo = () => <Logo to='/'>asperitas</Logo>;
 
 export default HeaderLogo;
