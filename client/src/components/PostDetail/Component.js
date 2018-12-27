@@ -1,6 +1,6 @@
 import React from 'react';
 import PostDetailPost from './Post';
-import PostDetailCommentSection from './CommentSection';
+import CommentSectionContainer from './CommentSection/Container';
 
 class PostDetail extends React.Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class PostDetail extends React.Component {
     return (
       <>
         <PostDetailPost {...post} />
-        <PostDetailCommentSection comments={post.comments}/>
+        <CommentSectionContainer />
       </>
     );
   }

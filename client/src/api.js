@@ -59,3 +59,7 @@ export async function getPost (id) {
 export async function createPost (body, token) {
   return await post('posts', body, token);
 }
+
+export async function createComment (id, comment, token) {
+  return await post(`post/${id}`, comment, token);
+}

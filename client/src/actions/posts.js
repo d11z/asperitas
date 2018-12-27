@@ -1,4 +1,4 @@
-import { getPosts, getPost, createPost } from '../api';
+import { getPosts, getPost, createPost, createComment } from '../api';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
@@ -51,5 +51,23 @@ export const attemptCreatePost = (post, token) => async dispatch => {
     dispatch(createPostSuccess(newPost));
   } catch (error) {
     dispatch(createPostError(error));
+  }
+};
+
+export const CREATE_COMMENT_REQUEST = 'CREATE_COMMENT_REQUEST';
+export const CREATE_COMMENT_SUCCESS = 'CREATE_COMMENT_SUCCESS';
+export const CREATE_COMMENT_ERROR = 'CREATE_COMMENT_ERROR';
+
+const createCommentRequest = { type: CREATE_COMMENT_REQUEST };
+const createCommentSuccess = post => ({ type: CREATE_COMMENT_SUCCESS, post });
+const createCommentError = error => ({ type: CREATE_COMMENT_ERROR, error });
+
+export const attemptCreateComment = (id, comment, token) => async dispatch => {
+  dispatch(createCommentRequest);
+  try {
+    const json = await createComment(id, comment, token);
+    dispatch(createCommentSuccess(json));
+  } catch (error) {
+    dispatch(createCommentError(error));
   }
 };

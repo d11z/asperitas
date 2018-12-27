@@ -10,7 +10,7 @@ const CommentFormTextArea = ({ name }) => (
   <TextArea
     name={name}
     component='textarea'
-    rows='3'
+    rows='2'
     placeholder='enter your comment'
   />
 );

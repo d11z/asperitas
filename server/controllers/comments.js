@@ -18,7 +18,7 @@ exports.create = async (req, res, next) => {
   }
 
   try {
-    const post = await req.post.addComment(req.user.id, req.body.body);
+    const post = await req.post.addComment(req.user.id, req.body.comment);
     res.status(201).json(post);
   } catch (err) {
     next(err);
@@ -26,7 +26,7 @@ exports.create = async (req, res, next) => {
 };
 
 exports.validate = [
-  body('body')
+  body('comment')
     .exists()
     .withMessage('is required')
 

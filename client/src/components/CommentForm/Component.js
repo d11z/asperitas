@@ -11,11 +11,20 @@ const StyledForm = styled(Form)`
   padding: 0;
 `;
 
-const CommentForm = () => (
-  <StyledForm>
-    <CommentFormTextArea name='comment' />
-    <CommentFormSubmitButton />
-  </StyledForm>
-);
+class CommentForm extends React.Component {
+  onSubmit = comment => {
+    const { id, token, attemptCreateComment } = this.props;
+    attemptCreateComment(id, comment, token);
+  };
+
+  render() {
+    return (
+      <StyledForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        <CommentFormTextArea name='comment' />
+        <CommentFormSubmitButton />
+      </StyledForm>
+    );
+  }
+}
 
 export default CommentForm;
