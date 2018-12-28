@@ -1,4 +1,4 @@
-import { getPosts, getPost, createPost, createComment } from '../api';
+import { getPosts, getPost, createPost, createComment, castVote } from '../api';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
@@ -69,5 +69,23 @@ export const attemptCreateComment = (id, comment, token) => async dispatch => {
     dispatch(createCommentSuccess(json));
   } catch (error) {
     dispatch(createCommentError(error));
+  }
+};
+
+export const VOTE_REQUEST = 'VOTE_REQUEST';
+export const VOTE_SUCCESS = 'VOTE_SUCCESS';
+export const VOTE_ERROR = 'VOTE_ERROR';
+
+const voteRequest = { type: VOTE_REQUEST };
+const voteSuccess = post => ({ type: VOTE_SUCCESS, post });
+const voteError = error => ({ type: VOTE_ERROR, error });
+
+export const attemptVote = (id, vote, token) => async dispatch => {
+  dispatch(voteRequest);
+  try {
+    const post = await castVote(id, vote, token);
+    dispatch(voteSuccess(post));
+  } catch (error) {
+    dispatch(voteError(error));
   }
 };

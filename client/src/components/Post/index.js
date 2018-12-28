@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import PostVoteContainer from './Vote/Container';
 import PostContent from './Content';
-import PostVote from './Vote';
 
 const Wrapper = styled.div`
   display: flex;
   height: 76px;
 `;
 
-const Post = ({ score, ...content }) => (
+const Post = ({ id, votes, score, ...content }) => (
   <Wrapper>
-    <PostVote score={score}/>
-    <PostContent {...content} />
+    <PostVoteContainer id={id} votes={votes} score={score} />
+    <PostContent id={id} {...content} />
   </Wrapper>
 );
 

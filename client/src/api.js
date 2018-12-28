@@ -29,8 +29,15 @@ async function post (endpoint, body, token = null) {
   return json;
 }
 
-async function get (endpoint) {
-  const response = await fetch(`${baseUrl}/${endpoint}`);
+async function get (endpoint, token = null) {
+  const options = {
+    method: 'GET',
+    headers: {
+      ...(token && { Authorization: `Bearer ${token}` })
+    }
+  };
+
+  const response = await fetch(`${baseUrl}/${endpoint}`, options);
   const json = await response.json();
 
   if (!response.ok) throw Error(json.message);
@@ -62,4 +69,16 @@ export async function createPost (body, token) {
 
 export async function createComment (id, comment, token) {
   return await post(`post/${id}`, comment, token);
+}
+
+export async function castVote (id, vote, token) {
+  const voteTypes = {
+    '1': 'upvote',
+    '0': 'unvote',
+    '-1': 'downvote'
+  };
+
+  const voteType = voteTypes[vote];
+
+  return await get(`post/${id}/${voteType}`, token);
 }

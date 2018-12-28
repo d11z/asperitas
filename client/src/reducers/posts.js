@@ -10,11 +10,18 @@ import {
   CREATE_POST_ERROR,
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
-  CREATE_COMMENT_ERROR
+  CREATE_COMMENT_ERROR,
+  VOTE_REQUEST,
+  VOTE_SUCCESS,
+  VOTE_ERROR
 } from '../actions/posts';
 
 const initialState = { isFetching: false, items: [] };
 
+const updateItems = (post, items) =>
+  items.map(i => (i.id === post.id ? post : i));
+
+let items;
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
@@ -44,6 +51,20 @@ export default (state = initialState, action) => {
       return { ...state, isCommenting: false, error: null, post: action.post };
     case CREATE_COMMENT_ERROR:
       return { ...state, isCommenting: false, error: action.error };
+
+    case VOTE_REQUEST:
+      return { ...state, isVoting: true };
+    case VOTE_SUCCESS:
+      items = updateItems(action.post, state.items);
+      return {
+        ...state,
+        isVoting: false,
+        error: null,
+        items,
+        post: action.post
+      };
+    case VOTE_ERROR:
+      return { ...state, isVoting: false, error: action.error };
 
     default:
       return state;
