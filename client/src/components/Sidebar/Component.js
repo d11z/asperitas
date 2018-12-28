@@ -20,9 +20,9 @@ const mapCategories = categories =>
     <SidebarCategoryListItem key={index} category={category} />
   ));
 
-const Sidebar = () => (
+const Sidebar = ({ isLoggedIn }) => (
   <Wrapper>
-    <SidebarCreatePostButton />
+    {isLoggedIn && <SidebarCreatePostButton />}
     <SidebarCategoryList>{mapCategories(categories)}</SidebarCategoryList>
   </Wrapper>
 );

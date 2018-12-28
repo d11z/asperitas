@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Route } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import SidebarContainer from './Sidebar/Container';
 import PostListContainer from './PostList/Container';
 import PostDetailContainer from './PostDetail/Container';
 
@@ -16,7 +16,7 @@ const Main = styled.main`
 
 const MainView = () => (
   <Wrapper>
-    <Sidebar />
+    <SidebarContainer />
     <Main>
       <Route exact path='/' component={PostListContainer} />
       <Route
