@@ -21,14 +21,14 @@ const MainView = () => (
       <Route exact path='/' component={PostListContainer} />
       <Route
         exact
-        path='/r/:category'
+        path='/a/:category'
         render={({ match }) => (
           <PostListContainer category={match.params.category} />
         )}
       />
       <Route
         exact
-        path='/r/:category/:post'
+        path='/a/:category/:post'
         render={({ match }) => (
           <PostDetailContainer id={match.params.post} />
         )}

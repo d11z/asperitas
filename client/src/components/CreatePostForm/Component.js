@@ -13,7 +13,7 @@ class CreatePostForm extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { token, post, history } = this.props;
     if (!token) history.push('/');
-    if (post) history.push(`/r/${post.category}/${post.id}`);
+    if (post) history.push(`/a/${post.category}/${post.id}`);
   }
 
   onSubmit = post => {
@@ -24,11 +24,11 @@ class CreatePostForm extends React.Component {
   render() {
     return (
       <WideForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Label htmlFor='category'>subreddit</Label>
+        <Label htmlFor='category'>category</Label>
         <Input name='category' id='category' component='select'>
-          <option value='test'>r/test</option>
-          <option value='test2'>r/test2</option>
-          <option value='test3'>r/test3</option>
+          <option value='test'>test</option>
+          <option value='test2'>test2</option>
+          <option value='test3'>test3</option>
         </Input>
         <Label htmlFor='title'>title</Label>
         <Input name='title' id='title' type='text' component='input' />

@@ -13,7 +13,7 @@ const Item = styled.li`
 
 const SidebarCategoryListItem = ({ category }) => (
   <Item>
-    <Link to={category === 'all' ? '/' : `/r/${category}`}>{category}</Link>
+    <Link to={category === 'all' ? '/' : `/a/${category}`}>{category}</Link>
   </Item>
 );
 
