@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -9,7 +10,12 @@ import {
 } from '../actions/auth';
 
 const token = localStorage.getItem('token');
-const initialState = token ? { token } : {};
+const user = token && jwtDecode(token).user;
+
+const initialState = {
+  ...(token && { token }),
+  ...(user && { user })
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
