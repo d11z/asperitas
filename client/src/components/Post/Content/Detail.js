@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const ContentDetail = props => (
+const PostContentDetail = props => (
   <Wrapper>
     <span>by</span>
     <span>{props.author && props.author.username}</span>
@@ -23,4 +23,4 @@ const ContentDetail = props => (
   </Wrapper>
 );
 
-export default ContentDetail;
+export default PostContentDetail;

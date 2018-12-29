@@ -9,6 +9,6 @@ const Title = styled.a`
   color: #000;
 `;
 
-const ContentTitle = props => <Title href={props.url}>{props.title}</Title>;
+const PostContentTitle = props => <Title href={props.url}>{props.title}</Title>;
 
-export default ContentTitle;
+export default PostContentTitle;

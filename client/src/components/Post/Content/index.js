@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import ContentTitle from './Title';
-import ContentUrl from './Url';
-import ContentDetail from './Detail';
+import PostContentTitle from './Title';
+import PostContentUrl from './Url';
+import PostContentDetail from './Detail';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,9 +13,9 @@ const Wrapper = styled.div`
 
 const PostContent = ({ url, title, comments, ...details }) => (
   <Wrapper>
-    <ContentTitle url={url} title={title}/>
-    <ContentUrl url={url}/>
-    <ContentDetail comments={comments ? comments.length : 0} {...details} />
+    <PostContentTitle url={url} title={title}/>
+    <PostContentUrl url={url}/>
+    <PostContentDetail comments={comments ? comments.length : 0} {...details} />
   </Wrapper>
 );
 

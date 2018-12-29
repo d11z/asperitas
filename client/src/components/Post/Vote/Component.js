@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import VoteButton from './Button';
+import PostVoteButton from './Button';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,9 +44,9 @@ class PostVote extends React.Component {
 
     return (
       <Wrapper>
-        <VoteButton onClick={upvote} />
+        <PostVoteButton onClick={upvote} />
         <span>{this.props.score}</span>
-        <VoteButton onClick={downvote} />
+        <PostVoteButton onClick={downvote} />
       </Wrapper>
     );
   }
