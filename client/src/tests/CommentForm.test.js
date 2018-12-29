@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import CommentForm from '../components/CommentForm/Component';
 
 it('renders without crashing', () => {
-  shallow(<CommentForm />);
+  shallow(<CommentForm handleSubmit={fn => fn} />);
 });
