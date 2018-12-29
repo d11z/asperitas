@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Post from '../components/Post';
+import PostContent from '../components/Post/Content';
 
 it('renders without crashing', () => {
-  shallow(<Post />);
+  shallow(<PostContent />);
 });
