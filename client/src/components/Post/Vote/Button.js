@@ -1,8 +1,6 @@
 import styled from 'styled-components/macro';
 
 const PostVoteButton = styled.button`
-  --color: #b6b6b6;
-  
   height: 22px;
   width: 22px;
   border: 0;
@@ -12,7 +10,7 @@ const PostVoteButton = styled.button`
   transition: all .15s ease;
 
   :focus { outline: 0; }
-  :hover { background-color: #e3e5e8; }
+  :hover { background-color: ${props => props.theme.voteButtonHover}; }
 
   ::after {
     display: block;
