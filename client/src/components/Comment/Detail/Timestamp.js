@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import moment from 'moment';
 
 const Timestamp = styled.span`
-  color: #6f6f6f;
+  color: ${props => props.theme.mutedText};
 `;
 
 const DetailTimestamp = props => (

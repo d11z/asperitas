@@ -6,6 +6,7 @@ const SubmitButton = styled.button`
   font-size: 16px;
   border: none;
   background-color: #fff;
+  color: ${props => props.theme.normalText};
 `;
 
 export default SubmitButton;

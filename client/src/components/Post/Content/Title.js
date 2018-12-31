@@ -6,7 +6,7 @@ const Title = styled.a`
   margin-bottom: 2px;
   font-size: 16px;
   text-decoration: none;
-  color: #000;
+  color: ${props => props.theme.normalText};
 `;
 
 const PostContentTitle = props => <Title href={props.url}>{props.title}</Title>;

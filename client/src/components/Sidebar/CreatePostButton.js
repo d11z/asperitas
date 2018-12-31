@@ -3,13 +3,13 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 
 const Button = styled(Link)`
+  border: none;
   padding: 16px;
+  background-color: #eee;
+  font-size: 16px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
-  color: #000;
-  border: none;
-  background-color: #eee;
+  color: ${props => props.theme.normalText};
 `;
 
 const SidebarCreatePostButton = () => (

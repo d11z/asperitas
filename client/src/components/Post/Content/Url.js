@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const Url = styled.span`
-  color: #6f6f6f;
+  color: ${props => props.theme.mutedText};
 `;
 
 const PostContentUrl = props => <Url>{props.url}</Url>;

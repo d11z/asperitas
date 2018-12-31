@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   margin-top: auto;
-  color: #6f6f6f;
+  color: ${props => props.theme.mutedText};
 
   & > * {
     margin-right: 4px;

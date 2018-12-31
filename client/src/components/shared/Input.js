@@ -12,6 +12,7 @@ const Input = styled(Field)`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  color: ${props => props.theme.normalText};
 `;
 
 export default Input;

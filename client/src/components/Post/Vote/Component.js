@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   line-height: 24px;
   font-weight: 500;
   text-align: center;
+  color: ${props => props.theme.normalText};
 `;
 
 class PostVote extends React.Component {
