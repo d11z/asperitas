@@ -8,10 +8,14 @@ const Wrapper = styled.div`
   height: 76px;
 `;
 
-const Post = ({ id, votes, score, ...content }) => (
+const Post = ({ id, votes, score, comments, ...content }) => (
   <Wrapper>
     <PostVoteContainer id={id} votes={votes} score={score} />
-    <PostContent id={id} {...content} />
+    <PostContent
+      id={id}
+      commentCount={comments ? comments.length : 0}
+      {...content}
+    />
   </Wrapper>
 );
 

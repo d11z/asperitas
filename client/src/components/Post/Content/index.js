@@ -11,11 +11,11 @@ const Wrapper = styled.div`
   font-size: 13px;
 `;
 
-const PostContent = ({ url, title, comments, ...details }) => (
+const PostContent = ({ url, title, commentCount, ...details }) => (
   <Wrapper>
-    <PostContentTitle url={url} title={title}/>
-    <PostContentUrl url={url}/>
-    <PostContentDetail comments={comments ? comments.length : 0} {...details} />
+    <PostContentTitle url={url} title={title} />
+    <PostContentUrl url={url} />
+    <PostContentDetail commentCount={commentCount} {...details} />
   </Wrapper>
 );
 

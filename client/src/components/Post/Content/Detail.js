@@ -18,7 +18,7 @@ const PostContentDetail = props => (
     <span>{props.author && props.author.username}</span>
     <span>{moment(props.created).fromNow()}</span>
     <Link to={`/a/${props.category}/${props.id}`}>
-      {props.comments} comment{props.comments !== 1 ? 's' : null}
+      {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
     </Link>
   </Wrapper>
 );
