@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import PostVoteButton from './Button';
+import PostVoteUpvote from './Upvote';
+import PostVoteDownvote from './Downvote';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,9 +23,8 @@ class PostVote extends React.Component {
     return existingVote && existingVote.vote;
   }
 
-  constructor(props) {
-    super(props);
-    this.didVote = PostVote.existingVote(props);
+  componentWillMount() {
+    this.didVote = PostVote.existingVote(this.props);
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
@@ -44,9 +44,17 @@ class PostVote extends React.Component {
 
     return (
       <Wrapper>
-        <PostVoteButton onClick={upvote} />
+        <PostVoteUpvote
+          onClick={upvote}
+          canVote={!!this.props.user}
+          didVote={didUpvote}
+        />
         <span>{this.props.score}</span>
-        <PostVoteButton onClick={downvote} />
+        <PostVoteDownvote
+          onClick={downvote}
+          canVote={!!this.props.user}
+          didVote={didDownvote}
+        />
       </Wrapper>
     );
   }
