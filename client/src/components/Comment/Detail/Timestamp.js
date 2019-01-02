@@ -6,10 +6,10 @@ const Timestamp = styled.span`
   color: ${props => props.theme.mutedText};
 `;
 
-const DetailTimestamp = props => (
+const CommentDetailTimestamp = props => (
   <Timestamp>
     {moment(props.created).fromNow()}
   </Timestamp>
 );
 
-export default DetailTimestamp;
+export default CommentDetailTimestamp;

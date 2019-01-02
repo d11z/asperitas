@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import DetailAuthor from './Author';
-import DetailTimestamp from './Timestamp';
+import CommentDetailAuthor from './Author';
+import CommentDetailTimestamp from './Timestamp';
 
 const Wrapper = styled.div`
   padding: 8px;
@@ -10,8 +10,8 @@ const Wrapper = styled.div`
 
 const CommentDetail = props => (
   <Wrapper>
-    <DetailAuthor author={props.author.username} />
-    <DetailTimestamp timestamp={props.timestamp} />
+    <CommentDetailAuthor author={props.author.username} />
+    <CommentDetailTimestamp created={props.created} />
   </Wrapper>
 );
 
