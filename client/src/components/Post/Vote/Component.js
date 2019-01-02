@@ -38,6 +38,7 @@ class PostVote extends React.Component {
   }
 
   render() {
+    const canVote = !!this.props.user;
     const didUpvote = this.didVote === 1;
     const didDownvote = this.didVote === -1;
     const upvote = () => this.castVote(didUpvote ? 0 : 1);
@@ -46,15 +47,15 @@ class PostVote extends React.Component {
     return (
       <Wrapper>
         <PostVoteUpvote
-          onClick={upvote}
-          canVote={!!this.props.user}
+          canVote={canVote}
           didVote={didUpvote}
+          onClick={upvote}
         />
         <span>{this.props.score}</span>
         <PostVoteDownvote
-          onClick={downvote}
-          canVote={!!this.props.user}
+          canVote={canVote}
           didVote={didDownvote}
+          onClick={downvote}
         />
       </Wrapper>
     );
