@@ -5,7 +5,7 @@ import CommentContent from './Content';
 
 const Wrapper = styled.div`
   font-size: 13px;
-  border: 1px solid #eee;
+  border: 1px solid ${props => props.theme.border};
 `;
 
 const Comment = ({ body, ...details }) => (

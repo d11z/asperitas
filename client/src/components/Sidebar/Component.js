@@ -12,7 +12,7 @@ const Wrapper = styled.aside`
   flex-basis: 240px;
   order: 1;
   margin-left: 24px;
-  border: 1px solid #eee;
+  border: 1px solid ${props => props.theme.border};
 `;
 
 const mapCategories = categories =>

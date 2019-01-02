@@ -5,7 +5,7 @@ import DetailTimestamp from './Timestamp';
 
 const Wrapper = styled.div`
   padding: 8px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${props => props.theme.border};
 `;
 
 const CommentDetail = props => (

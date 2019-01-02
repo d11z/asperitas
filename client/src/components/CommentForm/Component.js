@@ -6,7 +6,7 @@ import CommentFormSubmitButton from './SubmitButton';
 
 const StyledForm = styled(Form)`
   margin-bottom: 16px;
-  border: 1px solid #eee;
+  border: 1px solid ${props => props.theme.border};
   max-width: none;
   padding: 0;
 `;

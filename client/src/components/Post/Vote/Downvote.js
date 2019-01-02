@@ -3,7 +3,7 @@ import PostVoteButton from './Button';
 
 const PostVoteDownvote = styled(PostVoteButton)`
   --iconColor: ${props =>
-    props.didVote ? props.theme.downvoteColor : props.theme.voteColor};
+    props.didVote ? props.theme.downvote : props.theme.vote};
 
   ::after {
     border-bottom: 2px solid var(--iconColor);

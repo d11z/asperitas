@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Item = styled.li`
   padding: 8px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${props => props.theme.border};
 
   :last-child {
     border: none;

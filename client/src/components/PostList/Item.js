@@ -4,7 +4,7 @@ import Post from '../Post';
 
 const Item = styled.li`
   :not(:first-child) {
-    border-top: 1px solid #eee;
+    border-top: 1px solid ${props => props.theme.border};
   }
 `;
 
