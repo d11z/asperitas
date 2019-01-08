@@ -1,26 +1,34 @@
 import styled from 'styled-components/macro';
+import { transition } from '../../shared/helpers';
 
 const PostVoteButton = styled.button`
-  height: 22px;
-  width: 22px;
+  ${transition};
+  
   border: 0;
   border-radius: 3px;
+  height: 22px;
+  width: 22px;
   background-color: transparent;
   cursor: pointer;
-  transition: all .15s ease;
 
-  :focus { outline: 0; }
-  :hover { background-color: ${props => props.theme.voteButtonHover}; }
+  :focus {
+    outline: 0;
+  }
+  
+  :hover {
+    background-color: ${props => props.theme.voteButtonHover};
+  }
 
   ::after {
-    display: block;
+    ${transition};
+    
     content: '';
-    width: 8px;
-    height: 8px;
     position: relative;
     left: 6px;
+    display: block;
     transform: rotate(-45deg);
-    transition: all .15s ease;
+    width: 8px;
+    height: 8px;
   }
   
   ${({ canVote }) => !canVote && `

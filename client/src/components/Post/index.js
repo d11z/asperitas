@@ -6,6 +6,7 @@ import PostContent from './Content';
 const Wrapper = styled.div`
   display: flex;
   height: 76px;
+  background-color: #ffffff;
 `;
 
 const Post = ({ id, votes, score, comments, ...content }) => (

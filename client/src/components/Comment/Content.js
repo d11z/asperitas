@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const Content = styled.p`
-  padding: 8px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 14px;
   color: ${props => props.theme.normalText};
 `;
 

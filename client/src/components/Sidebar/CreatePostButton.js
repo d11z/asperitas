@@ -1,19 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
+import Button from '../shared/Button';
 
-const Button = styled(Link)`
-  border: none;
+const CreatePostButton = styled(Button)`
+  border-radius: 2px 2px 0 0;
   padding: 16px;
-  background-color: #eee;
-  font-size: 16px;
-  text-align: center;
   text-decoration: none;
-  color: ${props => props.theme.normalText};
+  text-align: center;
 `;
 
 const SidebarCreatePostButton = () => (
-  <Button to='/createpost'>create post</Button>
+  <CreatePostButton as={Link} to='/createpost'>create post</CreatePostButton>
 );
 
 export default SidebarCreatePostButton;

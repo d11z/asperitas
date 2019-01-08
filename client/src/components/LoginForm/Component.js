@@ -1,8 +1,8 @@
 import React from 'react';
-import Form from '../shared/Form';
-import Label from '../shared/Label';
-import Input from '../shared/Input';
-import SubmitButton from '../shared/SubmitButton';
+import Form from '../shared/form/Form';
+import SubmitButton from '../shared/form/SubmitButton';
+import { Field } from 'redux-form';
+import renderField from '../shared/form/renderField';
 
 class LoginForm extends React.Component {
   redirect() {
@@ -25,10 +25,18 @@ class LoginForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Label htmlFor='username'>username</Label>
-        <Input name='username' id='username' type='text' component='input' />
-        <Label htmlFor='password'>password</Label>
-        <Input name='password' id='password' type='password' component='input' />
+        <Field
+          name='username'
+          label='username'
+          type='text'
+          component={renderField}
+        />
+        <Field
+          name='password'
+          label='password'
+          type='password'
+          component={renderField}
+        />
         <SubmitButton type='submit'>log in</SubmitButton>
       </Form>
     );

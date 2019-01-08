@@ -7,8 +7,9 @@ import PostContentDetail from './Detail';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border-left: 1px solid ${props => props.theme.border};
   padding: 8px;
-  font-size: 13px;
+  font-size: 14px;
 `;
 
 const PostContent = ({ url, title, commentCount, ...details }) => (

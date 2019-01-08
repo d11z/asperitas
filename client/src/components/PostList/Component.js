@@ -5,6 +5,7 @@ import PostListItem from './Item';
 const List = styled.ul`
   list-style: none;
   border: 1px solid ${props => props.theme.border};
+  border-radius: 2px;
 `;
 
 const mapPosts = posts =>

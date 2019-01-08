@@ -9,8 +9,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 30px;
   padding: 4px;
-  background-color: ${props => props.theme.voteBackground};
-  font-size: 13px;
+  font-size: 12px;
   line-height: 24px;
   font-weight: 500;
   text-align: center;

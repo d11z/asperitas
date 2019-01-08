@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Form from '../shared/Form';
-import Label from '../shared/Label';
-import Input from '../shared/Input';
-import SubmitButton from '../shared/SubmitButton';
+import Form from '../shared/form/Form';
+import SubmitButton from '../shared/form/SubmitButton';
+import renderField from '../shared/form/renderField';
+import { Field } from 'redux-form';
 
 const WideForm = styled(Form)`
   max-width: 500px;
@@ -24,16 +24,28 @@ class CreatePostForm extends React.Component {
   render() {
     return (
       <WideForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Label htmlFor='category'>category</Label>
-        <Input name='category' id='category' component='select'>
+        <Field
+          name='category'
+          label='category'
+          type='select'
+          component={renderField}
+        >
           <option value='test'>test</option>
           <option value='test2'>test2</option>
           <option value='test3'>test3</option>
-        </Input>
-        <Label htmlFor='title'>title</Label>
-        <Input name='title' id='title' type='text' component='input' />
-        <Label htmlFor='url'>url</Label>
-        <Input name='url' id='url' type='text' component='input' />
+        </Field>
+        <Field
+          name='title'
+          label='title'
+          type='text'
+          component={renderField}
+        />
+        <Field
+          name='url'
+          label='url'
+          type='text'
+          component={renderField}
+        />
         <SubmitButton type='submit'>create post</SubmitButton>
       </WideForm>
     );

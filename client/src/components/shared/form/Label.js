@@ -1,8 +1,12 @@
 import styled from 'styled-components/macro';
+import { smallFont } from './../helpers';
 
 const Label = styled.label`
-  margin-bottom: 4px;
-  font-size: 14px;
+  ${smallFont};
+  
+  position: relative;
+  margin-bottom: 32px;
+  width: 100%;
   color: ${props => props.theme.mutedText};
 `;
 

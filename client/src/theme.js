@@ -1,7 +1,10 @@
 const theme = {
-  normalText: '#000000',
-  mutedText: '#6f6f6f',
-  border: '#eeeeee',
+  normalText: '#454f5b',
+  mutedText: '#818e99',
+  border: '#ebedf0',
+  accent: '#1890ff',
+  error: '#f5222d',
+  pageBackground: '#f4f6f8',
   vote: '#b6b6b6',
   upvote: '#f9920b',
   downvote: '#2e70ff',

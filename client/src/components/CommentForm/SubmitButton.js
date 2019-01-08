@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import SubmitButton from '../shared/SubmitButton';
+import SubmitButton from '../shared/form/SubmitButton';
 
 const StyledSubmitButton = styled(SubmitButton)`
-  padding: 4px 8px;
   margin: 4px 3px 3px;
-  font-size: 13px;
+  padding: 4px 8px;
 `;
 
 const CommentFormSubmitButton = () => (

@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { smallFont } from '../../../shared/helpers';
+import PostContentDetailAuthor from './Author';
+import PostContentDetailCommentsLink from './CommentsLink';
 
 const Wrapper = styled.div`
+  ${smallFont};
+  
   margin-top: auto;
   color: ${props => props.theme.mutedText};
 
@@ -15,11 +19,13 @@ const Wrapper = styled.div`
 const PostContentDetail = props => (
   <Wrapper>
     <span>by</span>
-    <span>{props.author && props.author.username}</span>
+    <PostContentDetailAuthor>
+      {props.author && props.author.username}
+    </PostContentDetailAuthor>
     <span>{moment(props.created).fromNow()}</span>
-    <Link to={`/a/${props.category}/${props.id}`}>
+    <PostContentDetailCommentsLink to={`/a/${props.category}/${props.id}`}>
       {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
-    </Link>
+    </PostContentDetailCommentsLink>
   </Wrapper>
 );
 

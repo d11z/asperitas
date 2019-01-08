@@ -4,8 +4,9 @@ import CommentDetail from './Detail';
 import CommentContent from './Content';
 
 const Wrapper = styled.div`
-  font-size: 13px;
   border: 1px solid ${props => props.theme.border};
+  border-radius: 2px;
+  background-color: #ffffff;
 `;
 
 const Comment = ({ body, ...details }) => (

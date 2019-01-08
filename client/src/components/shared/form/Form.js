@@ -4,10 +4,12 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 24px;
   margin: 0 auto;
+  border: 1px solid ${props => props.theme.border};
+  border-radius: 2px;
   max-width: 370px;
-  background-color: #eee;
+  padding: 24px;
+  background-color: #ffffff;
 `;
 
 export default Form;

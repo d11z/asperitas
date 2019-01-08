@@ -1,23 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Route } from 'react-router-dom';
-import SidebarContainer from './Sidebar/Container';
-import PostListContainer from './PostList/Container';
-import PostDetailContainer from './PostDetail/Container';
+import HomeMainSection from './MainSection';
+import PostListContainer from '../PostList/Container';
+import PostDetailContainer from '../PostDetail/Container';
+import SidebarContainer from '../Sidebar/Container';
 
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
+  margin: 0 10vw;
 `;
 
-const Main = styled.main`
-  flex: 1;
-`;
-
-const MainView = () => (
+const Home = () => (
   <Wrapper>
-    <SidebarContainer />
-    <Main>
+    <HomeMainSection>
       <Route exact path='/' component={PostListContainer} />
       <Route
         exact
@@ -33,8 +30,9 @@ const MainView = () => (
           <PostDetailContainer id={match.params.post} />
         )}
       />
-    </Main>
+    </HomeMainSection>
+    <Route component={SidebarContainer} />
   </Wrapper>
 );
 
-export default MainView;
+export default Home;

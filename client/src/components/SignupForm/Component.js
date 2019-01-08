@@ -1,8 +1,8 @@
 import React from 'react';
-import Form from '../shared/Form';
-import Label from '../shared/Label';
-import Input from '../shared/Input';
-import SubmitButton from '../shared/SubmitButton';
+import { Field } from 'redux-form';
+import Form from '../shared/form/Form';
+import renderField from '../shared/form/renderField';
+import SubmitButton from '../shared/form/SubmitButton';
 
 class SignupForm extends React.Component {
   redirect() {
@@ -25,12 +25,24 @@ class SignupForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Label htmlFor='username'>username</Label>
-        <Input name='username' id='username' type='text' component='input' />
-        <Label htmlFor='password'>password</Label>
-        <Input name='password' id='password' type='password' component='input' />
-        <Label htmlFor='password2'>confirm password</Label>
-        <Input name='password2' id='password2' type='password' component='input' />
+        <Field
+          name='username'
+          label='username'
+          type='text'
+          component={renderField}
+        />
+        <Field
+          name='password'
+          label='password'
+          type='password'
+          component={renderField}
+        />
+        <Field
+          name='password2'
+          label='confirm password'
+          type='password'
+          component={renderField}
+        />
         <SubmitButton type='submit'>sign up</SubmitButton>
       </Form>
     );
