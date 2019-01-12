@@ -18,7 +18,6 @@ class CreatePostForm extends React.Component {
   }
 
   onSubmit = post => {
-    console.log(post);
     this.props.attemptCreatePost(post, this.props.token);
   };
 
