@@ -12,7 +12,7 @@ it('renders the information correctly', () => {
   const data = {
     author: { username: 'author' },
     created: '2018-11-05T05:02:38.544Z',
-    comments: 0
+    commentCount: 0
   };
 
   const wrapper = mount(
