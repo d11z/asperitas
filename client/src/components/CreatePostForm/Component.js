@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Form from '../shared/form/Form';
 import { Field } from 'redux-form';
+import SubmitButton from '../shared/form/SubmitButton';
+import categories from '../../categories';
 import renderField from '../shared/form/renderField';
 import { required } from '../../util/validators';
-import SubmitButton from '../shared/form/SubmitButton';
 
 const WideForm = styled(Form)`
   max-width: 500px;
@@ -21,6 +22,13 @@ class CreatePostForm extends React.Component {
     this.props.attemptCreatePost(post, this.props.token);
   };
 
+  mapCategories = () =>
+    categories.map((category, index) => (
+      <option key={index} value={category}>
+        {category}
+      </option>
+    ));
+
   render() {
     return (
       <WideForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -30,9 +38,7 @@ class CreatePostForm extends React.Component {
           type='select'
           component={renderField}
         >
-          <option value='test'>test</option>
-          <option value='test2'>test2</option>
-          <option value='test3'>test3</option>
+          {this.mapCategories()}
         </Field>
         <Field
           name='title'

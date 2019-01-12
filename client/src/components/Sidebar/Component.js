@@ -3,8 +3,6 @@ import styled from 'styled-components/macro';
 import SidebarCreatePostButton from './CreatePostButton';
 import SidebarCategoryList from './CategoryList';
 
-const categories = ['all', 'test', 'music', 'test3'];
-
 const Wrapper = styled.aside`
   display: flex;
   flex-direction: column;
@@ -18,7 +16,7 @@ const Wrapper = styled.aside`
 const Sidebar = ({ isLoggedIn }) => (
   <Wrapper>
     {isLoggedIn && <SidebarCreatePostButton />}
-    <SidebarCategoryList categories={categories} />
+    <SidebarCategoryList />
   </Wrapper>
 );
 

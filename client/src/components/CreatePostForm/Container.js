@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { attemptCreatePost } from '../../actions/posts';
+import categories from '../../categories';
 import CreatePostForm from './Component';
 
 const mapStateToProps = state => ({
@@ -12,7 +13,7 @@ const mapDispatchToProps = { attemptCreatePost };
 
 const CreatePostFormContainer = reduxForm({
   form: 'createPost',
-  initialValues: { category: 'test' }
+  initialValues: { category: categories[0] }
 })(
   connect(
     mapStateToProps,

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import SidebarCategoryListItem from './Item';
 import SidebarCategoryListHeader from './Header';
+import categories from '../../../categories';
 
 const CategoryList = styled.nav`
   display: flex;
@@ -13,10 +14,10 @@ const mapCategories = categories =>
     <SidebarCategoryListItem key={index} category={category} />
   ));
 
-const SidebarCategoryList = ({ categories }) => (
+const SidebarCategoryList = () => (
   <CategoryList>
     <SidebarCategoryListHeader />
-    {mapCategories(categories)}
+    {mapCategories(['all', ...categories])}
   </CategoryList>
 );
 
