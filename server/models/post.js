@@ -76,7 +76,13 @@ postSchema.pre('findOne', function () {
   this.populate('author').populate('comments.author');
 });
 
-postSchema.post('save', (doc, next) => {
+postSchema.pre('save', function (next) {
+  this.wasNew = this.isNew;
+  next();
+});
+
+postSchema.post('save', function (doc, next) {
+  if (this.wasNew) this.vote(this.author._id, 1);
   doc
     .populate('author')
     .populate('comments.author')
