@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Form from '../shared/form/Form';
-import SubmitButton from '../shared/form/SubmitButton';
-import renderField from '../shared/form/renderField';
 import { Field } from 'redux-form';
+import renderField from '../shared/form/renderField';
+import { required } from '../../util/validators';
+import SubmitButton from '../shared/form/SubmitButton';
 
 const WideForm = styled(Form)`
   max-width: 500px;
@@ -39,12 +40,14 @@ class CreatePostForm extends React.Component {
           label='title'
           type='text'
           component={renderField}
+          validate={required}
         />
         <Field
           name='url'
           label='url'
           type='text'
           component={renderField}
+          validate={required}
         />
         <SubmitButton type='submit'>create post</SubmitButton>
       </WideForm>

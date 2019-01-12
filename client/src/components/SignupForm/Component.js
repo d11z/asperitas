@@ -3,6 +3,7 @@ import { Field } from 'redux-form';
 import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
 import SubmitButton from '../shared/form/SubmitButton';
+import { usernameValidator, passwordValidator } from '../../util/validators';
 
 class SignupForm extends React.Component {
   redirect() {
@@ -30,12 +31,14 @@ class SignupForm extends React.Component {
           label='username'
           type='text'
           component={renderField}
+          validate={usernameValidator}
         />
         <Field
           name='password'
           label='password'
           type='password'
           component={renderField}
+          validate={passwordValidator}
         />
         <Field
           name='password2'
