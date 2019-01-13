@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import moment from 'moment';
 import { smallFont } from '../../../shared/helpers';
 import PostContentDetailAuthor from './Author';
-import PostContentDetailCommentsLink from './CommentsLink';
+import PostContentDetailLink from './Link';
 
 const Wrapper = styled.div`
   ${smallFont};
@@ -22,10 +22,14 @@ const PostContentDetail = props => (
     <PostContentDetailAuthor>
       {props.author && props.author.username}
     </PostContentDetailAuthor>
+    <span>in</span>
+    <PostContentDetailLink to={`/a/${props.category}`}>
+      {props.category}
+    </PostContentDetailLink>
     <span>{moment(props.created).fromNow()}</span>
-    <PostContentDetailCommentsLink to={`/a/${props.category}/${props.id}`}>
+    <PostContentDetailLink to={`/a/${props.category}/${props.id}`}>
       {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
-    </PostContentDetailCommentsLink>
+    </PostContentDetailLink>
   </Wrapper>
 );
 
