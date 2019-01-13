@@ -5,7 +5,7 @@ const Label = styled.label`
   ${smallFont};
   
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   width: 100%;
   color: ${props => props.theme.mutedText};
 `;
