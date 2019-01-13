@@ -12,6 +12,10 @@ const Wrapper = styled.header`
   height: 48px;
   padding: 0 10vw;
   background-color: #ffffff;
+  
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const Header = ({ user, logout }) => (

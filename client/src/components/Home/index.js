@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   margin: 0 10vw;
+  
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 const Home = () => (
