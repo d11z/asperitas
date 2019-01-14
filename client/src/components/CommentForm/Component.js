@@ -8,7 +8,7 @@ import CommentFormSubmitButton from './SubmitButton';
 const StyledForm = styled(Form)`
   ${transition};
   
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   border: 1px solid ${props => props.theme.border};
   max-width: none;
   padding: 0;
@@ -19,6 +19,10 @@ const StyledForm = styled(Form)`
   
   :focus-within {
     box-shadow: 0 0 0 2px ${props => props.theme.accent + '4d'};
+  }
+  
+  @media (max-width: 768px) {
+    border-radius: 0;
   }
 `;
 

@@ -9,6 +9,9 @@ const Wrapper = styled.div`
   ${smallFont};
   
   margin-top: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${props => props.theme.mutedText};
 
   & > * {

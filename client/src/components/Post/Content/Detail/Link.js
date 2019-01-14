@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { link } from '../../../shared/helpers';
 
 const PostContentDetailLink = styled(Link)`
-  ${link({ underline: true })};
+  ${link};
   
   color: ${props => props.theme.normalText};
 `;

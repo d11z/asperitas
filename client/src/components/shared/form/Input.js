@@ -8,7 +8,6 @@ const Input = styled.input`
   --shadow: ${props =>
     props.error ? props.theme.error + '4d' : props.theme.accent + '4d'};
   
-  margin-top: 8px;
   ${props => props.error ? `
     border: 1px solid var(--border)
     ` : `

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Route } from 'react-router-dom';
 import HomeMainSection from './MainSection';
+import CategoryMenuContainer from '../CategoryMenu/Container';
 import PostListContainer from '../PostList/Container';
 import PostDetailContainer from '../PostDetail/Container';
 import SidebarContainer from '../Sidebar/Container';
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
   margin: 0 10vw;
   
   @media (max-width: 768px) {
+    display: block;
     margin: 0;
   }
 `;
@@ -19,6 +21,7 @@ const Wrapper = styled.div`
 const Home = () => (
   <Wrapper>
     <HomeMainSection>
+      <Route component={CategoryMenuContainer} />
       <Route exact path='/' component={PostListContainer} />
       <Route
         exact

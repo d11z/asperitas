@@ -11,6 +11,10 @@ const Wrapper = styled.aside`
   border: 1px solid ${props => props.theme.border};
   border-radius: 2px;
   background-color: #ffffff;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Sidebar = ({ isLoggedIn }) => (

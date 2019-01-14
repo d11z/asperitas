@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
-import { fade } from '../helpers';
+import { fade, smallFont } from '../helpers';
 
 const Error = styled.span`
   ${fade};
+  ${smallFont};
   
   position: absolute;
   right: 0;

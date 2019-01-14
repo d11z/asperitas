@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   border-left: 1px solid ${props => props.theme.border};
   padding: 8px;
+  min-width: 0;
   font-size: 14px;
 `;
 

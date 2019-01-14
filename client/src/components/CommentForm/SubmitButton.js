@@ -3,8 +3,8 @@ import styled from 'styled-components/macro';
 import SubmitButton from '../shared/form/SubmitButton';
 
 const StyledSubmitButton = styled(SubmitButton)`
-  margin: 4px 3px 3px;
-  padding: 4px 8px;
+  margin: 4px;
+  padding: 4px 12px;
 `;
 
 const CommentFormSubmitButton = () => (

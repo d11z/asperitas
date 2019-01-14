@@ -6,6 +6,9 @@ const Title = styled.a`
   ${link({ underline: true })};
   
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   width: fit-content;
   font-size: 16px;
   text-decoration: none;
