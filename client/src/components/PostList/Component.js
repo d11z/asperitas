@@ -6,11 +6,31 @@ const List = styled.ul`
   list-style: none;
   border: 1px solid ${props => props.theme.border};
   border-radius: 2px;
+  
+  @media (max-width: 768px) {
+    border-top: none;
+  }
 `;
 
-const mapPosts = posts =>
-  posts.map((post, index) => <PostListItem key={index} {...post} />);
+class PostList extends React.Component {
+  loadPosts = () => this.props.fetchPosts(this.props.category);
 
-const PostList = ({ posts }) => posts && <List>{mapPosts(posts)}</List>;
+  componentDidMount() {
+    this.loadPosts();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.category !== prevProps.category) this.loadPosts();
+  }
+
+  mapPosts = () =>
+    this.props.posts.map((post, index) => (
+      <PostListItem key={index} {...post} />
+    ));
+
+  render() {
+    return <List>{this.mapPosts()}</List>;
+  }
+}
 
 export default PostList;
