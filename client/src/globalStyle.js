@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   }
   
+  html, body, #root {
+    height: 100%;
+  }
+  
   body {
     background-color: ${props => props.theme.pageBackground};
   }
