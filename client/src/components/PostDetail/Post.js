@@ -5,6 +5,10 @@ import Post from '../Post';
 const Wrapper = styled.div`
   margin-bottom: 16px;
   border: 1px solid ${props => props.theme.border};
+  
+  @media (max-width: 768px) {
+    border-top: none;
+  }
 `;
 
 const PostDetailPost = props => (

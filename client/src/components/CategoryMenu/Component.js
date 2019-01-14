@@ -7,7 +7,6 @@ import CategoryMenuCreatePostButton from './CreatePostButton';
 const Menu = styled.nav`
   display: none;
   border: 1px solid ${props => props.theme.border};
-  border-bottom: none;
 
   @media (max-width: 768px) {
     display: flex;
