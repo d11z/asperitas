@@ -15,9 +15,10 @@ const Wrapper = styled.div`
 
   @media (max-width: 768px) {
     border-top: none;
+    border-radius: 0;
   }
 `;
 
-const PostListEmpty = () => <Wrapper>there's nothing here...</Wrapper>;
+const Empty = () => <Wrapper>there's nothing here...</Wrapper>;
 
-export default PostListEmpty;
+export default Empty;

@@ -1,4 +1,5 @@
 import React from 'react';
+import Empty from '../shared/Empty';
 import PostDetailPost from './Post';
 import CommentSectionContainer from './CommentSection/Container';
 
@@ -8,8 +9,8 @@ class PostDetail extends React.Component {
   }
 
   render() {
-    const { isFetching, post } = this.props;
-    if (isFetching || !post) return null;
+    const { post } = this.props;
+    if (!post) return <Empty />;
     return (
       <>
         <PostDetailPost {...post} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import PostListItem from './Item';
-import PostListEmpty from './Empty';
+import Empty from '../shared/Empty';
 
 const List = styled.ul`
   list-style: none;
   border: 1px solid ${props => props.theme.border};
   border-radius: 2px;
-  
+
   @media (max-width: 768px) {
     border-top: none;
   }
@@ -30,7 +30,7 @@ class PostList extends React.Component {
     ));
 
   render() {
-    if (this.props.posts.length === 0) return <PostListEmpty />;
+    if (this.props.posts.length === 0) return <Empty />;
     return <List>{this.mapPosts()}</List>;
   }
 }
