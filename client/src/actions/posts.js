@@ -1,4 +1,10 @@
-import { getPosts, getPost, createPost, createComment, castVote } from '../api';
+import {
+  getPosts,
+  getPost,
+  createPost,
+  createComment,
+  castVote
+} from '../util/api';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
