@@ -25,7 +25,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <Form
+        loading={this.props.loading}
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+      >
         <Field
           name='username'
           label='username'

@@ -1,15 +1,10 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import Form from '../shared/form/Form';
 import { Field } from 'redux-form';
 import SubmitButton from '../shared/form/SubmitButton';
 import categories from '../../categories';
 import renderField from '../shared/form/renderField';
 import { required } from '../../util/validators';
-
-const WideForm = styled(Form)`
-  max-width: 500px;
-`;
 
 class CreatePostForm extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -31,7 +26,11 @@ class CreatePostForm extends React.Component {
 
   render() {
     return (
-      <WideForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <Form
+        loading={this.props.isFetching}
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+        wide
+      >
         <Field
           name='category'
           label='category'
@@ -55,7 +54,7 @@ class CreatePostForm extends React.Component {
           validate={required}
         />
         <SubmitButton type='submit'>create post</SubmitButton>
-      </WideForm>
+      </Form>
     );
   }
 }

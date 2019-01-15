@@ -5,6 +5,7 @@ import categories from '../../categories';
 import CreatePostForm from './Component';
 
 const mapStateToProps = state => ({
+  isFetching: state.posts.isFetching,
   token: state.auth.token,
   post: state.posts.newPost
 });

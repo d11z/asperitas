@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import PostListItem from './Item';
+import LoadingIndicatorBox from '../shared/LoadingIndicator/Box';
 import Empty from '../shared/Empty';
 
 const List = styled.ul`
@@ -30,6 +31,7 @@ class PostList extends React.Component {
     ));
 
   render() {
+    if (this.props.isFetching) return <LoadingIndicatorBox />;
     if (this.props.posts.length === 0) return <Empty />;
     return <List>{this.mapPosts()}</List>;
   }
