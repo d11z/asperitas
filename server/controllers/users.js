@@ -62,7 +62,7 @@ exports.validate = method => {
     errors.push(
       body('username').custom(async username => {
         const exists = await User.countDocuments({ username });
-        if (exists) throw new Error('username already exists');
+        if (exists) throw new Error('already exists');
       })
     );
   }
