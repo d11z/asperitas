@@ -56,7 +56,7 @@ exports.validate = [
     .withMessage('is required')
 
     .isURL()
-    .withMessage('is an invalid URL'),
+    .withMessage('is invalid'),
 
   body('category')
     .exists()

@@ -3,7 +3,7 @@ const { body, validationResult } = require('express-validator/check');
 exports.load = async (req, res, next, id) => {
   try {
     req.comment = await req.post.comments.id(id);
-    if (!req.comment) return next(new Error('Comment not found'));
+    if (!req.comment) return next(new Error('comment not found'));
   } catch (err) {
     return next(err);
   }
