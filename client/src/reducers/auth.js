@@ -28,13 +28,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: null,
         token: action.token,
         user
       };
     case SIGNUP_ERROR:
     case LOGIN_ERROR:
-      return { ...state, loading: false, error: action.error };
+      return { ...state, loading: false };
     case LOGOUT:
       return { ...state, token: null, user: null };
     default:
