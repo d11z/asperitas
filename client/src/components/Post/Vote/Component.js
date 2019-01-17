@@ -17,44 +17,65 @@ const Wrapper = styled.div`
 `;
 
 class PostVote extends React.Component {
+  constructor(props) {
+    super(props);
+    const didVote = PostVote.existingVote(props);
+    this.state = {
+      score: props.score,
+      didVote,
+      didUpvote: didVote === 1,
+      didDownvote: didVote === -1
+    };
+  }
+
   static existingVote({ user, votes }) {
     const existingVote =
       user && votes && votes.find(vote => vote.user === user.id);
-    return existingVote && existingVote.vote;
-  }
-
-  componentWillMount() {
-    this.didVote = PostVote.existingVote(this.props);
+    return existingVote ? existingVote.vote : 0;
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
-    this.didVote = PostVote.existingVote(nextProps);
+    if (this.props.score !== nextProps.score) {
+      const didVote = PostVote.existingVote(nextProps);
+      this.setState({
+        score: nextProps.score,
+        didVote,
+        didUpvote: didVote === 1,
+        didDownvote: didVote === -1
+      });
+    }
   }
 
   castVote(vote) {
     const { attemptVote, id, token } = this.props;
-    token && attemptVote(id, vote, token);
+    if (token) {
+      attemptVote(id, vote, token);
+      this.setState({
+        score: this.state.score + vote - this.state.didVote,
+        didVote: vote,
+        didUpvote: vote === 1,
+        didDownvote: vote === -1
+      });
+    }
   }
 
-  render() {
-    const canVote = !!this.props.user;
-    const didUpvote = this.didVote === 1;
-    const didDownvote = this.didVote === -1;
-    const upvote = () => this.castVote(didUpvote ? 0 : 1);
-    const downvote = () => this.castVote(didDownvote ? 0 : -1);
+  upvote = () => this.castVote(this.state.didUpvote ? 0 : 1);
 
+  downvote = () => this.castVote(this.state.didDownvote ? 0 : -1);
+
+  render() {
     return (
       <Wrapper>
         <PostVoteUpvote
-          canVote={canVote}
-          didVote={didUpvote}
-          onClick={upvote}
+          canVote={!!this.props.token}
+          didVote={this.state.didUpvote}
+          onClick={this.upvote}
         />
-        <span>{this.props.score}</span>
+        <span>{this.state.score}</span>
         <PostVoteDownvote
-          canVote={canVote}
-          didVote={didDownvote}
-          onClick={downvote}
+          canVote={!!this.props.token}
+          didVote={this.state.didDownvote}
+          onClick={this.downvote}
         />
       </Wrapper>
     );
