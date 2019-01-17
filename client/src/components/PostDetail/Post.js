@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   border: 1px solid ${props => props.theme.border};
   
   @media (max-width: 768px) {
+    margin-bottom: 0;
     border-top: none;
   }
 `;

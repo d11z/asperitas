@@ -8,7 +8,6 @@ import CommentFormSubmitButton from './SubmitButton';
 const StyledForm = styled(Form)`
   ${transition};
 
-  margin-bottom: 8px;
   border: 1px solid ${props => props.theme.border};
   max-width: none;
   padding: 0;
@@ -23,6 +22,7 @@ const StyledForm = styled(Form)`
   }
 
   @media (max-width: 768px) {
+    margin-top: -1px;
     border-radius: 0;
   }
 `;

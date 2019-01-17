@@ -5,7 +5,7 @@ import { smallFont } from '../shared/helpers';
 const Wrapper = styled.div`
   ${smallFont};
 
-  margin: 0 auto;
+  margin: 16px auto 0;
   border: 1px solid ${props => props.theme.border};
   border-radius: 2px;
   padding: 48px 0;
@@ -14,11 +14,16 @@ const Wrapper = styled.div`
   color: ${props => props.theme.mutedText};
 
   @media (max-width: 768px) {
-    border-top: none;
+    margin-top: -1px;
     border-radius: 0;
   }
 `;
 
-const Empty = () => <Wrapper>there's nothing here...</Wrapper>;
+const Empty = ({ comments }) => {
+  const message = comments ? 'no comments' : 'there\'s nothing here...';
+  return (
+    <Wrapper comments={comments}>{message}</Wrapper>
+  );
+};
 
 export default Empty;

@@ -1,17 +1,17 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import CommentFormContainer from '../../CommentForm/Container';
 import CommentList from '../../CommentList';
-
-const Wrapper = styled.div`
-  margin-top: 16px;
-`;
+import Empty from '../../shared/Empty';
 
 const CommentSection = ({ token, post }) => (
-  <Wrapper>
+  <>
     {token && <CommentFormContainer id={post.id} />}
-    <CommentList comments={post.comments} />
-  </Wrapper>
+    {post.comments.length === 0 ? (
+      <Empty comments />
+    ) : (
+      <CommentList comments={post.comments} />
+    )}
+  </>
 );
 
 export default CommentSection;
