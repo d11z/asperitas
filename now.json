@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "name": "reddit-clone",
+  "name": "asperitas",
   "env": {
     "DATABASE_URL": "@database-url"
   },
   "builds": [
     { "src": "client/package.json", "use": "@now/static-build" },
-    { "src": "server/index.js", "use": "@now/node-server" }
+    { "src": "server/index.js", "use": "@now/node-server@0.4.24" }
   ],
   "routes": [
     { "src": "/api/?(.*)", "dest": "/server"},
