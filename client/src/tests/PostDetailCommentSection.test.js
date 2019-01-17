@@ -19,6 +19,8 @@ it('doesn\'t render a comment form if user is not logged in', () => {
 });
 
 it('renders a list of comments', () => {
-  const wrapper = shallow(<PostDetailCommentSection post />);
-  expect(wrapper.contains(<CommentList />)).toEqual(true);
+  const comments = [{}];
+  const post = { comments };
+  const wrapper = shallow(<PostDetailCommentSection post={post} />);
+  expect(wrapper.contains(<CommentList comments={comments} />)).toEqual(true);
 });
