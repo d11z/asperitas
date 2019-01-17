@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { reducer as form } from 'redux-form';
+import form from './reducers/form';
 import error from './reducers/error';
 import auth from './reducers/auth';
 import posts from './reducers/posts';
