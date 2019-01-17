@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const Comment = ({ body, ...details }) => (
   <Wrapper>
     <CommentDetail {...details} />
-    <CommentContent body={body} />
+    <CommentContent>{body}</CommentContent>
   </Wrapper>
 );
 

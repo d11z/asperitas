@@ -9,6 +9,5 @@ it('renders without crashing', () => {
 it('render a list of comments', () => {
   const comments = [{}, {}, {}];
   const wrapper = shallow(<CommentList comments={comments} />);
-
   expect(wrapper.children()).toHaveLength(comments.length);
 });

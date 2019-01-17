@@ -32,7 +32,7 @@ class PostList extends React.Component {
 
   render() {
     if (this.props.isFetching) return <LoadingIndicatorBox />;
-    if (this.props.posts.length === 0) return <Empty />;
+    if (!this.props.posts || this.props.posts.length === 0) return <Empty />;
     return <List>{this.mapPosts()}</List>;
   }
 }

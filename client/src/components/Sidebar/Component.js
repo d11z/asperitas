@@ -17,9 +17,9 @@ const Wrapper = styled.aside`
   }
 `;
 
-const Sidebar = ({ isLoggedIn }) => (
+const Sidebar = ({ token }) => (
   <Wrapper>
-    {isLoggedIn && <SidebarCreatePostButton />}
+    {token && <SidebarCreatePostButton />}
     <SidebarCategoryList />
   </Wrapper>
 );

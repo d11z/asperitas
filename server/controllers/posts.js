@@ -49,7 +49,7 @@ exports.validate = [
     .withMessage('cannot be blank')
 
     .isLength({ max: 100 })
-    .withMessage('must be at most 100 characters')
+    .withMessage('must be at most 100 characters long')
 
     .custom(value => value.trim() === value)
     .withMessage('cannot start or end with whitespace'),

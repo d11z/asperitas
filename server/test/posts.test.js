@@ -48,7 +48,9 @@ describe('post endpoints', () => {
       let token = null;
 
       beforeEach(async () => {
-        const res = await request(app).post('/api/login').send(userData);
+        const res = await request(app)
+          .post('/api/login')
+          .send(userData);
         token = res.body.token;
       });
 
@@ -84,6 +86,20 @@ describe('post endpoints', () => {
           .expect(422, done);
       });
 
+      test('rejects posts with title that is too long', done => {
+        request(app)
+          .post('/api/posts')
+          .set('Authorization', `Bearer ${token}`)
+          .send({ ...postData, title: 'a'.repeat(101) })
+          .expect(res => {
+            expect(res.body.errors).toBeDefined();
+            expect(res.body.errors[0].msg).toContain(
+              'at most 100 characters long'
+            );
+          })
+          .expect(422, done);
+      });
+
       test('rejects posts with blank category', done => {
         request(app)
           .post('/api/posts')
@@ -103,7 +119,7 @@ describe('post endpoints', () => {
           .send({ ...postData, url: 'invalid' })
           .expect(res => {
             expect(res.body.errors).toBeDefined();
-            expect(res.body.errors[0].msg).toContain('invalid URL');
+            expect(res.body.errors[0].msg).toContain('is invalid');
           })
           .expect(422, done);
       });
