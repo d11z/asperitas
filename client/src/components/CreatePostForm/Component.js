@@ -1,10 +1,10 @@
 import React from 'react';
-import Form from '../shared/form/Form';
 import { Field } from 'redux-form';
-import SubmitButton from '../shared/form/SubmitButton';
 import categories from '../../categories';
+import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
-import { required } from '../../util/validators';
+import { titleValidator, required } from '../../util/validators';
+import SubmitButton from '../shared/form/SubmitButton';
 
 class CreatePostForm extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -44,7 +44,7 @@ class CreatePostForm extends React.Component {
           label='title'
           type='text'
           component={renderField}
-          validate={required}
+          validate={titleValidator}
         />
         <Field
           name='url'

@@ -14,3 +14,4 @@ const isTrimmed = value =>
 export const required = value => (value ? undefined : 'required');
 export const usernameValidator = [required, maxLength(32), isTrimmed];
 export const passwordValidator = [required, minLength(8), maxLength(72)];
+export const titleValidator = [required, maxLength(100)];
