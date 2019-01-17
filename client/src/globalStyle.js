@@ -10,11 +10,13 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   }
   
-  html, body, #root {
+  html {
     height: 100%;
   }
   
   body {
+    min-height: 100%;
+    padding-bottom: 48px;
     background-color: ${props => props.theme.pageBackground};
   }
 `;
