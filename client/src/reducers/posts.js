@@ -29,28 +29,28 @@ export default (state = initialState, action) => {
     case FETCH_POSTS_SUCCESS:
       return { ...state, isFetching: false, items: action.posts };
     case FETCH_POSTS_ERROR:
-      return { ...state, isFetching: false, error: action.error };
+      return { ...state, isFetching: false };
 
     case FETCH_POST_REQUEST:
       return { ...state, isFetching: true, newPost: null };
     case FETCH_POST_SUCCESS:
-      return { ...state, isFetching: false, error: null, post: action.post };
+      return { ...state, isFetching: false, post: action.post };
     case FETCH_POST_ERROR:
-      return { ...state, isFetching: false, error: action.error };
+      return { ...state, isFetching: false };
 
     case CREATE_POST_REQUEST:
       return { ...state, isFetching: true };
     case CREATE_POST_SUCCESS:
-      return { ...state, isFetching: false, error: null, newPost: action.post };
+      return { ...state, isFetching: false, newPost: action.post };
     case CREATE_POST_ERROR:
       return { ...state, isFetching: false, error: action.error };
 
     case CREATE_COMMENT_REQUEST:
       return { ...state, isCommenting: true };
     case CREATE_COMMENT_SUCCESS:
-      return { ...state, isCommenting: false, error: null, post: action.post };
+      return { ...state, isCommenting: false, post: action.post };
     case CREATE_COMMENT_ERROR:
-      return { ...state, isCommenting: false, error: action.error };
+      return { ...state, isCommenting: false };
 
     case VOTE_REQUEST:
       return { ...state, isVoting: true };
@@ -59,12 +59,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isVoting: false,
-        error: null,
         items,
         post: action.post
       };
     case VOTE_ERROR:
-      return { ...state, isVoting: false, error: action.error };
+      return { ...state, isVoting: false };
 
     default:
       return state;

@@ -1,5 +1,4 @@
 import { login, signup } from '../util/api';
-import { hideError, showErrorWithTimeout } from './error';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -14,10 +13,8 @@ export const attemptLogin = (username, password) => async dispatch => {
   try {
     const token = await login(username, password);
     dispatch(loginSuccess(token));
-    dispatch(hideError());
   } catch (error) {
     dispatch(loginError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
 
@@ -34,10 +31,8 @@ export const attemptSignup = (username, password) => async dispatch => {
   try {
     const token = await signup(username, password);
     dispatch(signupSuccess(token));
-    dispatch(hideError());
   } catch (error) {
     dispatch(signupError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
 

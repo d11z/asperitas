@@ -31,11 +31,14 @@ export default (state = initialState, action) => {
         token: action.token,
         user
       };
+
     case SIGNUP_ERROR:
     case LOGIN_ERROR:
       return { ...state, loading: false };
+
     case LOGOUT:
       return { ...state, token: null, user: null };
+
     default:
       return state;
   }

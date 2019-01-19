@@ -5,7 +5,6 @@ import {
   createComment,
   castVote
 } from '../util/api';
-import { hideError, showErrorWithTimeout } from './error';
 
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
@@ -22,7 +21,6 @@ export const fetchPosts = (category = '') => async dispatch => {
     dispatch(fetchPostsSuccess(posts));
   } catch (error) {
     dispatch(fetchPostsError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
 
@@ -39,10 +37,8 @@ export const fetchPost = id => async dispatch => {
   try {
     const post = await getPost(id);
     dispatch(fetchPostSuccess(post));
-    dispatch(hideError());
   } catch (error) {
     dispatch(fetchPostError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
 
@@ -59,10 +55,8 @@ export const attemptCreatePost = (post, token) => async dispatch => {
   try {
     const newPost = await createPost(post, token);
     dispatch(createPostSuccess(newPost));
-    dispatch(hideError());
   } catch (error) {
     dispatch(createPostError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
 
@@ -79,10 +73,8 @@ export const attemptCreateComment = (id, comment, token) => async dispatch => {
   try {
     const json = await createComment(id, comment, token);
     dispatch(createCommentSuccess(json));
-    dispatch(hideError());
   } catch (error) {
     dispatch(createCommentError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
 
@@ -99,9 +91,7 @@ export const attemptVote = (id, vote, token) => async dispatch => {
   try {
     const post = await castVote(id, vote, token);
     dispatch(voteSuccess(post));
-    dispatch(hideError());
   } catch (error) {
     dispatch(voteError(error));
-    dispatch(showErrorWithTimeout(error));
   }
 };
