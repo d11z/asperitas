@@ -33,8 +33,8 @@ const Home = () => (
       <Route
         exact
         path='/a/:category/:post'
-        render={({ match }) => (
-          <PostDetailContainer id={match.params.post} />
+        render={({ match, history }) => (
+          <PostDetailContainer id={match.params.post} history={history} />
         )}
       />
     </HomeMainSection>
