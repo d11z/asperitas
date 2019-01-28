@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   border-left: 1px solid ${props => props.theme.border};
   padding: 8px;
   min-width: 0;
-  font-size: 14px;
 `;
 
 const PostContent = ({ url, title, commentCount, ...details }) => (

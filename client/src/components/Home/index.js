@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   margin: 0 10vw;
-  
+
   @media (max-width: 768px) {
     display: block;
     margin: 0;

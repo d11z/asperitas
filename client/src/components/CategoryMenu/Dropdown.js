@@ -9,7 +9,7 @@ const Dropdown = styled.select`
   width: 100%;
   padding: 8px 16px;
   background-color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   appearance: none;
 `;
 

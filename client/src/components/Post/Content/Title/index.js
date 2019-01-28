@@ -10,7 +10,8 @@ const Title = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 20px;
   text-decoration: none;
   color: ${props => props.theme.normalText};
 `;

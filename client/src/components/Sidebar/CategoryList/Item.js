@@ -4,7 +4,7 @@ import NavLink from '../../shared/NavLink';
 
 const Item = styled(NavLink)`
   padding: 12px;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
   color: ${props => props.theme.normalText};
   

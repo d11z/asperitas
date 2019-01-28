@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import moment from 'moment';
-import { smallFont } from '../../../shared/helpers';
-import PostContentDetailAuthor from './Author';
 import PostContentDetailLink from './Link';
+import PostContentDetailAuthor from './Author';
 
 const Wrapper = styled.div`
-  ${smallFont};
-  
+  font-size: 13px;
   margin-top: auto;
   overflow: hidden;
   text-overflow: ellipsis;

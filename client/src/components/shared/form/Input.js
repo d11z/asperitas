@@ -17,7 +17,7 @@ const Input = styled.input`
   width: 100%;
   padding: 8px;
   background-color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   color: ${props => props.theme.normalText};
   appearance: none;
   outline: none;
