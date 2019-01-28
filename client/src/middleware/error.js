@@ -3,6 +3,8 @@ import {
   CREATE_COMMENT_SUCCESS,
   CREATE_POST_ERROR,
   CREATE_POST_SUCCESS,
+  DELETE_POST_ERROR,
+  DELETE_POST_SUCCESS,
   FETCH_POST_ERROR,
   FETCH_POST_SUCCESS,
   FETCH_POSTS_ERROR,
@@ -25,6 +27,7 @@ export default store => next => action => {
     case FETCH_POSTS_SUCCESS:
     case FETCH_POST_SUCCESS:
     case CREATE_POST_SUCCESS:
+    case DELETE_POST_SUCCESS:
     case CREATE_COMMENT_SUCCESS:
     case VOTE_SUCCESS:
     case LOGIN_SUCCESS:
@@ -36,6 +39,7 @@ export default store => next => action => {
     case FETCH_POSTS_ERROR:
     case FETCH_POST_ERROR:
     case CREATE_POST_ERROR:
+    case DELETE_POST_ERROR:
     case CREATE_COMMENT_ERROR:
     case VOTE_ERROR:
     case LOGIN_ERROR:

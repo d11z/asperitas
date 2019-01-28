@@ -2,6 +2,7 @@ import {
   getPosts,
   getPost,
   createPost,
+  deletePost,
   createComment,
   castVote
 } from '../util/api';
@@ -57,6 +58,24 @@ export const attemptCreatePost = (post, token) => async dispatch => {
     dispatch(createPostSuccess(newPost));
   } catch (error) {
     dispatch(createPostError(error));
+  }
+};
+
+export const DELETE_POST_REQUEST = 'DELETE_POST_REQUEST';
+export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
+export const DELETE_POST_ERROR = 'DELETE_POST_ERROR';
+
+const deletePostRequest = { type: DELETE_POST_REQUEST };
+const deletePostSuccess = post => ({ type: DELETE_POST_SUCCESS, post });
+const deletePostError = error => ({ type: DELETE_POST_ERROR, error });
+
+export const attemptDeletePost = (id, token) => async dispatch => {
+  dispatch(deletePostRequest);
+  try {
+    await deletePost(id, token);
+    dispatch(deletePostSuccess(id));
+  } catch (error) {
+    dispatch(deletePostError(error));
   }
 };
 

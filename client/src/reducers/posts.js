@@ -8,6 +8,9 @@ import {
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
   CREATE_POST_ERROR,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_ERROR,
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_ERROR,
@@ -44,6 +47,14 @@ export default (state = initialState, action) => {
       return { ...state, isFetching: false, newPost: action.post };
     case CREATE_POST_ERROR:
       return { ...state, isFetching: false, error: action.error };
+
+    case DELETE_POST_REQUEST:
+      return { ...state, isDeleting: true };
+    case DELETE_POST_SUCCESS:
+      items = state.items.filter(i => i.id !== action.post);
+      return { ...state, isDeleting: false, items, post: null };
+    case DELETE_POST_ERROR:
+      return { ...state, isDeleting: false };
 
     case CREATE_COMMENT_REQUEST:
       return { ...state, isCommenting: true };

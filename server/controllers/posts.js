@@ -4,8 +4,7 @@ const Post = require('../models/post');
 exports.load = async (req, res, next, id) => {
   try {
     req.post = await Post.findById(id);
-    if (!req.post)
-      return res.status(404).json({ message: 'post not found' });
+    if (!req.post) return res.status(404).json({ message: 'post not found' });
   } catch (err) {
     if (err.name === 'CastError')
       return res.status(400).json({ message: 'invalid post id' });
@@ -14,7 +13,14 @@ exports.load = async (req, res, next, id) => {
   next();
 };
 
-exports.show = (req, res) => res.json(req.post);
+exports.show = async (req, res) => {
+  const post = await Post.findByIdAndUpdate(
+    req.post.id,
+    { $inc: { views: 1 } },
+    { new: true }
+  );
+  res.json(post);
+};
 
 exports.list = async (req, res) => {
   const category = req.params.category;
@@ -85,6 +91,6 @@ exports.unvote = async (req, res) => {
 };
 
 exports.destroy = async (req, res) => {
-  req.post.remove();
+  await req.post.remove();
   res.status(204).end();
 };
