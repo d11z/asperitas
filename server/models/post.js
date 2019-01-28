@@ -22,16 +22,22 @@ const postSchema = new Schema({
   score: { type: Number, default: 0 },
   votes: [{ user: Schema.Types.ObjectId, vote: Number, _id: false }],
   comments: [commentSchema],
-  created: { type: Date, default: Date.now }
+  created: { type: Date, default: Date.now },
+  views: { type: Number, default: 0 }
 });
 
-postSchema.set('toJSON', { getters: true });
+postSchema.set('toJSON', { getters: true, virtuals: true });
 postSchema.options.toJSON.transform = (doc, ret) => {
   const obj = { ...ret };
   delete obj._id;
   delete obj.__v;
   return obj;
 };
+
+postSchema.virtual('upvotePercentage').get(function () {
+  const upvotes = this.votes.filter(vote => vote.vote === 1);
+  return Math.floor((upvotes.length / this.votes.length) * 100);
+});
 
 postSchema.methods.vote = function (user, vote) {
   const existingVote = this.votes.find(item => item.user._id.equals(user));
@@ -68,11 +74,7 @@ postSchema.methods.removeComment = function (id) {
   return this.save();
 };
 
-postSchema.pre('find', function () {
-  this.populate('author').populate('comments.author');
-});
-
-postSchema.pre('findOne', function () {
+postSchema.pre(/^find/, function () {
   this.populate('author').populate('comments.author');
 });
 
