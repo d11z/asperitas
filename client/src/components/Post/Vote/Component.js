@@ -43,6 +43,12 @@ class PostVote extends React.Component {
         didUpvote: didVote === 1,
         didDownvote: didVote === -1
       });
+    } else if (this.props.token !== nextProps.token && !nextProps.token) {
+      this.setState({
+        didVote: false,
+        didUpvote: false,
+        didDownvote: false
+      });
     }
   }
 
