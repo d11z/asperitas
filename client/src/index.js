@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { Router, Route, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import './config/moment';
 import store from './store';
 import theme from './theme';
 import history from './util/history';

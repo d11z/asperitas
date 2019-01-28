@@ -19,18 +19,17 @@ const Wrapper = styled.div`
 
 const PostContentDetail = props => (
   <Wrapper>
+    <PostContentDetailLink to={`/a/${props.category}/${props.id}`}>
+      {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
+    </PostContentDetailLink>
+    <PostContentDetailLink to={`/a/${props.category}`}>
+      /a/{props.category}
+    </PostContentDetailLink>
     <span>by</span>
     <PostContentDetailAuthor>
       {props.author && props.author.username}
     </PostContentDetailAuthor>
-    <span>in</span>
-    <PostContentDetailLink to={`/a/${props.category}`}>
-      {props.category}
-    </PostContentDetailLink>
     <span>{moment(props.created).fromNow()}</span>
-    <PostContentDetailLink to={`/a/${props.category}/${props.id}`}>
-      {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
-    </PostContentDetailLink>
   </Wrapper>
 );
 

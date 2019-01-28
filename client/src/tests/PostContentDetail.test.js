@@ -23,8 +23,8 @@ it('renders the information correctly', () => {
   );
   const details = wrapper.find('span');
 
+  expect(wrapper.find('a').at(0).text()).toEqual('0 comments');
+  expect(wrapper.find('a').at(1).text()).toEqual(`/a/${data.category}`);
   expect(details.at(1).text()).toEqual(data.author.username);
-  expect(wrapper.find('a').at(0).text()).toEqual(data.category);
-  expect(details.at(3).text()).toEqual(moment(data.created).fromNow());
-  expect(wrapper.find('a').at(1).text()).toEqual('0 comments');
+  expect(details.at(2).text()).toEqual(moment(data.created).fromNow());
 });
