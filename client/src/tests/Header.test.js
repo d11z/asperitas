@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header from '../components/Header/Component';
 import HeaderLogo from '../components/Header/Logo';
+import HeaderUsername from '../components/Header/Username';
 
 it('renders without crashing', () => {
   shallow(<Header />);
@@ -30,5 +31,7 @@ it('renders a log out link when logged in', () => {
 it('renders the user\'s username when logged in', () => {
   const username = 'deniz';
   const wrapper = shallow(<Header user={{ username }} />);
-  expect(wrapper.find('Username__HeaderUsername').text()).toEqual(username);
+  expect(wrapper.contains(<HeaderUsername>{username}</HeaderUsername>)).toEqual(
+    true
+  );
 });

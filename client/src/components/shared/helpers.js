@@ -23,15 +23,16 @@ export const transition = props => css`
 export const headerItem = css`
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   padding: 0 16px;
 `;
 
 export const link = props => css`
   ${transition};
-  
+
   ${props.underline && 'border-bottom: 1px solid transparent'};
   text-decoration: none;
-  
+
   :hover {
     ${props.underline && 'border-bottom: 1px solid'};
     color: ${props => props.theme.accent};
