@@ -210,6 +210,29 @@ describe('post endpoints', () => {
           })
           .expect(201, done);
       });
+
+      test('delete post', done => {
+        request(app)
+          .delete(`/api/post/${post.id}`)
+          .set('Authorization', `Bearer ${token}`)
+          .expect('Content-Type', /json/)
+          .expect(res => {
+            expect(res.body.message).toEqual('success');
+          })
+          .expect(200, done);
+      });
+
+      test('delete comment', done => {
+        post.addComment(user.id, 'comment');
+        request(app)
+          .delete(`/api/post/${post.id}/${post.comments[0].id}`)
+          .set('Authorization', `Bearer ${token}`)
+          .expect('Content-Type', /json/)
+          .expect(res => {
+            expect(res.body.comments).toHaveLength(0);
+          })
+          .expect(200, done);
+      });
     });
   });
 });
