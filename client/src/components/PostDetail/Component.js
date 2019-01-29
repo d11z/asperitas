@@ -3,6 +3,7 @@ import LoadingIndicatorBox from '../shared/LoadingIndicator/Box';
 import Empty from '../shared/Empty';
 import PostDetailPost from './Post';
 import PostDetailInfoBarContainer from './InfoBar/Container';
+import CommentFormContainer from '../CommentForm/Container';
 import CommentSectionContainer from './CommentSection/Container';
 
 class PostDetail extends React.Component {
@@ -24,6 +25,7 @@ class PostDetail extends React.Component {
       <>
         <PostDetailPost {...post} />
         <PostDetailInfoBarContainer />
+        {this.props.token && <CommentFormContainer id={post.id} />}
         <CommentSectionContainer />
       </>
     );

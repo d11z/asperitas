@@ -3,6 +3,7 @@ import { fetchPost } from '../../actions/posts';
 import PostDetail from './Component';
 
 export const mapStateToProps = state => ({
+  token: state.auth.token,
   isFetching: state.posts.isFetching,
   post: state.posts.post
 });

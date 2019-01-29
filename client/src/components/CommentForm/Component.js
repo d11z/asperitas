@@ -8,7 +8,9 @@ import CommentFormSubmitButton from './SubmitButton';
 const StyledForm = styled(Form)`
   ${transition};
 
+  margin-top: -1px;
   border: 1px solid ${props => props.theme.border};
+  border-radius: 0 0 2px 2px;
   max-width: none;
   padding: 0;
 

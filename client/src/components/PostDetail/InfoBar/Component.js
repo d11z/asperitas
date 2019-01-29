@@ -4,8 +4,9 @@ import DeleteButton from '../../shared/DeleteButton';
 
 const Wrapper = styled.div`
   display: flex;
-  border-left: 1px solid ${props => props.theme.border};
-  border-right: 1px solid ${props => props.theme.border};
+  margin-top: -1px;
+  border: 1px solid ${props => props.theme.border};
+  ${props => props.round && 'border-radius: 0 0 2px 2px'};
   padding: 8px;
   background-color: #ffffff;
   font-size: 13px;
@@ -19,7 +20,7 @@ class PostDetailInfoBar extends React.Component {
 
   render() {
     return (
-      <Wrapper>
+      <Wrapper round={!this.props.token}>
         <span>{this.props.views} views</span>
         <span>&nbsp;|&nbsp;</span>
         <span>{this.props.upvotePercentage}% upvoted</span>
