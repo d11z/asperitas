@@ -14,6 +14,9 @@ import {
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_ERROR,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_ERROR,
   VOTE_REQUEST,
   VOTE_SUCCESS,
   VOTE_ERROR
@@ -62,6 +65,13 @@ export default (state = initialState, action) => {
       return { ...state, isCommenting: false, post: action.post };
     case CREATE_COMMENT_ERROR:
       return { ...state, isCommenting: false };
+
+    case DELETE_COMMENT_REQUEST:
+      return { ...state, isDeleting: true };
+    case DELETE_COMMENT_SUCCESS:
+      return { ...state, isDeleting: false, post: action.post };
+    case DELETE_COMMENT_ERROR:
+      return { ...state, isDeleting: false };
 
     case VOTE_REQUEST:
       return { ...state, isVoting: true };

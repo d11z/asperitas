@@ -92,5 +92,5 @@ exports.unvote = async (req, res) => {
 
 exports.destroy = async (req, res) => {
   await req.post.remove();
-  res.status(204).end();
+  res.json({ message: 'success' });
 };

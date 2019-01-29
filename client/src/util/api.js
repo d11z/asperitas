@@ -56,12 +56,14 @@ const methods = {
     };
 
     const response = await fetch(`${baseUrl}/${endpoint}`, options);
+    const json = await response.json();
 
     if (!response.ok) {
       if (response.status === 401) throw Error('unauthorized');
-      const json = await response.json();
       throw Error(json.message);
     }
+
+    return json;
   }
 };
 
@@ -93,6 +95,10 @@ export async function deletePost (id, token) {
 
 export async function createComment (id, comment, token) {
   return await methods.post(`post/${id}`, comment, token);
+}
+
+export async function deleteComment (post, id, token) {
+  return await methods.delete(`post/${post}/${id}`, token);
 }
 
 export async function castVote (id, vote, token) {

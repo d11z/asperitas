@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import CommentDetail from './Detail';
+import CommentDetailContainer from './Detail/Container';
 import CommentContent from './Content';
 
 const Wrapper = styled.div`
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
 const Comment = ({ body, ...details }) => (
   <Wrapper>
-    <CommentDetail {...details} />
+    <CommentDetailContainer {...details} />
     <CommentContent>{body}</CommentContent>
   </Wrapper>
 );

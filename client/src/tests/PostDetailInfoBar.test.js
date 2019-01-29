@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PostDetailInfoBar from '../components/PostDetail/InfoBar/Component';
-import PostDetailInfoBarDeleteButton from '../components/PostDetail/InfoBar/DeleteButton';
+import DeleteButton from '../components/shared/DeleteButton';
 
 it('renders without crashing', () => {
   shallow(<PostDetailInfoBar />);
@@ -30,8 +30,8 @@ it('renders a delete button when author is logged in', () => {
 
   expect(
     wrapper.contains(
-      <PostDetailInfoBarDeleteButton
-        deletePost={wrapper.instance().deletePost}
+      <DeleteButton
+        onClick={wrapper.instance().deletePost}
       />
     )
   ).toEqual(true);
@@ -47,7 +47,7 @@ it('doesn\'t render a delete post button if user is not author', () => {
 
   expect(
     wrapper.contains(
-      <PostDetailInfoBarDeleteButton
+      <DeleteButton
         deletePost={wrapper.instance().deletePost}
       />
     )
@@ -58,7 +58,7 @@ it('doesn\'t render a delete post button if user is not logged in', () => {
   const wrapper = shallow(<PostDetailInfoBar />);
   expect(
     wrapper.contains(
-      <PostDetailInfoBarDeleteButton
+      <DeleteButton
         deletePost={wrapper.instance().deletePost}
       />
     )

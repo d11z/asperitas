@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CommentDetail from '../components/Comment/Detail';
+import CommentDetail from '../components/Comment/Detail/Component';
 import CommentDetailTimestamp from '../components/Comment/Detail/Timestamp';
 
 it('renders without crashing', () => {

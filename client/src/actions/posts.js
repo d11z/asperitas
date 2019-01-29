@@ -4,6 +4,7 @@ import {
   createPost,
   deletePost,
   createComment,
+  deleteComment,
   castVote
 } from '../util/api';
 
@@ -94,6 +95,24 @@ export const attemptCreateComment = (id, comment, token) => async dispatch => {
     dispatch(createCommentSuccess(json));
   } catch (error) {
     dispatch(createCommentError(error));
+  }
+};
+
+export const DELETE_COMMENT_REQUEST = 'DELETE_COMMENT_REQUEST';
+export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
+export const DELETE_COMMENT_ERROR = 'DELETE_COMMENT_ERROR';
+
+const deleteCommentRequest = { type: DELETE_COMMENT_REQUEST };
+const deleteCommentSuccess = post => ({ type: DELETE_COMMENT_SUCCESS, post });
+const deleteCommentError = error => ({ type: DELETE_COMMENT_ERROR, error });
+
+export const attemptDeleteComment = (post, id, token) => async dispatch => {
+  dispatch(deleteCommentRequest);
+  try {
+    const json = await deleteComment(post, id, token);
+    dispatch(deleteCommentSuccess(json));
+  } catch (error) {
+    dispatch(deleteCommentError(error));
   }
 };
 

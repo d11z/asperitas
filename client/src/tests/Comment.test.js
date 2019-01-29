@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Comment from '../components/Comment';
-import CommentDetail from '../components/Comment/Detail';
+import CommentDetailContainer from '../components/Comment/Detail/Container';
 
 it('renders without crashing', () => {
   shallow(<Comment />);
@@ -9,7 +9,7 @@ it('renders without crashing', () => {
 
 it('renders details about the comment', () => {
   const wrapper = shallow(<Comment />);
-  expect(wrapper.contains(<CommentDetail />)).toEqual(true);
+  expect(wrapper.contains(<CommentDetailContainer />)).toEqual(true);
 });
 
 it('renders the content of the comment', () => {
