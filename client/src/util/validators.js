@@ -1,17 +1,30 @@
-const maxLength = max => value =>
-  value && value.length <= max
+const max = len => value =>
+  value && value.length <= len
     ? undefined
-    : `must be less than ${max} characters`;
+    : `must be less than ${len} characters`;
 
-const minLength = min => value =>
-  value && value.length >= min
+const min = len => value =>
+  value && value.length >= len
     ? undefined
-    : `must be more than ${min} characters`;
+    : `must be more than ${len} characters`;
 
-const isTrimmed = value =>
+const validChars = value =>
+  /^[a-zA-Z0-9_-]+$/.test(value) ? undefined : 'contains invalid characters';
+
+const trimmed = value =>
   value.trim() === value ? undefined : 'cannot start or end with whitespace';
 
+const validUrl = value => {
+  try {
+    new URL(value);
+    return undefined;
+  } catch (error) {
+    return 'must be a valid url';
+  }
+};
+
 export const required = value => (value ? undefined : 'required');
-export const usernameValidator = [required, maxLength(32), isTrimmed];
-export const passwordValidator = [required, minLength(8), maxLength(72)];
-export const titleValidator = [required, maxLength(100)];
+export const usernameValidator = [required, max(32), validChars, trimmed];
+export const passwordValidator = [required, min(8), max(72)];
+export const titleValidator = [required, max(100)];
+export const urlValidator = [required, validUrl];

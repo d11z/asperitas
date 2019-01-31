@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import categories from '../../categories';
 import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
-import { titleValidator, required } from '../../util/validators';
+import { titleValidator, urlValidator } from '../../util/validators';
 import SubmitButton from '../shared/form/SubmitButton';
 
 class CreatePostForm extends React.Component {
@@ -49,9 +49,9 @@ class CreatePostForm extends React.Component {
         <Field
           name='url'
           label='url'
-          type='text'
+          type='url'
           component={renderField}
-          validate={required}
+          validate={urlValidator}
         />
         <SubmitButton type='submit'>create post</SubmitButton>
       </Form>
