@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import PostDetail from '../components/PostDetail/Component';
 import LoadingIndicatorBox from '../components/shared/LoadingIndicator/Box';
 import PostDetailPost from '../components/PostDetail/Post';
-import CommentSectionContainer from '../components/PostDetail/CommentSection/Container';
+import PostDetailCommentSection from '../components/PostDetail/CommentSection';
 import Empty from '../components/shared/Empty';
 
 it('renders without crashing', () => {
@@ -13,7 +13,7 @@ it('renders without crashing', () => {
 it('renders a post and its comment section', () => {
   const wrapper = shallow(<PostDetail fetchPost={fn => fn} post />);
   expect(wrapper.contains(<PostDetailPost />)).toEqual(true);
-  expect(wrapper.contains(<CommentSectionContainer />)).toEqual(true);
+  expect(wrapper.contains(<PostDetailCommentSection />)).toEqual(true);
 });
 
 it('renders a loading indicator while fetching', () => {

@@ -4,7 +4,7 @@ import Empty from '../shared/Empty';
 import PostDetailPost from './Post';
 import PostDetailInfoBarContainer from './InfoBar/Container';
 import CommentFormContainer from '../CommentForm/Container';
-import CommentSectionContainer from './CommentSection/Container';
+import PostDetailCommentSection from './CommentSection';
 
 class PostDetail extends React.Component {
   componentDidMount() {
@@ -18,15 +18,15 @@ class PostDetail extends React.Component {
   }
 
   render() {
-    const { isFetching, post } = this.props;
-    if (isFetching) return <LoadingIndicatorBox />;
+    const { post } = this.props;
+    if (this.props.isFetching) return <LoadingIndicatorBox />;
     if (!post) return <Empty />;
     return (
       <>
         <PostDetailPost {...post} />
         <PostDetailInfoBarContainer />
         {this.props.token && <CommentFormContainer id={post.id} />}
-        <CommentSectionContainer />
+        <PostDetailCommentSection comments={post.comments} />
       </>
     );
   }
