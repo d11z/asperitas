@@ -24,7 +24,12 @@ class PostDetail extends React.Component {
     return (
       <>
         <PostDetailPost {...post} />
-        <PostDetailInfoBarContainer />
+        <PostDetailInfoBarContainer
+          id={post.id}
+          views={post.views}
+          upvotePercentage={post.upvotePercentage}
+          author={post.author}
+        />
         {this.props.token && <CommentFormContainer id={post.id} />}
         <PostDetailCommentSection comments={post.comments} />
       </>
