@@ -1,18 +1,24 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withAuth from '../../util/withAuth';
 import { fetchPost } from '../../actions/posts';
 import PostDetail from './Component';
 
 export const mapStateToProps = state => ({
-  token: state.auth.token,
   isFetching: state.posts.isFetching,
   post: state.posts.post
 });
 
 const mapDispatchToProps = { fetchPost };
 
-const PostDetailContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostDetail);
+const enhance = compose(
+  withAuth,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+);
+
+const PostDetailContainer = enhance(PostDetail);
 
 export default PostDetailContainer;

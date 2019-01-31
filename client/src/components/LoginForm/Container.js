@@ -1,20 +1,25 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
+import withAuth from '../../util/withAuth';
 import { attemptLogin } from '../../actions/auth';
 import LoginForm from './Component';
 
 const mapStateToProps = state => ({
-  loading: state.auth.loading,
-  token: state.auth.token
+  loading: state.auth.loading
 });
 
 const mapDispatchToProps = { attemptLogin };
 
-const LoginFormContainer = reduxForm({ form: 'login' })(
+const enhance = compose(
+  reduxForm({ form: 'login' }),
+  withAuth,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(LoginForm)
+  )
 );
+
+const LoginFormContainer = enhance(LoginForm);
 
 export default LoginFormContainer;

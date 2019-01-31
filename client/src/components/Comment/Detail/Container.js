@@ -1,18 +1,23 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withAuth from '../../../util/withAuth';
 import { attemptDeleteComment } from '../../../actions/posts';
 import CommentDetail from './Component';
 
 const mapStateToProps = state => ({
-  token: state.auth.token,
-  user: state.auth.user,
   post: state.posts.post.id
 });
 
 const mapDispatchToProps = { attemptDeleteComment };
 
-const CommentDetailContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CommentDetail);
+const enhance = compose(
+  withAuth,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+);
+
+const CommentDetailContainer = enhance(CommentDetail);
 
 export default CommentDetailContainer;

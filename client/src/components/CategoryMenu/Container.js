@@ -1,8 +1,6 @@
-import { connect } from 'react-redux';
+import withAuth from '../../util/withAuth';
 import CategoryMenu from './Component';
 
-const mapStateToProps = state => ({ token: state.auth.token });
-
-const CategoryMenuContainer = connect(mapStateToProps)(CategoryMenu);
+const CategoryMenuContainer = withAuth(CategoryMenu);
 
 export default CategoryMenuContainer;

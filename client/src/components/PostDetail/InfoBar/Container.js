@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withAuth from '../../../util/withAuth';
 import { attemptDeletePost } from '../../../actions/posts';
 import PostDetailInfoBar from './Component';
 
-const mapStateToProps = state => ({
-  token: state.auth.token,
-  user: state.auth.user
-});
-
 const mapDispatchToProps = { attemptDeletePost };
 
-const PostDetailInfoBarContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PostDetailInfoBar);
+const enhance = compose(
+  withAuth,
+  connect(
+    null,
+    mapDispatchToProps
+  )
+);
+
+const PostDetailInfoBarContainer = enhance(PostDetailInfoBar);
 
 export default PostDetailInfoBarContainer;
