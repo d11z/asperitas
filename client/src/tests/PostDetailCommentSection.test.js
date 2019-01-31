@@ -10,8 +10,7 @@ it('renders without crashing', () => {
 
 it('renders a list of comments', () => {
   const comments = [{}];
-  const post = { comments };
-  const wrapper = shallow(<PostDetailCommentSection post={post} />);
+  const wrapper = shallow(<PostDetailCommentSection comments={comments} />);
   expect(wrapper.contains(<CommentList comments={comments} />)).toEqual(true);
 });
 
