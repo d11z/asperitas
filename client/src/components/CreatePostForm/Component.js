@@ -13,9 +13,7 @@ class CreatePostForm extends React.Component {
     if (post) history.push(`/a/${post.category}/${post.id}`);
   }
 
-  onSubmit = post => {
-    this.props.attemptCreatePost(post, this.props.token);
-  };
+  onSubmit = post => this.props.attemptCreatePost(post);
 
   mapCategories = () =>
     categories.map((category, index) => (

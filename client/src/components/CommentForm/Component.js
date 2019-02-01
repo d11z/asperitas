@@ -30,8 +30,7 @@ const StyledForm = styled(Form)`
 `;
 
 class CommentForm extends React.Component {
-  createComment = comment =>
-    this.props.attemptCreateComment(this.props.id, comment, this.props.token);
+  createComment = comment => this.props.attemptCreateComment(comment);
 
   onSubmit = () => this.props.handleSubmit(this.createComment);
 

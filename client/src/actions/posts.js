@@ -52,9 +52,10 @@ const createPostRequest = { type: CREATE_POST_REQUEST };
 const createPostSuccess = post => ({ type: CREATE_POST_SUCCESS, post });
 const createPostError = error => ({ type: CREATE_POST_ERROR, error });
 
-export const attemptCreatePost = (post, token) => async dispatch => {
+export const attemptCreatePost = post => async (dispatch, getState) => {
   dispatch(createPostRequest);
   try {
+    const { token } = getState().auth;
     const newPost = await createPost(post, token);
     dispatch(createPostSuccess(newPost));
   } catch (error) {
@@ -70,9 +71,11 @@ const deletePostRequest = { type: DELETE_POST_REQUEST };
 const deletePostSuccess = post => ({ type: DELETE_POST_SUCCESS, post });
 const deletePostError = error => ({ type: DELETE_POST_ERROR, error });
 
-export const attemptDeletePost = (id, token) => async dispatch => {
+export const attemptDeletePost = () => async (dispatch, getState) => {
   dispatch(deletePostRequest);
   try {
+    const { id } = getState().posts.post;
+    const { token } = getState().auth;
     await deletePost(id, token);
     dispatch(deletePostSuccess(id));
   } catch (error) {
@@ -88,10 +91,12 @@ const createCommentRequest = { type: CREATE_COMMENT_REQUEST };
 const createCommentSuccess = post => ({ type: CREATE_COMMENT_SUCCESS, post });
 const createCommentError = error => ({ type: CREATE_COMMENT_ERROR, error });
 
-export const attemptCreateComment = (id, comment, token) => async dispatch => {
+export const attemptCreateComment = comment => async (dispatch, getState) => {
   dispatch(createCommentRequest);
   try {
-    const json = await createComment(id, comment, token);
+    const { id: post } = getState().posts.post;
+    const { token } = getState().auth;
+    const json = await createComment(post, comment, token);
     dispatch(createCommentSuccess(json));
   } catch (error) {
     dispatch(createCommentError(error));
@@ -106,10 +111,12 @@ const deleteCommentRequest = { type: DELETE_COMMENT_REQUEST };
 const deleteCommentSuccess = post => ({ type: DELETE_COMMENT_SUCCESS, post });
 const deleteCommentError = error => ({ type: DELETE_COMMENT_ERROR, error });
 
-export const attemptDeleteComment = (post, id, token) => async dispatch => {
+export const attemptDeleteComment = comment => async (dispatch, getState) => {
   dispatch(deleteCommentRequest);
   try {
-    const json = await deleteComment(post, id, token);
+    const { id: post } = getState().posts.post;
+    const { token } = getState().auth;
+    const json = await deleteComment(post, comment, token);
     dispatch(deleteCommentSuccess(json));
   } catch (error) {
     dispatch(deleteCommentError(error));
@@ -124,9 +131,10 @@ const voteRequest = { type: VOTE_REQUEST };
 const voteSuccess = post => ({ type: VOTE_SUCCESS, post });
 const voteError = error => ({ type: VOTE_ERROR, error });
 
-export const attemptVote = (id, vote, token) => async dispatch => {
+export const attemptVote = (id, vote) => async (dispatch, getState) => {
   dispatch(voteRequest);
   try {
+    const { token } = getState().auth;
     const post = await castVote(id, vote, token);
     dispatch(voteSuccess(post));
   } catch (error) {

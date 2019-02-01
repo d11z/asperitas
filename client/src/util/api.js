@@ -93,12 +93,12 @@ export async function deletePost (id, token) {
   return await methods.delete(`post/${id}`, token);
 }
 
-export async function createComment (id, comment, token) {
-  return await methods.post(`post/${id}`, comment, token);
+export async function createComment (post, comment, token) {
+  return await methods.post(`post/${post}`, comment, token);
 }
 
-export async function deleteComment (post, id, token) {
-  return await methods.delete(`post/${post}/${id}`, token);
+export async function deleteComment (post, comment, token) {
+  return await methods.delete(`post/${post}/${comment}`, token);
 }
 
 export async function castVote (id, vote, token) {

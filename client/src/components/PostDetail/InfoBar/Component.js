@@ -14,9 +14,7 @@ const Wrapper = styled.div`
 `;
 
 class PostDetailInfoBar extends React.Component {
-  deletePost = () => {
-    this.props.attemptDeletePost(this.props.id, this.props.token);
-  };
+  deletePost = () => this.props.attemptDeletePost();
 
   render() {
     return (

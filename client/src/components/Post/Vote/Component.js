@@ -55,7 +55,7 @@ class PostVote extends React.Component {
   castVote(vote) {
     const { attemptVote, id, token } = this.props;
     if (token) {
-      attemptVote(id, vote, token);
+      attemptVote(id, vote);
       this.setState({
         score: this.state.score + vote - this.state.didVote,
         didVote: vote,

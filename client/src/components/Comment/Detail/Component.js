@@ -12,13 +12,7 @@ const Wrapper = styled.div`
 `;
 
 class CommentDetail extends React.Component {
-  deleteComment = () => {
-    this.props.attemptDeleteComment(
-      this.props.post,
-      this.props.id,
-      this.props.token
-    );
-  };
+  deleteComment = () => this.props.attemptDeleteComment(this.props.id);
 
   render() {
     return (
