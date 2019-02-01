@@ -9,25 +9,36 @@ const TextArea = styled(Input)`
   border-bottom: 1px solid ${props => props.theme.border};
   border-radius: 0;
   resize: none;
-  
-  :hover, :focus {
+
+  :hover,
+  :focus {
     border: none;
     border-bottom: 1px solid ${props => props.theme.border};
     box-shadow: none;
   }
 `;
 
-const renderTextArea = field => (
-  <TextArea
-    as='textarea'
-    {...field.input}
-    placeholder='enter your comment'
-    rows='2'
-  />
-);
+class CommentFormTextArea extends React.Component {
+  onKeyDown = e => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      this.props.onSubmit();
+    }
+  };
 
-const CommentFormTextArea = ({ name }) => (
-  <Field name={name} component={renderTextArea} />
-);
+  renderField = field => (
+    <TextArea
+      as='textarea'
+      {...field.input}
+      placeholder='enter your comment'
+      rows='2'
+      onKeyDown={this.onKeyDown}
+    />
+  );
+
+  render() {
+    return <Field name={this.props.name} component={this.renderField} />;
+  }
+}
 
 export default CommentFormTextArea;
