@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro';
-import { smallFont } from '../../shared/helpers';
+import { wideFont } from '../../shared/helpers';
 
 const HeaderUsernameText = styled.span`
-  ${smallFont({ wide: true })};
+  ${wideFont};
   
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,10 +1,15 @@
 import { css, keyframes } from 'styled-components';
 
-export const smallFont = props => css`
+export const smallFont = css`
   font-size: 12px;
-  font-weight: ${props.wide ? 600 : 500};
+  font-weight: 500;
   text-transform: uppercase;
-  ${props.wide && 'letter-spacing: 0.05em'};
+`;
+
+export const wideFont = css`
+  ${smallFont};
+  font-weight: 600;
+  letter-spacing: 0.05em;
 `;
 
 const fadeKeyframes = keyframes`

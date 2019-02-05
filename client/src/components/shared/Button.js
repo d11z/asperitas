@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
-import { smallFont, transition } from './helpers';
+import { transition, wideFont } from './helpers';
 
 const Button = styled.button`
   ${transition};
-  ${smallFont({ wide: true })};
+  ${wideFont};
   
   border: none;
   border-radius: 3px;

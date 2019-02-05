@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { smallFont } from '../../shared/helpers';
+import { wideFont } from '../../shared/helpers';
 
 const Header = styled.span`
-  ${smallFont({ wide: true })};
+  ${wideFont};
   
   display: block;
   padding: 12px;

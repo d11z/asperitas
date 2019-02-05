@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro';
 import NavLink from '../shared/NavLink';
-import { headerItem, smallFont, link, transition } from '../shared/helpers';
+import { headerItem, wideFont, link, transition } from '../shared/helpers';
 
 const HeaderNavLink = styled(NavLink)`
   ${headerItem};
-  ${smallFont({ wide: true })};
+  ${wideFont};
   ${link};
   
   position: relative;
