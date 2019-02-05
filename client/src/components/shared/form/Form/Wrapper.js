@@ -8,7 +8,7 @@ const FormWrapper = styled.div`
   border-radius: 2px;
   max-width: ${props => (props.wide ? '500px' : '370px')};
   padding: 24px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.foreground};
 `;
 
 export default FormWrapper;

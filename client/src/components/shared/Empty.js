@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   border: 1px solid ${props => props.theme.border};
   border-radius: 2px;
   padding: 48px 0;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.foreground};
   text-align: center;
   color: ${props => props.theme.mutedText};
 

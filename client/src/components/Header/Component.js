@@ -11,7 +11,7 @@ const Wrapper = styled.header`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   height: 48px;
   padding: 0 10vw;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.foreground};
   
   @media (max-width: 768px) {
     padding: 0;

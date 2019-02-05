@@ -16,7 +16,7 @@ const Input = styled.input`
   border-radius: 3px;
   width: 100%;
   padding: 8px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.activeBackground};
   font-size: 15px;
   color: ${props => props.theme.normalText};
   appearance: none;

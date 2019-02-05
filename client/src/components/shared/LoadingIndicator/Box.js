@@ -9,7 +9,7 @@ const Box = styled.div`
   border-radius: 2px;
   width: 72px;
   height: 72px;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.foreground};
 `;
 
 const LoadingIndicatorBox = () => (

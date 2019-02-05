@@ -9,7 +9,9 @@ const theme = {
   upvote: '#f9920b',
   downvote: '#2e70ff',
   voteBackground: '#f0f0f0',
-  voteButtonHover: '#e3e5e8'
+  voteButtonHover: '#2c2d2e',
+  foreground: '#ffffff',
+  activeBackground: '#fafafa'
 };
 
 export default theme;
