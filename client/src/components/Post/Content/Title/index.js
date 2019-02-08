@@ -12,6 +12,7 @@ const Title = styled.a`
   white-space: nowrap;
   font-size: 15px;
   line-height: 20px;
+  font-weight: 500;
   text-decoration: none;
   color: ${props => props.theme.normalText};
 `;
