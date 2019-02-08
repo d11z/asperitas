@@ -12,7 +12,13 @@ const Wrapper = styled.header`
   height: 48px;
   padding: 0 10vw;
   background-color: ${props => props.theme.foreground};
+  user-select: none;
   
+  @media (max-width: 425px) {
+    margin-bottom: 16px;
+    height: 40px;
+  }
+
   @media (max-width: 768px) {
     padding: 0;
   }
@@ -22,12 +28,12 @@ const Header = ({ user, logout }) => (
   <Wrapper>
     <HeaderLogo />
     {user ? (
-    <>
-      <HeaderUsername>{user.username}</HeaderUsername>
-      <HeaderNavLink as='span' onClick={logout}>
-        log out
-      </HeaderNavLink>
-    </>
+      <>
+        <HeaderUsername>{user.username}</HeaderUsername>
+        <HeaderNavLink as='span' onClick={logout}>
+          log out
+        </HeaderNavLink>
+      </>
     ) : (
       <>
         <HeaderNavLink to='/login'>log in</HeaderNavLink>

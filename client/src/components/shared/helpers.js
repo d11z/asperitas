@@ -30,6 +30,10 @@ export const headerItem = css`
   align-items: center;
   flex-shrink: 0;
   padding: 0 16px;
+  
+  @media (max-width: 425px) {
+    padding: 0 8px;
+  }
 `;
 
 export const link = props => css`
