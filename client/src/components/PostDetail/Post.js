@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     margin-bottom: 0;
     border-top: none;
+    border-radius: 0;
   }
 `;
 

@@ -1,18 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { transition } from '../shared/helpers';
 import ErrorNotificationMessage from './Message';
 
 const className = 'message';
 
 const Wrapper = styled.div`
+  ${transition({ slow: true })};
+
   position: fixed;
   top: 16px;
   left: 0;
   right: 0;
   z-index: 100;
   text-align: center;
-  transition: all 0.3s ease;
   pointer-events: none;
 
   &.${className}-enter {
