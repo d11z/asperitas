@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import HeaderLogo from './Logo';
 import HeaderNavLink from './NavLink';
 import HeaderUsername from './Username';
+import HeaderDarkButtonContainer from './DarkButton/Container';
 
 const Wrapper = styled.header`
   display: flex;
@@ -27,6 +28,7 @@ const Wrapper = styled.header`
 const Header = ({ user, logout }) => (
   <Wrapper>
     <HeaderLogo />
+    <HeaderDarkButtonContainer />
     {user ? (
       <>
         <HeaderUsername>{user.username}</HeaderUsername>
