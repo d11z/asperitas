@@ -11,6 +11,8 @@ const List = styled.ul`
 
   @media (max-width: 768px) {
     border-top: none;
+    border-left: none;
+    border-right: none;
     border-radius: 0;
   }
 `;

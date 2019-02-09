@@ -15,7 +15,8 @@ const dark = {
   voteButtonHover: '#383838',
   foreground: '#262626',
   activeBackground: '#333333',
-  inputBackground: '#333333'
+  inputBackground: '#333333',
+  shadow: 'rgba(0, 0, 0, 0.4)'
 };
 
 const light = {
@@ -28,7 +29,8 @@ const light = {
   voteButtonHover: '#f2f2f2',
   foreground: '#ffffff',
   activeBackground: '#fafafa',
-  inputBackground: '#fcfcfc'
+  inputBackground: '#fcfcfc',
+  shadow: 'rgba(0, 0, 0, 0.05)'
 };
 
 const theme = isDark => (isDark ? dark : light);
