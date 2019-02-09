@@ -6,6 +6,9 @@ import HeaderUsername from './Username';
 import HeaderDarkButtonContainer from './DarkButton/Container';
 
 const Wrapper = styled.header`
+  position: sticky;
+  z-index: 10;
+  top: 0;
   display: flex;
   align-items: stretch;
   margin-bottom: 24px;
