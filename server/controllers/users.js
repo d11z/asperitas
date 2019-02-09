@@ -42,7 +42,10 @@ exports.validate = method => {
       .withMessage('must be at most 32 characters long')
 
       .custom(value => value.trim() === value)
-      .withMessage('cannot start or end with whitespace'),
+      .withMessage('cannot start or end with whitespace')
+
+      .matches(/^[a-zA-Z0-9_-]+$/)
+      .withMessage('contains invalid characters'),
 
     body('password')
       .exists()

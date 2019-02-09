@@ -13,6 +13,7 @@ describe('auth endpoints', () => {
   const username = {
     nonExisting: 'new',
     nonTrimmed: ' user ',
+    invalid: 'user!$@',
     long: 'a'.repeat(33),
   };
   const password = {
@@ -115,6 +116,17 @@ describe('auth endpoints', () => {
         .expect(res => {
           expect(res.body.errors).toBeDefined();
           expect(res.body.errors[0].msg).toContain('whitespace');
+        })
+        .expect(422, done);
+    });
+
+    test('rejects requests with invalid name', done => {
+      request(app)
+        .post('/api/register')
+        .send({ ...user, username: username.invalid })
+        .expect(res => {
+          expect(res.body.errors).toBeDefined();
+          expect(res.body.errors[0].msg).toContain('invalid');
         })
         .expect(422, done);
     });
