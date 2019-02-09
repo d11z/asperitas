@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header from '../components/Header/Component';
 import HeaderLogo from '../components/Header/Logo';
+import HeaderDarkButtonContainer from '../components/Header/DarkButton/Container';
 import HeaderUsername from '../components/Header/Username';
 
 it('renders without crashing', () => {
@@ -11,6 +12,11 @@ it('renders without crashing', () => {
 it('renders a logo link', () => {
   const wrapper = shallow(<Header />);
   expect(wrapper.contains(<HeaderLogo />)).toEqual(true);
+});
+
+it('renders a dark mode toggle button', () => {
+  const wrapper = shallow(<Header />);
+  expect(wrapper.contains(<HeaderDarkButtonContainer />)).toEqual(true);
 });
 
 it('renders log in and sign up links when not logged in', () => {
