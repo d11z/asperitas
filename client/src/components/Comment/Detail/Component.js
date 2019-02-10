@@ -19,9 +19,11 @@ class CommentDetail extends React.Component {
       <Wrapper>
         <CommentDetailAuthor>{this.props.author.username}</CommentDetailAuthor>
         <CommentDetailTimestamp created={this.props.created} />
-        {this.props.token && this.props.user.id === this.props.author.id && (
-          <DeleteButton onClick={this.deleteComment} />
-        )}
+        {this.props.token &&
+          (this.props.user.id === this.props.author.id ||
+            this.props.user.admin) && (
+            <DeleteButton onClick={this.deleteComment} />
+          )}
       </Wrapper>
     );
   }
