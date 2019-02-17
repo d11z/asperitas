@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { headerItem } from '../../shared/helpers';
+import HeaderNavLink from '../NavLink';
 import HeaderUsernameText from './Text';
 
-const Wrapper = styled.div`
-  ${headerItem};
-  
+const Wrapper = styled(HeaderNavLink)`
   flex-shrink: 1;
   border-left: 1px solid ${props => props.theme.border};
   border-right: 1px solid ${props => props.theme.border};
@@ -13,8 +11,8 @@ const Wrapper = styled.div`
 `;
 
 const HeaderUsername = props => (
-  <Wrapper>
-    <HeaderUsernameText>{props.children}</HeaderUsernameText>
+  <Wrapper to={`/u/${props.username}`}>
+    <HeaderUsernameText>{props.username}</HeaderUsernameText>
   </Wrapper>
 );
 

@@ -1,5 +1,6 @@
 const { body, validationResult } = require('express-validator/check');
 const Post = require('../models/post');
+const User = require('../models/user');
 
 exports.load = async (req, res, next, id) => {
   try {
@@ -23,9 +24,20 @@ exports.show = async (req, res) => {
 };
 
 exports.list = async (req, res) => {
+  const posts = await Post.find().sort('-score');
+  res.json(posts);
+};
+
+exports.listByCategory = async (req, res) => {
   const category = req.params.category;
-  const query = category ? { category } : {};
-  const posts = await Post.find(query).sort('-score');
+  const posts = await Post.find({ category }).sort('-score');
+  res.json(posts);
+};
+
+exports.listByUser = async (req, res) => {
+  const username = req.params.user;
+  const author = await User.findOne({ username });
+  const posts = await Post.find({ author: author.id }).sort('-created');
   res.json(posts);
 };
 

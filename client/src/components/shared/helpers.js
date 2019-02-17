@@ -41,6 +41,7 @@ export const link = props => css`
 
   ${props.underline && 'border-bottom: 1px solid transparent'};
   text-decoration: none;
+  color: ${props => props.theme.normalText};
 
   :hover {
     ${props.underline && 'border-bottom: 1px solid'};

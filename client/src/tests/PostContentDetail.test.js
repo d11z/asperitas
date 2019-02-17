@@ -21,10 +21,11 @@ it('renders the information correctly', () => {
       <PostContentDetail {...data} />
     </MemoryRouter>
   );
-  const details = wrapper.find('span');
+  const links = wrapper.find('a');
+  const timestamp = wrapper.find('span').at(1);
 
-  expect(wrapper.find('a').at(0).text()).toEqual('0 comments');
-  expect(wrapper.find('a').at(1).text()).toEqual(`/a/${data.category}`);
-  expect(details.at(1).text()).toEqual(data.author.username);
-  expect(details.at(2).text()).toEqual(moment(data.created).fromNow());
+  expect(links.at(0).text()).toEqual('0 comments');
+  expect(links.at(1).text()).toEqual(`/a/${data.category}`);
+  expect(links.at(2).text()).toEqual(data.author.username);
+  expect(timestamp.text()).toEqual(moment(data.created).fromNow());
 });

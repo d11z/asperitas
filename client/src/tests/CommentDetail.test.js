@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import CommentDetail from '../components/Comment/Detail/Component';
+import Author from '../components/shared/Author';
 import CommentDetailTimestamp from '../components/Comment/Detail/Timestamp';
 
 it('renders without crashing', () => {
@@ -10,7 +11,7 @@ it('renders without crashing', () => {
 it('renders the author', () => {
   const username = 'deniz';
   const wrapper = shallow(<CommentDetail author={{ username }} />);
-  expect(wrapper.find('Author__CommentDetailAuthor').text()).toEqual(username);
+  expect(wrapper.contains(<Author username={username} />)).toEqual(true);
 });
 
 it('renders the timestamp', () => {

@@ -18,14 +18,22 @@ const List = styled.ul`
 `;
 
 class PostList extends React.Component {
-  loadPosts = () => this.props.fetchPosts(this.props.category);
+  loadPosts = () => {
+    const { username, category } = this.props;
+    if (username) return this.props.fetchProfile(username);
+    return this.props.fetchPosts(category);
+  };
 
   componentDidMount() {
     this.loadPosts();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.category !== prevProps.category) this.loadPosts();
+    if (
+      this.props.category !== prevProps.category ||
+      this.props.username !== prevProps.username
+    )
+      this.loadPosts();
   }
 
   mapPosts = () =>

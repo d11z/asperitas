@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import CommentDetailAuthor from './Author';
+import Author from '../../shared/Author';
 import CommentDetailTimestamp from './Timestamp';
 import DeleteButton from '../../shared/DeleteButton';
 
@@ -17,7 +17,7 @@ class CommentDetail extends React.Component {
   render() {
     return (
       <Wrapper>
-        <CommentDetailAuthor>{this.props.author.username}</CommentDetailAuthor>
+        <Author username={this.props.author && this.props.author.username} />
         <CommentDetailTimestamp created={this.props.created} />
         {this.props.token &&
           (this.props.user.id === this.props.author.id ||

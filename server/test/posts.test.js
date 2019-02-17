@@ -9,6 +9,7 @@ process.env.TEST_SUITE = 'posts';
 
 describe('post endpoints', () => {
   let userData, user;
+  let userData2, user2;
   let postData, post;
   let postData2, post2;
   const comment = { comment: 'test comment' };
@@ -17,10 +18,13 @@ describe('post endpoints', () => {
     userData = validUser();
     user = await new User(userData).save();
 
+    userData2 = validUser();
+    user2 = await new User(userData2).save();
+
     postData = validPost(user.id, 'category1');
     post = await new Post(postData).save();
 
-    postData2 = validPost(user.id, 'category2');
+    postData2 = validPost(user2.id, 'category2');
     post2 = await new Post(postData2).save();
   });
 
@@ -40,6 +44,16 @@ describe('post endpoints', () => {
         .expect(res => {
           expect(res.body).toHaveLength(1);
           expect(res.body[0].category).toEqual(post2.category);
+        })
+        .expect(200, done);
+    });
+
+    test('returns all posts by a user', done => {
+      request(app)
+        .get(`/api/user/${user.username}`)
+        .expect(res => {
+          expect(res.body).toHaveLength(1);
+          expect(res.body[0].author.id).toEqual(user.id);
         })
         .expect(200, done);
     });

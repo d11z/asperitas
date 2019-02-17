@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import HeaderLogo from './Logo';
-import HeaderNavLink from './NavLink';
-import HeaderUsername from './Username';
 import HeaderDarkButtonContainer from './DarkButton/Container';
+import HeaderUsername from './Username';
+import HeaderNavLink from './NavLink';
 
 const Wrapper = styled.header`
   position: sticky;
@@ -35,7 +35,7 @@ const Header = ({ user, logout }) => (
     <HeaderDarkButtonContainer />
     {user ? (
       <>
-        <HeaderUsername>{user.username}</HeaderUsername>
+        <HeaderUsername username={user.username} />
         <HeaderNavLink as='span' onClick={logout}>
           log out
         </HeaderNavLink>

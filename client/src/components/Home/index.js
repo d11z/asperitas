@@ -36,6 +36,13 @@ const Home = () => (
       />
       <Route
         exact
+        path='/u/:username'
+        render={({ match }) => (
+          <PostListContainer username={match.params.username} />
+        )}
+      />
+      <Route
+        exact
         path='/a/:category/:post'
         render={({ match, history }) => (
           <PostDetailContainer id={match.params.post} history={history} />

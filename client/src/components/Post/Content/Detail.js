@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import moment from 'moment';
-import PostContentDetailLink from './Link';
-import PostContentDetailAuthor from './Author';
+import { Link } from 'react-router-dom';
+import { link } from '../../shared/helpers';
+import Author from '../../shared/Author';
 
 const Wrapper = styled.div`
   font-size: 13px;
@@ -10,25 +11,28 @@ const Wrapper = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: ${props => props.theme.mutedText};
 
   & > * {
     margin-right: 4px;
+  }
+
+  & > a {
+    ${link};
+  }
+
+  & > span {
+    color: ${props => props.theme.mutedText};
   }
 `;
 
 const PostContentDetail = props => (
   <Wrapper>
-    <PostContentDetailLink to={`/a/${props.category}/${props.id}`}>
+    <Link to={`/a/${props.category}/${props.id}`}>
       {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
-    </PostContentDetailLink>
-    <PostContentDetailLink to={`/a/${props.category}`}>
-      /a/{props.category}
-    </PostContentDetailLink>
+    </Link>
+    <Link to={`/a/${props.category}`}>/a/{props.category}</Link>
     <span>by</span>
-    <PostContentDetailAuthor>
-      {props.author && props.author.username}
-    </PostContentDetailAuthor>
+    <Author username={props.author && props.author.username} />
     <span>{moment(props.created).fromNow()}</span>
   </Wrapper>
 );

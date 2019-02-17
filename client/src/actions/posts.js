@@ -1,5 +1,6 @@
 import {
   getPosts,
+  getProfile,
   getPost,
   createPost,
   deletePost,
@@ -20,6 +21,16 @@ export const fetchPosts = (category = '') => async dispatch => {
   dispatch(fetchPostsRequest);
   try {
     const posts = await getPosts(category);
+    dispatch(fetchPostsSuccess(posts));
+  } catch (error) {
+    dispatch(fetchPostsError(error));
+  }
+};
+
+export const fetchProfile = username => async dispatch => {
+  dispatch(fetchPostsRequest);
+  try {
+    const posts = await getProfile(username);
     dispatch(fetchPostsSuccess(posts));
   } catch (error) {
     dispatch(fetchPostsError(error));

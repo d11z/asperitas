@@ -9,13 +9,14 @@ router.post('/register', users.validate('register'), users.register);
 
 router.param('post', posts.load);
 router.get('/posts', posts.list);
-router.get('/posts/:category', posts.list);
+router.get('/posts/:category', posts.listByCategory);
 router.get('/post/:post', posts.show);
 router.post('/posts', [jwtAuth, posts.validate], posts.create);
 router.delete('/post/:post', [jwtAuth, postAuth], posts.destroy);
 router.get('/post/:post/upvote', jwtAuth, posts.upvote);
 router.get('/post/:post/downvote', jwtAuth, posts.downvote);
 router.get('/post/:post/unvote', jwtAuth, posts.unvote);
+router.get('/user/:user', posts.listByUser);
 
 router.param('comment', comments.load);
 router.post('/post/:post', [jwtAuth, comments.validate], comments.create);

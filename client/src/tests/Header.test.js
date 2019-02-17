@@ -37,7 +37,7 @@ it('renders a log out link when logged in', () => {
 it('renders the user\'s username when logged in', () => {
   const username = 'deniz';
   const wrapper = shallow(<Header user={{ username }} />);
-  expect(wrapper.contains(<HeaderUsername>{username}</HeaderUsername>)).toEqual(
+  expect(wrapper.contains(<HeaderUsername username={username} />)).toEqual(
     true
   );
 });
