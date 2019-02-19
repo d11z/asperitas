@@ -24,8 +24,6 @@ const validate = fields => {
   if (type === 'content') errors.content = contentValidator(content);
   errors.type = typeValidator(type);
 
-  console.log(errors);
-
   return errors;
 };
 
