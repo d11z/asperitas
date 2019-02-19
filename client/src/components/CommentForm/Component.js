@@ -14,18 +14,28 @@ const StyledForm = styled(Form)`
   max-width: none;
   padding: 0;
 
-  :hover,
-  :focus-within {
-    border: 1px solid ${props => props.theme.accent};
+  @media (hover: hover) {
+    :hover {
+      border: 1px solid ${props => props.theme.accent};
+    }
   }
 
   :focus-within {
+    border: 1px solid ${props => props.theme.accent};
     box-shadow: 0 0 0 2px ${props => props.theme.accent + '4d'};
   }
 
   @media (max-width: 768px) {
     margin-top: -1px;
     border-radius: 0;
+    border-left: none;
+    border-right: none;
+
+    :hover,
+    :focus-within {
+      border-left: none;
+      border-right: none;
+    }
   }
 `;
 

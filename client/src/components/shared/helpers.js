@@ -2,13 +2,13 @@ import { css, keyframes } from 'styled-components';
 
 export const smallFont = css`
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
 `;
 
 export const wideFont = css`
   ${smallFont};
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
 `;
 
@@ -30,7 +30,7 @@ export const headerItem = css`
   align-items: center;
   flex-shrink: 0;
   padding: 0 16px;
-  
+
   @media (max-width: 425px) {
     padding: 0 8px;
   }

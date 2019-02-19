@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700');
 
 * {
   box-sizing: border-box;
@@ -16,4 +16,5 @@ html {
 body {
   min-height: 100%;
   padding-bottom: 48px;
+  -webkit-font-smoothing: antialiased;
 }
