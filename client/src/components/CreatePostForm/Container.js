@@ -8,7 +8,7 @@ import {
   typeValidator
 } from '../../util/validators';
 import { attemptCreatePost } from '../../actions/posts';
-import categories from '../../categories';
+// import categories from '../../categories';
 import withAuth from '../../util/withAuth';
 import CreatePostForm from './Component';
 
@@ -38,7 +38,7 @@ const mapDispatchToProps = { attemptCreatePost };
 const enhance = compose(
   reduxForm({
     form: 'createPost',
-    initialValues: { category: categories[0], type: 'link' },
+    initialValues: { category: 'music', type: 'link' },
     validate
   }),
   withAuth,

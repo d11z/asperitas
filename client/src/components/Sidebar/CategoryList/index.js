@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import SidebarCategoryListItem from './Item';
 import SidebarCategoryListHeader from './Header';
-import categories from '../../../categories';
 
 const CategoryList = styled.nav`
   display: flex;
@@ -11,13 +10,18 @@ const CategoryList = styled.nav`
 
 const mapCategories = categories =>
   categories.map((category, index) => (
-    <SidebarCategoryListItem key={index} category={category} />
+    <SidebarCategoryListItem
+      key={category.id}
+      category={category.title}
+      label={category.title}
+    />
   ));
 
-const SidebarCategoryList = () => (
+const SidebarCategoryList = ({ categories }) => (
   <CategoryList>
     <SidebarCategoryListHeader />
-    {mapCategories(['all', ...categories])}
+    <SidebarCategoryListItem label='frontpage' />
+    {!categories.isFetching && mapCategories([...categories.items])}
   </CategoryList>
 );
 

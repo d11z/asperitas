@@ -1,5 +1,6 @@
 const users = require('./controllers/users');
 const posts = require('./controllers/posts');
+const categories = require('./controllers/categories');
 const comments = require('./controllers/comments');
 const { jwtAuth, postAuth, commentAuth } = require('./auth');
 const router = require('express').Router();
@@ -8,6 +9,7 @@ router.post('/login', users.validate(), users.login);
 router.post('/register', users.validate('register'), users.register);
 
 router.param('post', posts.load);
+router.param('category', categories.load);
 router.get('/posts', posts.list);
 router.get('/posts/:category', posts.listByCategory);
 router.get('/post/:post', posts.show);
@@ -17,6 +19,9 @@ router.get('/post/:post/upvote', jwtAuth, posts.upvote);
 router.get('/post/:post/downvote', jwtAuth, posts.downvote);
 router.get('/post/:post/unvote', jwtAuth, posts.unvote);
 router.get('/user/:user', posts.listByUser);
+router.get('/categories', categories.list);
+router.get('/categories/:category', categories.show);
+router.get('/user/:user/categories', categories.listByOwner);
 
 router.param('comment', comments.load);
 router.post('/post/:post', [jwtAuth, comments.validate], comments.create);

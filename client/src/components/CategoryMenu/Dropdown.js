@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import categories from '../../categories';
+// import categories from '../../categories';
 import SelectWrapper from '../shared/form/SelectWrapper';
 
 const Dropdown = styled.select`
@@ -16,7 +16,7 @@ const Dropdown = styled.select`
 
 class CategoryMenuDropdown extends React.Component {
   mapCategories = () =>
-    ['all', ...categories].map((category, index) => (
+    ['all'].map((category, index) => (
       <option key={index} value={category}>
         {category}
       </option>

@@ -7,7 +7,7 @@ const Item = styled(NavLink)`
   font-size: 15px;
   text-decoration: none;
   color: ${props => props.theme.normalText};
-  
+
   ::after {
     left: -1px;
     top: 0;
@@ -16,11 +16,11 @@ const Item = styled(NavLink)`
   }
 `;
 
-const SidebarCategoryListItem = ({ category }) => {
-  const isAll = category === 'all';
+const SidebarCategoryListItem = ({ category, label }) => {
+  const isAll = !category;
   return (
     <Item exact={isAll} to={isAll ? '/' : `/a/${category}`}>
-      {category}
+      {label}
     </Item>
   );
 };
