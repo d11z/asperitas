@@ -4,7 +4,7 @@ import Label from './Label';
 import Error from './Error';
 import SelectWrapper from './SelectWrapper';
 import Input from './Input';
-import RadioTabs from './Fields/RadioTabs';
+import RadioGroup from './RadioGroup';
 
 const VariableField = field => {
   switch (field.type) {
@@ -23,10 +23,27 @@ const VariableField = field => {
         </InputWrapper>
       );
 
-    case 'radio-tabs':
+    case 'radiogroup':
       return (
         <InputWrapper>
-          <RadioTabs field={field} />
+          <RadioGroup field={field} />
+        </InputWrapper>
+      );
+
+    case 'textarea':
+      return (
+        <InputWrapper>
+          <Label>{field.label}</Label>
+          {field.meta.touched && field.meta.error && (
+            <Error>{field.meta.error}</Error>
+          )}
+          <Input
+            {...field.input}
+            as='textarea'
+            rows='4'
+            error={field.meta.touched && !!field.meta.error}
+            placeholder={field.label}
+          />
         </InputWrapper>
       );
 

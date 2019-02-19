@@ -7,12 +7,12 @@ import SubmitButton from '../shared/form/SubmitButton';
 
 const postTypes = [
   {
-    label: 'Link',
+    label: 'link',
     value: 'link'
   },
   {
-    label: 'Text Post',
-    value: 'content'
+    label: 'text',
+    value: 'text'
   }
 ];
 
@@ -40,6 +40,13 @@ class CreatePostForm extends React.Component {
         wide
       >
         <Field
+          name='type'
+          label='type'
+          type='radiogroup'
+          component={renderField}
+          options={postTypes}
+        />
+        <Field
           name='category'
           label='category'
           type='select'
@@ -47,32 +54,15 @@ class CreatePostForm extends React.Component {
         >
           {this.mapCategories()}
         </Field>
-        <Field
-          name='title'
-          label='Post Title'
-          type='text'
-          component={renderField}
-        />
-        <Field
-          name='type'
-          label='type'
-          type='radio-tabs'
-          component={renderField}
-          options={postTypes}
-        />
+        <Field name='title' label='title' type='text' component={renderField} />
         {this.props.form.values.type === 'link' && (
-          <Field
-            name='url'
-            label='Post URL'
-            type='url'
-            component={renderField}
-          />
+          <Field name='url' label='url' type='url' component={renderField} />
         )}
-        {this.props.form.values.type === 'content' && (
+        {this.props.form.values.type === 'text' && (
           <Field
-            name='content'
-            label='Content'
-            type='text'
+            name='text'
+            label='text'
+            type='textarea'
             component={renderField}
           />
         )}

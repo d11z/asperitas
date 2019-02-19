@@ -39,12 +39,18 @@ export const headerItem = css`
 export const link = props => css`
   ${transition};
 
-  ${props.underline && 'border-bottom: 1px solid transparent'};
+  text-underline-position: under;
   text-decoration: none;
   color: ${props => props.theme.normalText};
 
   :hover {
-    ${props.underline && 'border-bottom: 1px solid'};
+    ${props.underline && 'text-decoration: underline'};
     color: ${props => props.theme.accent};
   }
+`;
+
+export const overflow = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

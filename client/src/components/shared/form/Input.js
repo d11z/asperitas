@@ -8,6 +8,7 @@ const Input = styled.input`
   --shadow: ${props =>
     props.error ? props.theme.error + '4d' : props.theme.accent + '4d'};
   
+  display: block;
   ${props => props.error ? `
     border: 1px solid var(--border)
     ` : `
@@ -21,6 +22,7 @@ const Input = styled.input`
   color: ${props => props.theme.normalText};
   appearance: none;
   outline: none;
+  resize: vertical;
   
   :hover, :focus {
     border: 1px solid var(--border);
