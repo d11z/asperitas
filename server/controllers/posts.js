@@ -51,7 +51,6 @@ exports.create = async (req, res, next) => {
   try {
     const { title, url, category, type, content } = req.body;
     const author = req.user.id;
-    console.log({ title, url, category, type })
     const post = await Post.create({ title, url, author, category, type, content });
     res.status(201).json(post);
   } catch (err) {
