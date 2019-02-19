@@ -37,6 +37,7 @@ postSchema.options.toJSON.transform = (doc, ret) => {
 };
 
 postSchema.virtual('upvotePercentage').get(function () {
+  if (this.votes.length === 0) return 0;
   const upvotes = this.votes.filter(vote => vote.vote === 1);
   return Math.floor((upvotes.length / this.votes.length) * 100);
 });
