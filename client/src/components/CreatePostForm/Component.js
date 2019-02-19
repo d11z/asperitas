@@ -3,8 +3,18 @@ import { Field } from 'redux-form';
 import categories from '../../categories';
 import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
-import { titleValidator, urlValidator } from '../../util/validators';
 import SubmitButton from '../shared/form/SubmitButton';
+
+const postTypes = [
+  {
+    label: 'Link',
+    value: 'link'
+  },
+  {
+    label: 'Text Post',
+    value: 'content'
+  }
+];
 
 class CreatePostForm extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -39,18 +49,33 @@ class CreatePostForm extends React.Component {
         </Field>
         <Field
           name='title'
-          label='title'
+          label='Post Title'
           type='text'
           component={renderField}
-          validate={titleValidator}
         />
         <Field
-          name='url'
-          label='url'
-          type='url'
+          name='type'
+          label='type'
+          type='radio-tabs'
           component={renderField}
-          validate={urlValidator}
+          options={postTypes}
         />
+        {this.props.form.values.type === 'link' && (
+          <Field
+            name='url'
+            label='Post URL'
+            type='url'
+            component={renderField}
+          />
+        )}
+        {this.props.form.values.type === 'content' && (
+          <Field
+            name='content'
+            label='Content'
+            type='text'
+            component={renderField}
+          />
+        )}
         <SubmitButton type='submit'>create post</SubmitButton>
       </Form>
     );

@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator/check');
+const { body, validationResult, oneOf } = require('express-validator/check');
 const Post = require('../models/post');
 const User = require('../models/user');
 
@@ -49,43 +49,63 @@ exports.create = async (req, res, next) => {
   }
 
   try {
-    const { title, url, category } = req.body;
+    const { title, url, category, type, content } = req.body;
     const author = req.user.id;
-    const post = await Post.create({ title, url, author, category });
+    console.log({ title, url, category, type })
+    const post = await Post.create({ title, url, author, category, type, content });
     res.status(201).json(post);
   } catch (err) {
     next(err);
   }
 };
 
-exports.validate = [
-  body('title')
-    .exists()
-    .withMessage('is required')
+const titleIsValid = body('title')
+  .exists()
+  .withMessage('is required')
 
-    .isLength({ min: 1 })
-    .withMessage('cannot be blank')
+  .isLength({ min: 1 })
+  .withMessage('cannot be blank')
 
-    .isLength({ max: 100 })
-    .withMessage('must be at most 100 characters long')
+  .isLength({ max: 100 })
+  .withMessage('must be at most 100 characters long')
 
-    .custom(value => value.trim() === value)
-    .withMessage('cannot start or end with whitespace'),
+  .custom(value => value.trim() === value)
+  .withMessage('cannot start or end with whitespace');
 
-  body('url')
-    .exists()
-    .withMessage('is required')
+const urlOrContentIsValid = (req, res, next) => {
+  if (req.body.type === 'link') {
+    const chain = body('url')
+      .exists()
+      .withMessage('is required')
+      .isURL()
+      .withMessage('is invalid')
+    chain(req, res, next)
+  } else {
+    const chain = body('content')
+      .exists()
+      .withMessage('is required')
+      .isLength({ min: 80 })
+      .withMessage('must be at least 80 characters long')
 
-    .isURL()
-    .withMessage('is invalid'),
+    chain(req, res, next)
+  }
+}
 
-  body('category')
-    .exists()
-    .withMessage('is required')
+const typeIsValid = body('type')
+  .exists()
+  .withMessage('is required')
 
-    .isLength({ min: 1 })
-    .withMessage('cannot be blank')
-];
+  .isIn(['link', 'content'])
+  .withMessage('needs to be a link or text post')
+
+const categoryIsValid = body('category')
+  .exists()
+  .withMessage('is required')
+
+  .isLength({ min: 1 })
+  .withMessage('cannot be blank');
+
+exports.validate = [typeIsValid, titleIsValid, urlOrContentIsValid, categoryIsValid];
 
 exports.upvote = async (req, res) => {
   const post = await req.post.vote(req.user.id, 1);

@@ -7,6 +7,7 @@
     "setupTestFrameworkScriptFile": "./test/setup.js"
   },
   "scripts": {
+    "dev": "nodemon ./index.js",
     "start": "node index.js",
     "test": "jest"
   },
@@ -25,6 +26,7 @@
   "devDependencies": {
     "faker": "^4.1.0",
     "jest": "^23.6.0",
+    "nodemon": "^1.18.10",
     "prettier": "^1.15.2",
     "supertest": "^3.3.0"
   },

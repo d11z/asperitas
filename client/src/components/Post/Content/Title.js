@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 import { link } from '../../shared/helpers';
 
 const Wrapper = styled.div`
@@ -22,7 +23,8 @@ const Wrapper = styled.div`
 
 const PostContentTitle = props => (
   <Wrapper>
-    <a href={props.url}>{props.title}</a>
+    {props.type === 'link' && <a href={props.url}>{props.title}</a>}
+    {props.type === 'content' && <Link to={`/a/${props.category}/${props.id}`}>{props.title}</Link>}
   </Wrapper>
 );
 

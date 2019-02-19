@@ -16,14 +16,16 @@ commentSchema.options.toJSON.transform = (doc, ret) => {
 
 const postSchema = new Schema({
   title: { type: String, required: true },
-  url: { type: String, required: true },
+  url: { type: String },
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   category: { type: String, required: true },
   score: { type: Number, default: 0 },
   votes: [{ user: Schema.Types.ObjectId, vote: Number, _id: false }],
   comments: [commentSchema],
   created: { type: Date, default: Date.now },
-  views: { type: Number, default: 0 }
+  views: { type: Number, default: 0 },
+  type: { type: String, default: 'link', required: true },
+  content: { type: String },
 });
 
 postSchema.set('toJSON', { getters: true, virtuals: true });

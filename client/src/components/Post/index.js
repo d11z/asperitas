@@ -5,14 +5,15 @@ import PostContent from './Content';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 76px;
+  height: auto;
   background-color: ${props => props.theme.foreground};
 `;
 
-const Post = ({ id, votes, score, comments, ...content }) => (
+const Post = ({ id, votes, score, comments, full, ...content }) => (
   <Wrapper>
     <PostVoteContainer id={id} votes={votes} score={score} />
     <PostContent
+      showFullPost={full}
       id={id}
       commentCount={comments ? comments.length : 0}
       {...content}
