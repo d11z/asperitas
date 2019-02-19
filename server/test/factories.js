@@ -9,5 +9,6 @@ exports.validPost = (author, category) => ({
   title: faker.lorem.sentence(),
   url: faker.internet.url(),
   category,
-  author
+  author,
+  type: 'link'
 });

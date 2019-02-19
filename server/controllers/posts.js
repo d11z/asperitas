@@ -115,10 +115,10 @@ const categoryIsValid = body('category')
   .withMessage('cannot be blank');
 
 exports.validate = [
-  typeIsValid,
   titleIsValid,
   urlOrTextIsValid,
-  categoryIsValid
+  categoryIsValid,
+  typeIsValid
 ];
 
 exports.upvote = async (req, res) => {
