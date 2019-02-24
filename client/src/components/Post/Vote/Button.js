@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { transition } from '../../shared/helpers';
 
 const PostVoteButton = styled.button`
-  ${transition};
+  ${transition('background-color')};
   
   border: 0;
   border-radius: 3px;
@@ -20,7 +20,7 @@ const PostVoteButton = styled.button`
   }
 
   ::after {
-    ${transition};
+    ${transition('border')};
     
     content: '';
     position: relative;

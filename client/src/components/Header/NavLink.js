@@ -12,7 +12,7 @@ const HeaderNavLink = styled(NavLink)`
   color: ${props => props.theme.mutedText};
   
   ::after {
-    ${transition};
+    ${transition('opacity', 'border-bottom-width')};
     
     content: '';
     position: absolute;

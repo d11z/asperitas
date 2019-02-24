@@ -5,7 +5,7 @@ import FormWrapper from './Wrapper';
 import LoadingIndicatorSpinner from '../../LoadingIndicator/Spinner';
 
 const StyledForm = styled.form`
-  ${transition({ slow: true })};
+  ${transition('filter')};
   
   display: flex;
   flex-direction: column;

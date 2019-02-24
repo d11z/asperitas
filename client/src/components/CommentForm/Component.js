@@ -6,7 +6,7 @@ import CommentFormTextArea from './TextArea';
 import CommentFormSubmitButton from './SubmitButton';
 
 const StyledForm = styled(Form)`
-  ${transition};
+  ${transition('border', 'box-shadow')};
 
   margin-top: -1px;
   border: 1px solid ${props => props.theme.border};

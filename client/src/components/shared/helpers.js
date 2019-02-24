@@ -21,9 +21,15 @@ export const fade = css`
   animation: ${fadeKeyframes} 0.25s;
 `;
 
-export const transition = props => css`
-  transition: all ${props.slow ? '0.3s' : '0.15s'} ease;
-`;
+export const transition = (...props) => {
+  let str = 'transition: ';
+  props.forEach((item, index) => {
+    str = str.concat(
+      `${item} 0.1s ease${index === props.length - 1 ? ';' : ', '}`
+    );
+  });
+  return str;
+};
 
 export const headerItem = css`
   display: flex;
@@ -37,7 +43,7 @@ export const headerItem = css`
 `;
 
 export const link = props => css`
-  ${transition};
+  ${transition('color')};
 
   text-underline-position: under;
   text-decoration: none;

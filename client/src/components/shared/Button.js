@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { transition, wideFont } from './helpers';
 
 const Button = styled.button`
-  ${transition};
+  ${transition('filter', 'box-shadow')};
   ${wideFont};
   
   border: none;

@@ -10,7 +10,7 @@ const NavLink = styled(RouterNavLink).attrs({ activeClassName })`
   position: relative;
   
   ::after {
-    ${transition({ slow: true })};
+    ${transition('opacity')};
     
     content: '';
     position: absolute;

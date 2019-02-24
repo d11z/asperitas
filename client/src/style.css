@@ -4,9 +4,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
-  transition: all 0.15s ease;
-  transition-property: color, background-color, border;
 }
 
 html {
@@ -16,5 +13,6 @@ html {
 body {
   min-height: 100%;
   padding-bottom: 48px;
+  font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
 }

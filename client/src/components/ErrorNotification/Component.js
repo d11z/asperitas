@@ -7,7 +7,7 @@ import ErrorNotificationMessage from './Message';
 const className = 'message';
 
 const Wrapper = styled.div`
-  ${transition({ slow: true })};
+  ${transition('opacity', 'transform')};
 
   position: fixed;
   top: 16px;

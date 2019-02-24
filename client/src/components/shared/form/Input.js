@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro';
-import { transition } from './../helpers';
+import { transition } from '../helpers';
 
 const Input = styled.input`
-  ${transition};
+  ${transition('border', 'box-shadow')};
   
   --border: ${props => props.error ? props.theme.error : props.theme.accent};
   --shadow: ${props =>

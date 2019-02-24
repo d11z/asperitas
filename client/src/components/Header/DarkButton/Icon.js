@@ -7,7 +7,7 @@ const Icon = styled.svg`
   height: 20px;
 
   & path {
-    ${transition};
+    ${transition('fill')};
 
     fill: ${props => props.theme.mutedText};
   }

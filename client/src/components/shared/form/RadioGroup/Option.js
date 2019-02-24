@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { transition, wideFont } from '../../helpers';
 
 const Label = styled.label`
-  ${transition};
+  ${transition('color', 'background-color')};
   ${wideFont};
 
   display: block;
