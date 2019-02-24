@@ -15,7 +15,7 @@ const dark = {
   voteButtonHover: '#383838',
   foreground: '#262626',
   activeBackground: '#333333',
-  inputBackground: '#333333',
+  inputBackground: '#212121',
   shadow: 'rgba(0, 0, 0, 0.4)'
 };
 

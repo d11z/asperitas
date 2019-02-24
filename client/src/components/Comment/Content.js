@@ -1,9 +1,15 @@
+import React from 'react';
 import styled from 'styled-components/macro';
+import Markdown from '../shared/Markdown';
 
-const CommentContent = styled.p`
+const Content = styled.div`
   padding: 12px;
-  font-size: 15px;
-  color: ${props => props.theme.normalText};
 `;
+
+const CommentContent = props => (
+  <Content>
+    <Markdown>{props.children}</Markdown>
+  </Content>
+);
 
 export default CommentContent;
