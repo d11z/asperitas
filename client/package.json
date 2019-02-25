@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "jwt-decode": "^2.2.0",
-    "moment": "^2.23.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "moment": "^2.24.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "react-markdown": "^4.0.6",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
@@ -45,10 +45,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.4",
     "redux-mock-store": "^1.5.3"
   }
 }
