@@ -40,7 +40,7 @@ const VariableField = field => {
           <Input
             {...field.input}
             as='textarea'
-            rows='4'
+            rows='6'
             error={field.meta.touched && !!field.meta.error}
             placeholder={field.label}
           />
