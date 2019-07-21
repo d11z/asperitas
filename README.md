@@ -59,3 +59,14 @@ $ npm test
 ## License
 
 This project is made available under the **MIT License**.
+
+## Current needs
+
+Ability to reply directly to comments
+Ability to call user in comments with @username
+Ability to edit posts
+Full admin and moderator panel
+
+## Future needs
+
+I have always wanted a decentralized form of reddit. Keeping in line with ActivityPub standards https://www.w3.org/TR/activitypub/
