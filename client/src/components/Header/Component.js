@@ -4,6 +4,7 @@ import HeaderLogo from './Logo';
 import HeaderDarkButtonContainer from './DarkButton/Container';
 import HeaderUsername from './Username';
 import HeaderNavLink from './NavLink';
+import DropdownButton from '../DropdownButton/Component';
 
 const Wrapper = styled.header`
   position: sticky;
@@ -35,6 +36,7 @@ const Header = ({ user, logout }) => (
     <HeaderDarkButtonContainer />
     {user ? (
       <>
+        <DropdownButton username={user.username} />
         <HeaderUsername username={user.username} />
         <HeaderNavLink as='span' onClick={logout}>
           log out
