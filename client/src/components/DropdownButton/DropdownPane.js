@@ -14,6 +14,10 @@ const DDPane = styled.div`
   opacity: 0;
 	background: ${props => props.theme.activeBackground};
 	transition .3s visibility, opacity .3s linear;
+
+	@media(max-width: 425px) {
+		top: 2.5rem;
+	}
 `;
 
 const DDPaneLink = styled(HeaderNavLink)`
