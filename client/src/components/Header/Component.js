@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import HeaderLogo from './Logo';
 import HeaderDarkButtonContainer from './DarkButton/Container';
-import HeaderUsername from './Username';
 import HeaderNavLink from './NavLink';
 import DropdownButton from '../DropdownButton/Component';
 
@@ -36,8 +35,13 @@ const Header = ({ user, logout }) => (
     <HeaderDarkButtonContainer />
     {user ? (
       <>
-        <DropdownButton username={user.username} />
-        <HeaderUsername username={user.username} />
+        <DropdownButton
+          options={{
+            profile: `/u/${user.username}`,
+            settings: '/settings'
+          }}
+          username={user.username}
+        />
         <HeaderNavLink as='span' onClick={logout}>
           log out
         </HeaderNavLink>

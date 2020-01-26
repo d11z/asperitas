@@ -6,14 +6,14 @@ const HeaderNavLink = styled(NavLink)`
   ${headerItem};
   ${wideFont};
   ${link};
-  
+
   position: relative;
   cursor: pointer;
   color: ${props => props.theme.mutedText};
-  
+
   ::after {
     ${transition('opacity', 'border-bottom-width')};
-    
+
     content: '';
     position: absolute;
     left: 0;
@@ -22,11 +22,11 @@ const HeaderNavLink = styled(NavLink)`
     opacity: 0;
     border-bottom: 1px solid ${props => props.theme.accent};
   }
-  
+
   :hover::after {
     opacity: 1;
   }
-  
+
   &.active::after {
     left: 0;
     right: 0;

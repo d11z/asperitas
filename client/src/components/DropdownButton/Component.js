@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { headerItem, wideFont, link, transition } from '../shared/helpers';
+
+import DropdownPane from './DropdownPane';
 
 const DDButton = styled.button`
   ${headerItem};
@@ -34,6 +36,11 @@ const DDButton = styled.button`
     opacity: 1;
   }
 
+  :hover > .DDPane {
+    visibility: visible;
+    opacity: 1;
+  }
+
   &.active::after {
     left: 0;
     right: 0;
@@ -42,12 +49,13 @@ const DDButton = styled.button`
   }
 `;
 
-const DropdownButton = ({ username }) => {
-  const [clicked, setClicked] = useState(false);
-
-  function click() {}
-
-  return <DDButton>{username}</DDButton>;
+const DropdownButton = ({ username, options }) => {
+  return (
+    <DDButton>
+      {username}
+      <DropdownPane options={options} />
+    </DDButton>
+  );
 };
 
 export default DropdownButton;
