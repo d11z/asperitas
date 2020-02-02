@@ -6,6 +6,11 @@ const router = require('express').Router();
 
 router.post('/login', users.validate(), users.login);
 router.post('/register', users.validate('register'), users.register);
+router.post(
+  '/changepassword',
+  users.validate('changepassword'),
+  users.changePassword
+);
 
 router.param('post', posts.load);
 router.get('/posts', posts.list);

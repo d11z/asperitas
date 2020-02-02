@@ -1,4 +1,4 @@
-import { login, signup } from '../util/api';
+import { login, signup, changePassword } from '../util/api';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -38,3 +38,35 @@ export const attemptSignup = (username, password) => async dispatch => {
 
 export const LOGOUT = 'LOGOUT';
 export const logout = () => ({ type: LOGOUT });
+
+export const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST';
+export const CHANGE_PASSWORD_SUCCESS = 'CHANGE_PASSWORD_SUCCESS';
+export const CHANGE_PASSWORD_FAILED = 'CHANGE_PASSWORD_FAILED';
+
+const changePasswordRequest = { type: CHANGE_PASSWORD_REQUEST };
+const changePasswordSuccess = { type: CHANGE_PASSWORD_SUCCESS };
+const changePasswordFailed = error => ({
+  type: CHANGE_PASSWORD_FAILED,
+  error
+});
+
+export const attemptPasswordChange = (oldPwd, newPwd) => async (
+  dispatch,
+  getState
+) => {
+  dispatch(changePasswordRequest);
+  try {
+    const { token } = getState().auth;
+
+    console.log(token);
+    if (!token) {
+      throw new Error('Not Authorized');
+    }
+
+    await changePassword(oldPwd, newPwd, token);
+    dispatch(changePasswordSuccess);
+  } catch (error) {
+    console.log(error);
+    dispatch(changePasswordFailed(error));
+  }
+};
