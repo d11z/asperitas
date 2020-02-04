@@ -6,6 +6,7 @@ import { passwordValidator } from '../../util/validators';
 import SubmitButton from '../shared/form/SubmitButton';
 
 const ChangePasswordForm = props => {
+  console.log(props);
   useEffect(() => {
     if (!props.token) {
       props.history.push('/');

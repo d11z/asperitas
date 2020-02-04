@@ -43,10 +43,14 @@ exports.changePassword = async (req, res, next) => {
     const {
       user: { id: userId }
     } = token;
-    const user = User.findOne({ _id: userId });
-    // TODO Implement the rest of the logic
+    const user = await User.findOne({ _id: userId });
+    const doPasswordsMatch = await user.isValidPassword(oldpassword);
+    if (!doPasswordsMatch) {
+      throw new Error('Old password is not correct');
+    }
+    user.password = newpassword;
+    await user.save();
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
