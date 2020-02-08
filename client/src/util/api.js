@@ -86,7 +86,8 @@ export async function changePassword(oldPwd, newPwd, token) {
     },
     token
   );
-  console.log(json);
+
+  return json;
 }
 
 export async function getPosts(category) {

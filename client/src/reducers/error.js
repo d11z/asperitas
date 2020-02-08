@@ -6,7 +6,11 @@ import {
   CREATE_COMMENT_ERROR,
   VOTE_ERROR
 } from '../actions/posts';
-import { LOGIN_ERROR, SIGNUP_ERROR } from '../actions/auth';
+import {
+  LOGIN_ERROR,
+  SIGNUP_ERROR,
+  CHANGE_PASSWORD_ERROR
+} from '../actions/auth';
 import { HIDE_ERROR } from '../actions/error';
 
 const initialState = null;
@@ -21,6 +25,7 @@ export default (state = initialState, action) => {
     case VOTE_ERROR:
     case LOGIN_ERROR:
     case SIGNUP_ERROR:
+    case CHANGE_PASSWORD_ERROR:
       return action.error;
 
     case HIDE_ERROR:

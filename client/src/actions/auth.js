@@ -41,12 +41,12 @@ export const logout = () => ({ type: LOGOUT });
 
 export const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST';
 export const CHANGE_PASSWORD_SUCCESS = 'CHANGE_PASSWORD_SUCCESS';
-export const CHANGE_PASSWORD_FAILED = 'CHANGE_PASSWORD_FAILED';
+export const CHANGE_PASSWORD_ERROR = 'CHANGE_PASSWORD_ERROR';
 
 const changePasswordRequest = { type: CHANGE_PASSWORD_REQUEST };
 const changePasswordSuccess = { type: CHANGE_PASSWORD_SUCCESS };
-const changePasswordFailed = error => ({
-  type: CHANGE_PASSWORD_FAILED,
+const changePasswordError = error => ({
+  type: CHANGE_PASSWORD_ERROR,
   error
 });
 
@@ -58,15 +58,14 @@ export const attemptPasswordChange = (oldPwd, newPwd) => async (
   try {
     const { token } = getState().auth;
 
-    console.log(token);
     if (!token) {
       throw new Error('Not Authorized');
     }
 
     await changePassword(oldPwd, newPwd, token);
     dispatch(changePasswordSuccess);
+    window.location.href = '/';
   } catch (error) {
-    console.log(error);
-    dispatch(changePasswordFailed(error));
+    dispatch(changePasswordError(error));
   }
 };

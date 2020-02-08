@@ -34,11 +34,17 @@ exports.changePassword = async (req, res, next) => {
   const result = validationResult(req);
   if (!result.isEmpty()) {
     const errors = result.array({ onlyFirstError: true });
-    return res.status(403).json({ errors });
+    return res.status(403).json({ success: false, errors });
   }
 
   try {
     const { oldpassword, newpassword } = req.body;
+    if (oldpassword === newpassword) {
+      return res.status(403).json({
+        success: false,
+        message: 'Old and new passwords cannot be the same'
+      });
+    }
     const token = jwt.decode(req.headers.authorization.split(' ')[1]);
     const {
       user: { id: userId }
@@ -46,10 +52,16 @@ exports.changePassword = async (req, res, next) => {
     const user = await User.findOne({ _id: userId });
     const doPasswordsMatch = await user.isValidPassword(oldpassword);
     if (!doPasswordsMatch) {
-      throw new Error('Old password is not correct');
+      return res
+        .status(403)
+        .json({ success: false, message: 'Passwords do not match' });
     }
     user.password = newpassword;
     await user.save();
+    return res.status(200).json({
+      success: true,
+      message: 'Password change successful'
+    });
   } catch (err) {
     next(err);
   }

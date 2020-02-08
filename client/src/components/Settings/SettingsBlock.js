@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { headerItem } from '../shared/helpers';
 
 const SBlock = styled.div`
   max-width: 80vw;
