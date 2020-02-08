@@ -49,6 +49,13 @@ exports.changePassword = async (req, res, next) => {
     const {
       user: { id: userId }
     } = token;
+
+    if (!userId) {
+      return res
+        .status(401)
+        .json({ success: false, message: 'Authentication error' });
+    }
+
     const user = await User.findOne({ _id: userId });
     const doPasswordsMatch = await user.isValidPassword(oldpassword);
     if (!doPasswordsMatch) {
