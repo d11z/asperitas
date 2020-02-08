@@ -4,17 +4,19 @@ const jwt = require('jsonwebtoken');
 const app = require('../app');
 const config = require('../config');
 const { validUser } = require('./factories');
+const { createAuthToken } = require('../auth/index');
 const User = mongoose.model('User');
 
 process.env.TEST_SUITE = 'auth';
 
 describe('auth endpoints', () => {
   let user;
+  let token;
   const username = {
     nonExisting: 'new',
     nonTrimmed: ' user ',
     invalid: 'user!$@',
-    long: 'a'.repeat(33),
+    long: 'a'.repeat(33)
   };
   const password = {
     wrong: 'incorrect',
@@ -24,7 +26,9 @@ describe('auth endpoints', () => {
 
   beforeEach(async () => {
     user = validUser();
-    await new User(user).save();
+    const userModel = new User(user);
+    token = createAuthToken({ ...user, id: userModel.id });
+    await userModel.save();
   });
 
   describe('/login', () => {
@@ -137,7 +141,9 @@ describe('auth endpoints', () => {
         .send({ ...user, username: username.long })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
-          expect(res.body.errors[0].msg).toContain('at most 32 characters long');
+          expect(res.body.errors[0].msg).toContain(
+            'at most 32 characters long'
+          );
         })
         .expect(422, done);
     });
@@ -148,7 +154,9 @@ describe('auth endpoints', () => {
         .send({ username: username.nonExisting, password: password.short })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
-          expect(res.body.errors[0].msg).toContain('at least 8 characters long');
+          expect(res.body.errors[0].msg).toContain(
+            'at least 8 characters long'
+          );
         })
         .expect(422, done);
     });
@@ -159,7 +167,9 @@ describe('auth endpoints', () => {
         .send({ username: username.nonExisting, password: password.long })
         .expect(res => {
           expect(res.body.errors).toBeDefined();
-          expect(res.body.errors[0].msg).toContain('at most 72 characters long');
+          expect(res.body.errors[0].msg).toContain(
+            'at most 72 characters long'
+          );
         })
         .expect(422, done);
     });
@@ -186,6 +196,55 @@ describe('auth endpoints', () => {
           expect(payload.user.username).toEqual(username.nonExisting);
         })
         .expect(201, done);
+    });
+  });
+
+  describe('/changepassword', () => {
+    test('rejects request when the current password is not correct', done => {
+      const Authorization = `Bearer ${token}`;
+      request(app)
+        .post('/api/changepassword')
+        .set({ Authorization })
+        .send({
+          oldpassword: 'djkasdhasjk',
+          newpassword: 'skdjaddasdasd'
+        })
+        .expect(res => {
+          expect(res.body.success).toEqual(false);
+          expect(res.body.message).toEqual('Passwords do not match');
+        })
+        .expect(403, done);
+    });
+
+    test('rejects request when passwords are identical', done => {
+      const Authorization = `Bearer ${token}`;
+      request(app)
+        .post('/api/changepassword')
+        .set({ Authorization })
+        .send({
+          oldpassword: 'password',
+          newpassword: 'password'
+        })
+        .expect(res => {
+          expect(res.body.success).toEqual(false);
+          expect(res.body.message).toEqual(
+            'Old and new passwords cannot be the same'
+          );
+        })
+        .expect(403, done);
+    });
+
+    test('changes password correctly', done => {
+      const Authorization = `Bearer ${token}`;
+      request(app)
+        .post('/api/changepassword')
+        .set({ Authorization })
+        .send({ oldpassword: 'password', newpassword: 'password1' })
+        .expect(res => {
+          expect(res.body.success).toEqual(true);
+          expect(res.body.message).toEqual('Password change successful');
+        })
+        .expect(200, done);
     });
   });
 });

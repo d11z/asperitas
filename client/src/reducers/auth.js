@@ -6,6 +6,9 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
+  CHANGE_PASSWORD_REQUEST,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_ERROR,
   LOGOUT
 } from '../actions/auth';
 
@@ -21,6 +24,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SIGNUP_REQUEST:
     case LOGIN_REQUEST:
+    case CHANGE_PASSWORD_REQUEST:
       return { ...state, loading: true };
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
@@ -34,6 +38,8 @@ export default (state = initialState, action) => {
 
     case SIGNUP_ERROR:
     case LOGIN_ERROR:
+    case CHANGE_PASSWORD_SUCCESS:
+    case CHANGE_PASSWORD_ERROR:
       return { ...state, loading: false };
 
     case LOGOUT:

@@ -1,8 +1,10 @@
+import React from 'react';
 import styled from 'styled-components/macro';
-import NavLink from '../shared/NavLink';
 import { headerItem, wideFont, link, transition } from '../shared/helpers';
 
-const HeaderNavLink = styled(NavLink)`
+import DropdownPane from './DropdownPane';
+
+const DDButton = styled.button`
   ${headerItem};
   ${wideFont};
   ${link};
@@ -10,6 +12,13 @@ const HeaderNavLink = styled(NavLink)`
   position: relative;
   cursor: pointer;
   color: ${props => props.theme.mutedText};
+  background: none;
+  border: none;
+  outline: 0;
+
+  ::-moz-focus-inner {
+    border: 0;
+  }
 
   ::after {
     ${transition('opacity', 'border-bottom-width')};
@@ -27,6 +36,11 @@ const HeaderNavLink = styled(NavLink)`
     opacity: 1;
   }
 
+  :hover > .DDPane {
+    visibility: visible;
+    opacity: 1;
+  }
+
   &.active::after {
     left: 0;
     right: 0;
@@ -35,4 +49,13 @@ const HeaderNavLink = styled(NavLink)`
   }
 `;
 
-export default HeaderNavLink;
+const DropdownButton = ({ username, options }) => {
+  return (
+    <DDButton>
+      {username}
+      <DropdownPane options={options} />
+    </DDButton>
+  );
+};
+
+export default DropdownButton;

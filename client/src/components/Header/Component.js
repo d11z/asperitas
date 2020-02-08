@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import HeaderLogo from './Logo';
 import HeaderDarkButtonContainer from './DarkButton/Container';
-import HeaderUsername from './Username';
 import HeaderNavLink from './NavLink';
+import DropdownButton from '../DropdownButton/Component';
 
 const Wrapper = styled.header`
   position: sticky;
@@ -29,24 +29,37 @@ const Wrapper = styled.header`
   }
 `;
 
-const Header = ({ user, logout }) => (
-  <Wrapper>
-    <HeaderLogo />
-    <HeaderDarkButtonContainer />
-    {user ? (
-      <>
-        <HeaderUsername username={user.username} />
-        <HeaderNavLink as='span' onClick={logout}>
-          log out
-        </HeaderNavLink>
-      </>
-    ) : (
-      <>
-        <HeaderNavLink to='/login'>log in</HeaderNavLink>
-        <HeaderNavLink to='/signup'>sign up</HeaderNavLink>
-      </>
-    )}
-  </Wrapper>
-);
+const Header = ({ user, logout, history }) => {
+  async function logoutFn() {
+    await logout();
+    history.push('/');
+  }
+
+  return (
+    <Wrapper>
+      <HeaderLogo />
+      <HeaderDarkButtonContainer />
+      {user ? (
+        <>
+          <DropdownButton
+            options={{
+              profile: `/u/${user.username}`,
+              settings: '/settings'
+            }}
+            username={user.username}
+          />
+          <HeaderNavLink as='span' onClick={logoutFn}>
+            log out
+          </HeaderNavLink>
+        </>
+      ) : (
+        <>
+          <HeaderNavLink to='/login'>log in</HeaderNavLink>
+          <HeaderNavLink to='/signup'>sign up</HeaderNavLink>
+        </>
+      )}
+    </Wrapper>
+  );
+};
 
 export default Header;

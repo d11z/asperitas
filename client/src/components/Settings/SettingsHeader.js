@@ -1,13 +1,11 @@
-import React from 'react';
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
 import { headerItem } from '../shared/helpers';
 
-const Logo = styled(Link)`
+const SettingsHeader = styled.h1`
   ${headerItem};
 
   margin-right: auto;
-  font-size: 24px;
+  font-size: 40px;
   font-weight: 500;
   color: ${props => props.theme.normalText};
   text-decoration: none;
@@ -18,6 +16,4 @@ const Logo = styled(Link)`
   }
 `;
 
-const HeaderLogo = () => <Logo to='/'>asperitas</Logo>;
-
-export default HeaderLogo;
+export default SettingsHeader;

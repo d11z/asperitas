@@ -8,7 +8,10 @@ const mapDispatchToProps = { logout };
 
 const enhance = compose(
   withAuth,
-  connect(null, mapDispatchToProps)
+  connect(
+    null,
+    mapDispatchToProps
+  )
 );
 
 const HeaderContainer = enhance(Header);
