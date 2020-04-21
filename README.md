@@ -1,60 +1,19 @@
 # asperitas
 
-Asperitas is a full stack reddit clone that I wrote to learn more about Node.js, React, and NoSQL databases. The name asperitas comes from a type of [cloud](https://en.wikipedia.org/wiki/Asperitas_(cloud)).
+Asperitas is a reddit clone written in Node.js, React, and NoSQL databases.
 
-## Installation
-
-### Prerequisites
-
-* node
-* npm
-* mongodb
-
-1. Clone this repository
-
-2. Install server dependencies
-    ```bash
-    $ cd server
-    $ npm install
-    ```
-3. Install client dependencies
-    ```bash
-    $ cd client
-    $ npm install
-    ```
-
-## Run the app
-
-1. Start mongodb locally
-    ```bash
-    $ mongod
-    ```
-2. Start the server
-    ```bash
-    $ cd server
-    $ npm start
-    ```
-3. Start the client
-    ```bash
-    $ cd client
-    $ npm start
-    ```
-4. Browse to `http://localhost:3000/`
-
-## Testing
-
-### Server
-Make sure mongodb is running before testing the server.
-```bash
-$ cd server
-$ npm test
+## Quick start
+Perform the following commands and browse to http://localhost:3000/
+```
+git clone https://github.com/d11z/asperitas
+cd asperitas
+docker-compose up
 ```
 
-### Client
-```bash
-$ cd client
-$ npm test
-```
+
+## Structure
+
+This application has a [nodejs backend](server/server) and [React front-end](client/client).
 
 ## License
 
