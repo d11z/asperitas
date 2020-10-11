@@ -1,7 +1,7 @@
 {
   "version": 2,
   "env": {
-    "DATABASE_URL": "@database-url"
+    "DATABASE_URL": "@asperitas-database-url"
   },
   "builds": [
     { "src": "client/package.json", "use": "@vercel/static-build",
