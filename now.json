@@ -4,7 +4,11 @@
     "DATABASE_URL": "@database-url"
   },
   "builds": [
-    { "src": "client/package.json", "use": "@vercel/static-build" },
+    { "src": "client/package.json", "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
     { "src": "server/index.js", "use": "@vercel/node" }
   ],
   "routes": [
