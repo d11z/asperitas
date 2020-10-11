@@ -8,8 +8,13 @@ node_modules/
 # testing
 /coverage
 
+# env vars
+.env
+
 # production
 /build
+client/build
+client/dist
 
 # misc
 .DS_Store
@@ -23,3 +28,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+.vercel
