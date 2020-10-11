@@ -11,13 +11,16 @@
     "start": "node index.js",
     "test": "jest"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-validator": "^5.3.0",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.3.12",
+    "mongoose": "^5.10.9",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
@@ -25,8 +28,8 @@
   },
   "devDependencies": {
     "faker": "^4.1.0",
-    "jest": "^23.6.0",
-    "nodemon": "^1.18.10",
+    "jest": "^26.5.2",
+    "nodemon": "^2.0.4",
     "prettier": "^1.15.2",
     "supertest": "^3.3.0"
   },
