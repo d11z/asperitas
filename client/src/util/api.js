@@ -1,7 +1,10 @@
-const baseUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080/api'
-    : `https://${window.location.hostname}/api`;
+const getFullDomain = () => {
+  const { protocol, hostname, port } = window.location;
+  const portStr = port ? `:${port}` : '';
+  return `${protocol}//${hostname}${portStr}`;
+};
+
+const baseUrl = getFullDomain() + '/api';
 
 const methods = {
   get: async function (endpoint, token = null) {

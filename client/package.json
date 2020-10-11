@@ -2,6 +2,7 @@
   "name": "asperitas",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
