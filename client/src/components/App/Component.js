@@ -9,6 +9,8 @@ import ErrorNotificationContainer from '../ErrorNotification/Container';
 import LoginFormContainer from '../LoginForm/Container';
 import SignupFormContainer from '../SignupForm/Container';
 import CreatePostFormContainer from '../CreatePostForm/Container';
+import forgotPassword from '../forgotPassword/ForgotPassword';
+import UpdatePasword from '../updatepassword/UpdatePasword';
 import Home from '../Home';
 
 const App = props => (
@@ -22,6 +24,8 @@ const App = props => (
           <Route path='/login' component={LoginFormContainer} />
           <Route path='/signup' component={SignupFormContainer} />
           <Route path='/createpost' component={CreatePostFormContainer} />
+          <Route path='/forgotPassword' component={forgotPassword}/>
+          <Route path='/updatePassword/:token' exact component={UpdatePasword}/>
           <Route path='/' component={Home} />
         </Switch>
       </>

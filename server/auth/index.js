@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const config = require('../config');
 
+
 exports.createAuthToken = user => {
   return jwt.sign({ user }, config.jwt.secret, {
     expiresIn: config.jwt.expiry
@@ -9,7 +10,7 @@ exports.createAuthToken = user => {
 };
 
 exports.login = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', async(err, user, info) => {
     if (err) return next(err);
     if (!user) return res.status(401).json(info);
     const token = this.createAuthToken(user);

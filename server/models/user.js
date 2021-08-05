@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs');
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  admin: Boolean
+  email:{type:String,required:true},
+  resettoken:{
+    type:String
+  },
 }, { collation: { locale: 'en', strength: 1 } });
 
 userSchema.set('toJSON', { getters: true });
@@ -24,7 +27,5 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isValidPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
-
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;

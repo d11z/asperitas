@@ -18,8 +18,8 @@ class SignupForm extends React.Component {
     if (this.props.token) this.props.history.push('/');
   }
 
-  onSubmit = ({ username, password }) => {
-    this.props.attemptSignup(username, password);
+  onSubmit = ({ username, password,email }) => {
+    this.props.attemptSignup(username, password,email);
   };
 
   render() {
@@ -34,6 +34,12 @@ class SignupForm extends React.Component {
           type='text'
           component={renderField}
           validate={usernameValidator}
+        />
+        <Field
+          name='email'
+          label='email'
+          type='text'
+          component={renderField}
         />
         <Field
           name='password'

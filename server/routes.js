@@ -6,6 +6,8 @@ const router = require('express').Router();
 
 router.post('/login', users.validate(), users.login);
 router.post('/register', users.validate('register'), users.register);
+router.post('/forgotPassword',users.forgot)
+router.post('/updatepassword',users.updatepassword)
 
 router.param('post', posts.load);
 router.get('/posts', posts.list);
@@ -17,6 +19,7 @@ router.get('/post/:post/upvote', jwtAuth, posts.upvote);
 router.get('/post/:post/downvote', jwtAuth, posts.downvote);
 router.get('/post/:post/unvote', jwtAuth, posts.unvote);
 router.get('/user/:user', posts.listByUser);
+
 
 router.param('comment', comments.load);
 router.post('/post/:post', [jwtAuth, comments.validate], comments.create);

@@ -4,7 +4,7 @@ import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
 import { usernameValidator, passwordValidator } from '../../util/validators';
 import SubmitButton from '../shared/form/SubmitButton';
-
+import {Link} from 'react-router-dom'
 class LoginForm extends React.Component {
   componentDidMount() {
     this.redirectIfLoggedIn();
@@ -18,12 +18,13 @@ class LoginForm extends React.Component {
     if (this.props.token) this.props.history.push('/');
   }
 
-  onSubmit = ({ username, password }) => {
+  onSubmit = ({ username, password}) => {
     this.props.attemptLogin(username, password);
   };
 
   render() {
     return (
+      <>
       <Form
         loading={this.props.loading}
         onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -44,6 +45,8 @@ class LoginForm extends React.Component {
         />
         <SubmitButton type='submit'>log in</SubmitButton>
       </Form>
+      <Link to="/forgotPassword">Forgot Password?</Link>
+      </>
     );
   }
 }
