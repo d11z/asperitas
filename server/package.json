@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-validator": "^5.3.0",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.3.12",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
