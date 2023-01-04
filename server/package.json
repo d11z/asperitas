@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "faker": "^4.1.0",
-    "jest": "^23.6.0",
+    "jest": "^29.3.1",
     "nodemon": "^1.18.10",
     "prettier": "^1.15.2",
     "supertest": "^3.3.0"
